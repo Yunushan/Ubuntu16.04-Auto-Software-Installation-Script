@@ -6,7 +6,7 @@ cpuarch=`uname -m`
 # Select Which Softwares to be Installed
 printf "\n"
 
-echo "1-) Install PHP7.3"
+echo "1-) PHP7.3"
 echo "2-) Nginx"
 echo "3-) Apache2"
 echo "4-) VLC"
@@ -16,7 +16,12 @@ echo "7-) Monitoring Tools"
 echo "8-) WineHQ Staging"
 echo "9-) Qbittorrent"
 echo "10-) Netbeans"
-echo "11-) Gimp 2.10"
+echo "11-) Gimp"
+echo "12-) Nmap"
+echo "13-) Skype"
+echo "14-) Steam"
+echo "15-) OBS"
+echo "16-) OpenShot"
 echo "20-) Exit"
 printf "\nSelect: "
 read choose
@@ -153,6 +158,55 @@ sudo apt update
 sudo apt install flatpak -y
 wget https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref -y
+
+;;
+
+12) # Nmap
+if [ "$cpuarch" = "x86_64" ]
+sudo apt install alien
+wget https://nmap.org/dist/nmap-7.70-1.x86_64.rpm
+sudo alien nmap-7.70-1.x86_64.rpm
+sudo dpkg --install nmap-7.70-1_amd64.deb
+
+
+
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ]
+
+sudo apt install alien
+wget https://nmap.org/dist/nmap-7.70-1.i686.rpm
+sudo alien nmap-7.70-1.i686.rpm
+sudo dpkg --install nmap-7.70-1_i386.deb
+
+fi
+
+;;
+
+13) # Skype
+
+wget https://go.skype.com/skypeforlinux-64.deb
+sudo dpkg -i skypeforlinux-64.deb
+
+;;
+
+14) # Steam
+wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
+sudo dpkg -i steam.deb
+
+;;
+
+15) # OBS
+
+sudo apt install ffmpeg
+sudo add-apt-repository ppa:obsproject/obs-studio -y
+sudo apt update
+sudo apt install obs-studio -y
+
+;;
+
+16) # OpenShot
+sudo add-apt-repository ppa:openshot.developers/ppa -y
+sudo apt update
+sudo apt install openshot-qt -y
 
 ;;
 esac
