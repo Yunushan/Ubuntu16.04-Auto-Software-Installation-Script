@@ -22,6 +22,7 @@ echo "13-) Skype"
 echo "14-) Steam"
 echo "15-) OBS"
 echo "16-) OpenShot"
+echo "17-) Oracle VirtualBox 6.0"
 echo "20-) Exit"
 printf "\nSelect: "
 read choose
@@ -52,6 +53,10 @@ printf "\n"
 
 # Signing keys Folder
 sudo mkdir /root/signing-keys/
+
+# Downloaded tmp files
+
+sudo mkdir /root/TempDL/
 
 # INSTALLATION BY SELECTION
 # 1) PHP 7.3
@@ -93,8 +98,12 @@ snap install vlc
 
 5) # Visual Studio Code
 
-sudo wget https://go.microsoft.com/fwlink/?LinkID=760868
-sudo dpkg -i code_*
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt install apt-transport-https -y
+sudo apt update
+sudo apt install code -y
 
 ;;
 
@@ -145,9 +154,10 @@ sudo apt install qbittorrent -y
 
 10) # NetBeans
 
-wget https://www-eu.apache.org/dist/incubator/netbeans/incubating-netbeans/incubating-10.0/incubating-netbeans-10.0-bin.zip Downloads
+wget https://www-eu.apache.org/dist/incubator/netbeans/incubating-netbeans/incubating-10.0/incubating-netbeans-10.0-bin.zip
 sudo unzip incubating-netbeans-10.0-bin.zip
 sudo apt install default-jdk -y
+sudo mv incubating-netbeans-10.0-bin.zip /root/TempDL/
 
 ;;
 
@@ -158,11 +168,12 @@ sudo apt update
 sudo apt install flatpak -y
 wget https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref -y
+sudo mv org.gimp.GIMP.flatpakref /root/TempDL/
 
 ;;
 
 12) # Nmap
-if [ "$cpuarch" = "x86_64" ]
+if [ "$cpuarch" = "x86_64" ];then
 sudo apt install alien
 wget https://nmap.org/dist/nmap-7.70-1.x86_64.rpm
 sudo alien nmap-7.70-1.x86_64.rpm
@@ -170,7 +181,7 @@ sudo dpkg --install nmap-7.70-1_amd64.deb
 
 
 
-elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ]
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 
 sudo apt install alien
 wget https://nmap.org/dist/nmap-7.70-1.i686.rpm
@@ -207,6 +218,19 @@ sudo apt install obs-studio -y
 sudo add-apt-repository ppa:openshot.developers/ppa -y
 sudo apt update
 sudo apt install openshot-qt -y
+
+;;
+
+17) #Oracle VirtualBox 6.0
+
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+sudo apt update
+sudo apt install linux-headers-$(uname -r) dkms -y
+sudo apt install virtualbox-6.0 -y
+wget https://download.virtualbox.org/virtualbox/6.0.0/Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
+sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack /root/TempDL/
 
 ;;
 esac
