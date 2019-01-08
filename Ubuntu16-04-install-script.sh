@@ -17,13 +17,16 @@ echo "8-) WineHQ Staging"
 echo "9-) Qbittorrent"
 echo "10-) Netbeans"
 echo "11-) Gimp"
-echo "12-) Nmap"
+echo "12-) Nmap 7.70"
 echo "13-) Skype"
 echo "14-) Steam"
-echo "15-) OBS"
+echo "15-) OBS-Studio"
 echo "16-) OpenShot"
 echo "17-) Oracle VirtualBox 6.0"
-echo "20-) Exit"
+echo "18-) Sublime Text 3"
+echo "19-) Brave (Web Browser)"
+echo "20-) Tor Browser 8.0.4"
+echo "23-) Exit"
 printf "\nSelect: "
 read choose
 
@@ -205,7 +208,7 @@ sudo dpkg -i steam.deb
 
 ;;
 
-15) # OBS
+15) # OBS-studio
 
 sudo apt install ffmpeg
 sudo add-apt-repository ppa:obsproject/obs-studio -y
@@ -231,6 +234,38 @@ sudo apt install linux-headers-$(uname -r) dkms -y
 sudo apt install virtualbox-6.0 -y
 wget https://download.virtualbox.org/virtualbox/6.0.0/Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
 sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack /root/TempDL/
+
+;;
+
+18) #Sublime Text 3
+
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+sudo apt-get install apt-transport-https -y
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install sublime-text -y
+
+;;
+
+19) # Brave Web Browser
+
+curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ `lsb_release -sc` main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-`lsb_release -sc`.list
+sudo apt update
+sudo apt install brave-browser brave-keyring -y
+
+;;
+
+20) # Tor Browser 8.0.4
+if [ "$cpuarch" = "x86_64" ];then
+
+wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz
+tar xvJf tor-browser-linux64-8.0.4_en-US.tar.xz
+
+elif [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i686" ];then
+wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux32-8.0.4_en-US.tar.xz
+tar xvJf tor-browser-linux32-8.0.4_en-US.tar.xz
+fi
 
 ;;
 esac
