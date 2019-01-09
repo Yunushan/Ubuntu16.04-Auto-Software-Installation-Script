@@ -2,7 +2,7 @@
 
 # Variables
 cpuarch=`uname -m`
-
+superuser=`getent group sudo | cut -d: -f4`
 # Select Which Softwares to be Installed
 printf "\n"
 
@@ -32,7 +32,7 @@ echo "23-) Exit"
 printf "\nSelect: "
 read choose
 
-if [ "$choose" = "20" ];then
+if [ "$choose" = "23" ];then
 
 exit
 
@@ -54,14 +54,15 @@ printf "\n"
 
 sudo apt update
 sudo apt install wget curl -y
+sudo apt install --no-install-recommends gnome-panel -y
 printf "\n"
 
 # Signing keys Folder
-sudo mkdir /root/signing-keys/
+mkdir /home/$superuser/Downloads/signing-keys/
 
 # Downloaded tmp files
 
-sudo mkdir /root/TempDL/
+mkdir /home/$superuser/Downloads/TempDL/
 
 # INSTALLATION BY SELECTION
 # 1) PHP 7.3
@@ -83,7 +84,7 @@ echo -e "deb http://nginx.org/packages/ubuntu/ xenial nginx\n" >> /etc/apt/sourc
 echo "deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
 sudo apt update
 sudo apt install nginx
-sudo mv nginx_signing.key /root/signing-keys/
+sudo mv nginx_signing.key /home/$superuser/Downloads/signing-keys/
 
 ;;
 
@@ -145,7 +146,7 @@ sudo apt-key add winehq.key
 sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main' 
 sudo apt update
 sudo apt install --install-recommends winehq-staging -y
-sudo mv winehq.key /root/signing-keys/
+sudo mv winehq.key /home/$superuser/Downloads/signing-keys/
 fi
 ;;
 
@@ -160,9 +161,19 @@ sudo apt install qbittorrent -y
 10) # NetBeans
 
 wget https://www-eu.apache.org/dist/incubator/netbeans/incubating-netbeans/incubating-10.0/incubating-netbeans-10.0-bin.zip
-sudo unzip incubating-netbeans-10.0-bin.zip
+unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
 sudo apt install default-jdk -y
-sudo mv incubating-netbeans-10.0-bin.zip /root/TempDL/
+sudo mv incubating-netbeans-10.0-bin.zip /home/$superuser/Downloads/TempDL/
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/netbeans/bin/netbeans
+Name=Netbeans
+Comment=Netbeans
+Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
+chmod +x /home/$superuser/Desktop/Netbeans.desktop
 
 ;;
 
@@ -173,7 +184,7 @@ sudo apt update
 sudo apt install flatpak -y
 wget https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref -y
-sudo mv org.gimp.GIMP.flatpakref /root/TempDL/
+sudo mv org.gimp.GIMP.flatpakref /home/$superuser/Downloads/TempDL/
 
 ;;
 
@@ -235,7 +246,7 @@ sudo apt update
 sudo apt install linux-headers-$(uname -r) dkms -y
 sudo apt install virtualbox-6.0 -y
 wget https://download.virtualbox.org/virtualbox/6.0.0/Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
-sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack /root/TempDL/
+sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack /home/$superuser/Downloads/TempDL/
 
 ;;
 
@@ -263,10 +274,12 @@ if [ "$cpuarch" = "x86_64" ];then
 
 wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz
 tar xvJf tor-browser-linux64-8.0.4_en-US.tar.xz
+sudo mv tor-browser-linux64-8.0.4_en-US.tar.xz /home/$superuser/Downloads/TempDL/
 
 elif [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i686" ];then
 wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux32-8.0.4_en-US.tar.xz
 tar xvJf tor-browser-linux32-8.0.4_en-US.tar.xz
+sudo mv tor-browser-linux32-8.0.4_en-US.tar.xz /home/$superuser/Downloads/TempDL/
 fi
 
 ;;
@@ -276,7 +289,7 @@ fi
 wget -O VMware-Workstation-15-Pro.bundle https://www.vmware.com/go/getworkstation-linux
 sudo apt-get install gcc build-essential linux-headers-$(uname -r) -y
 sudo bash VMware-Workstation-15-Pro.bundle
-sudo mv VMware-Workstation-15-Pro.bundle /root/TempDL/
+sudo mv VMware-Workstation-15-Pro.bundle /home/$superuser/Downloads/TempDL/
 
 ;;
 
