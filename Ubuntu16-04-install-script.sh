@@ -26,6 +26,8 @@ echo "17-) Oracle VirtualBox 6.0"
 echo "18-) Sublime Text 3"
 echo "19-) Brave (Web Browser)"
 echo "20-) Tor Browser 8.0.4"
+echo "21-) VMware Workstation 15 Pro"
+echo "22-) Eclipse IDE"
 echo "23-) Exit"
 printf "\nSelect: "
 read choose
@@ -266,6 +268,59 @@ elif [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i686" ];then
 wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux32-8.0.4_en-US.tar.xz
 tar xvJf tor-browser-linux32-8.0.4_en-US.tar.xz
 fi
+
+;;
+
+21) #VMware Workstation 15 Pro
+
+wget -O VMware-Workstation-15-Pro.bundle https://www.vmware.com/go/getworkstation-linux
+sudo apt-get install gcc build-essential linux-headers-$(uname -r) -y
+sudo bash VMware-Workstation-15-Pro.bundle
+sudo mv VMware-Workstation-15-Pro.bundle /root/TempDL/
+
+;;
+
+22) # Eclipse IDE
+
+sudo add-apt-repository ppa:lyzardking/ubuntu-make -y
+sudo apt update
+sudo apt install ubuntu-make -y
+
+printf "\n"
+
+echo "1-) Eclipse IDE for Java Developers"
+echo "2-) Eclipse IDE for Java Enterprise edition Developers"
+echo "3-) Eclipse IDE for C/C++ Developer"
+echo "4-) Eclipse for PHP Developers"
+printf "\nSelect which Eclipse Package Do you Want to install: "
+read eclipsechoose
+
+case $eclipsechoose in
+1) # Eclipse IDE for Java Developers
+
+umake ide eclipse
+
+;;
+
+2) #Eclipse IDE for Java Enterprise edition Developers
+
+umake ide eclipse-jee
+
+;;
+
+3) #Eclipse IDE for C/C++ Developer
+
+umake ide eclipse-cpp
+
+;;
+
+4) # Eclipse for PHP Developers
+
+umake ide eclipse-php
+
+;;
+esac
+
 
 ;;
 esac
