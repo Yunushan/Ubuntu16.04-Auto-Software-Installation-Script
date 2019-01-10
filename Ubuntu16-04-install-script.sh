@@ -4,6 +4,10 @@
 cpuarch=`uname -m`
 superuser=`getent group sudo | cut -d: -f4`
 # Select Which Softwares to be Installed
+
+while true
+do
+
 printf "\n"
 
 echo "1-) PHP7.3"
@@ -30,6 +34,7 @@ echo "21-) VMware Workstation 15 Pro"
 echo "22-) Eclipse IDE"
 echo "23-) Exit"
 printf "\nSelect: "
+
 read choose
 
 if [ "$choose" = "23" ];then
@@ -337,3 +342,4 @@ esac
 
 ;;
 esac
+done
