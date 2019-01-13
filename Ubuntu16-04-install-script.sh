@@ -41,13 +41,20 @@ echo "28-) SMPlayer"
 echo "29-) Kazam"
 echo "30-) Audocity"
 echo "31-) PlayonLinux"
-echo "34-) Install  All"
-echo "35-) Exit-Quit(Alternatively you can use Q or Ctrl-C)"
+echo "32-) Conky"
+echo "33-) HandBrake"
+echo "34-) Inkscape"
+echo "35-) Signal"
+echo "36-) Dropbox"
+echo "37-) WPS Office 10.1"
+echo "38-) OpenOffice 4.1.6"
+echo "39-) Install  All"
+echo "40-) Exit-Quit(Alternatively you can use Q or Ctrl-C)"
 printf "\nSelect: "
 
 read choose
 
-if [ "$choose" = "35" ] || [ "$choose" = "Quit" ] || [ "$choose" = "quit" ] || [ "$choose" = "Q" ] || [ "$choose" = "q" ];then
+if [ "$choose" = "40" ] || [ "$choose" = "Quit" ] || [ "$choose" = "quit" ] || [ "$choose" = "Q" ] || [ "$choose" = "q" ];then
 
 exit
 
@@ -417,7 +424,95 @@ sudo apt update
 sudo apt-get install playonlinux
 ;;
 
-34) # Install All
+32) #Conky
+
+sudo apt install conky-all -y
+sudo apt-add-repository ppa:teejee2008/ppa -y
+sudo apt update
+sudo apt install conky-manager -y
+
+;;
+
+33) #HandBrake
+
+sudo add-apt-repository ppa:stebbins/handbrake-releases -y
+sudo apt-get update
+sudo apt-get install handbrake-cli handbrake-gtk -y
+
+;;
+34) #Inkscape
+
+sudo add-apt-repository ppa:inkscape.dev/stable -y
+sudo apt update
+sudo apt install inkscape -y
+
+;;
+
+35) #Signal
+
+sudo apt install curl -y
+curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update
+sudo apt install signal-desktop -y
+
+;;
+
+36) #Dropbox
+
+echo "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" | sudo tee -a /etc/apt/sources.list.d/dropbox-xenial.list
+sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+sudo apt update
+sudo apt install dropbox python-gpgme -y
+
+;;
+
+37) #WPS Office
+if [ "$cpuarch" = "x86_64" ];then
+wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_amd64.deb
+sudo dpkg -i wps-office_10.1.0.6757_amd64.deb
+sudo mv wps-office_10.1.0.6757_amd64.deb /home/$superuser/Downloads/TempDL/
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_i386.deb
+sudo dpkg -i wps-office_10.1.0.6757_i386.deb
+sudo mv wps-office_10.1.0.6757_i386.deb /home/$superuser/Downloads/TempDL/
+fi
+;;
+
+38) #Open Office
+printf "\nOPENOFFICE NEEDS TO REMOVE THE LIBREOFFICE BEFORE INSTALLING IT, DO YOU CONFIRM (Y/N): "
+read openofficeverify
+if [ "$openofficeverify" = "Y" ] || [ "$openofficeverify" = "y" ];then
+
+echo "Installation confirmed"
+
+elif [ "$openofficeverify" = "N" ] || [ "$openofficeverify" = "n" ];then
+
+echo "Openoffice Installation Has Cancalled"
+
+exit
+
+fi
+if [ "$cpuarch" = "x86_64" ];then
+sudo apt-get remove libreoffice* openoffice* -y
+sudo apt-get autoremove -y
+wget -O Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz/download
+tar xzvf Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz
+sudo dpkg -i en-US/DEBS/*.deb
+sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
+sudo mv en-US OpenOffice-4.1.6-64bit
+sudo mv OpenOffice-4.1.6-64bit /home/$superuser/Downloads/TempDL/
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+sudo apt-get remove libreoffice* openoffice* -y
+sudo apt-get autoremove -y
+wget -O Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz/download
+tar xzvf Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz
+sudo dpkg -i en-us/DEBS/*.deb
+sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
+sudo mv OpenOffice-4.1.6-32bit /home/$superuser/Downloads/TempDL/
+fi
+;;
+39) # Install All
 
 # Loading Bar Starts
 
@@ -708,6 +803,72 @@ wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
 sudo wget http://deb.playonlinux.com/playonlinux_xenial.list -O /etc/apt/sources.list.d/playonlinux.list
 sudo apt update
 sudo apt-get install playonlinux
+
+#Conky
+
+sudo apt install conky-all -y
+sudo apt-add-repository ppa:teejee2008/ppa -y
+sudo apt update
+sudo apt install conky-manager -y
+
+#HandBrake
+
+sudo add-apt-repository ppa:stebbins/handbrake-releases -y
+sudo apt-get update
+sudo apt-get install handbrake-cli handbrake-gtk -y
+
+#Inkscape
+
+sudo add-apt-repository ppa:inkscape.dev/stable -y
+sudo apt update
+sudo apt install inkscape -y
+
+#Signal
+
+sudo apt install curl -y
+curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update
+sudo apt install signal-desktop -y
+
+#Dropbox
+
+echo "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" | sudo tee -a /etc/apt/sources.list.d/dropbox-xenial.list
+sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+sudo apt update
+sudo apt install dropbox python-gpgme -y
+
+#WPS Office
+if [ "$cpuarch" = "x86_64" ];then
+wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_amd64.deb
+sudo dpkg -i wps-office_10.1.0.6757_amd64.deb
+sudo mv wps-office_10.1.0.6757_amd64.deb /home/$superuser/Downloads/TempDL/
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_i386.deb
+sudo dpkg -i wps-office_10.1.0.6757_i386.deb
+sudo mv wps-office_10.1.0.6757_i386.deb /home/$superuser/Downloads/TempDL/
+fi
+
+
+#Open Office
+if [ "$cpuarch" = "x86_64" ];then
+sudo apt-get remove libreoffice* openoffice* -y
+sudo apt-get autoremove -y
+wget -O Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz/download
+tar xzvf Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz
+sudo dpkg -i en-US/DEBS/*.deb
+sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
+sudo mv en-US OpenOffice-4.1.6-64bit
+sudo mv OpenOffice-4.1.6-64bit /home/$superuser/Downloads/TempDL/
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+sudo apt-get remove libreoffice* openoffice* -y
+sudo apt-get autoremove -y
+wget -O Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz/download
+tar xzvf Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz
+sudo dpkg -i en-us/DEBS/*.deb
+sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
+sudo mv OpenOffice-4.1.6-32bit /home/$superuser/Downloads/TempDL/
+fi
 
 
 esac
