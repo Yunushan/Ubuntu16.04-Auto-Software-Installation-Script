@@ -1,70 +1,5 @@
 #!/bin/sh
 
-# Variables
-cpuarch=`uname -m`
-superuser=`getent group sudo | cut -d: -f4`
-unitylogopath=`locate Unity-2018.3.0f2/Editor/Data/Resources/LargeUnityIcon.png`
-# Select Which Softwares to be Installed
-
-while true
-do
-
-printf "\n"
-
-echo "1-) PHP7.3"
-echo "2-) Nginx"
-echo "3-) Apache2"
-echo "4-) VLC"
-echo "5-) Visual Studio Code"
-echo "6-) FFMPEG"
-echo "7-) Monitoring Tools"
-echo "8-) WineHQ Staging"
-echo "9-) Qbittorrent"
-echo "10-) Netbeans"
-echo "11-) Gimp"
-echo "12-) Nmap 7.70"
-echo "13-) Skype"
-echo "14-) Steam"
-echo "15-) OBS-Studio"
-echo "16-) OpenShot"
-echo "17-) Oracle VirtualBox 6.0"
-echo "18-) Sublime Text 3"
-echo "19-) Brave (Web Browser)"
-echo "20-) Tor Browser 8.0.4"
-echo "21-) VMware Workstation 15 Pro"
-echo "22-) Eclipse IDE"
-echo "23-) Vuze (Bittorrent Client)"
-echo "24-) Utorrent"
-echo "25-) Deluge"
-echo "26-) Transmission"
-echo "27-) MPV"
-echo "28-) SMPlayer"
-echo "29-) Kazam"
-echo "30-) Audocity"
-echo "31-) PlayonLinux"
-echo "32-) Conky"
-echo "33-) HandBrake"
-echo "34-) Inkscape"
-echo "35-) Signal"
-echo "36-) Dropbox"
-echo "37-) WPS Office 10.1"
-echo "38-) OpenOffice 4.1.6"
-echo "39-) MonoDevelop"
-echo "40-) Kodi"
-echo "41-) Unity 2018.3.0f2(Sadly still at beta on linux)"
-echo "49-) Install  All"
-echo "50-) Exit-Quit(Alternatively you can use Q or Ctrl-C)"
-printf "\nSelect: "
-
-read choose
-
-if [ "$choose" = "50" ] || [ "$choose" = "Quit" ] || [ "$choose" = "quit" ] || [ "$choose" = "Q" ] || [ "$choose" = "q" ];then
-
-exit
-
-fi
-
-
 # Loading Bar Starts
 
 printf "Installation starting"
@@ -91,17 +26,13 @@ mkdir /home/$superuser/Downloads/signing-keys/
 mkdir /home/$superuser/Downloads/TempDL/
 
 # INSTALLATION BY SELECTION
-# 1) PHP 7.3
-case $choose in
-1)
+# PHP 7.3
 sudo apt install -y python-software-properties
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 sudo apt install -y php7.3 php7.3-w php7.3-fpm php7.3-pdo php7.3-mysql php7.3-curl php7.3-gd php7.3-mbstring
-;;
 
-# 2- Nginx
-2)
+# Nginx
 
 sudo wget https://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
@@ -112,23 +43,16 @@ sudo apt update
 sudo apt install nginx
 sudo mv nginx_signing.key /home/$superuser/Downloads/signing-keys/
 
-;;
-
-
-# 3- Apache2
-3)
+# Apache2
 sudo add-apt-repository ppa:ondrej/apache2 -y
 sudo apt update
 sudo apt install apache2 -y
 
-;;
-
-4) # VLC
+# VLC
 
 snap install vlc
-;;
 
-5) # Visual Studio Code
+# Visual Studio Code
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -137,22 +61,18 @@ sudo apt install apt-transport-https -y
 sudo apt update
 sudo apt install code -y
 
-;;
-
-6) #FFMPEG
+#FFMPEG
 
 sudo add-apt-repository ppa:jonathonf/ffmpeg-4 -y
 sudo apt update
 sudo apt install ffmpeg -y
-;;
 
-7) #Monitoring Tools
+
+#Monitoring Tools
 
 sudo apt install htop iftop atop glances monit powertop iotop apachetop -y
 
-;;
-
-8) # WINEHQ
+# WINEHQ
 
 
 if [ "$cpuarch" = "x86_64" ];then
@@ -174,17 +94,14 @@ sudo apt update
 sudo apt install --install-recommends winehq-staging -y
 sudo mv winehq.key /home/$superuser/Downloads/signing-keys/
 fi
-;;
 
-9) # Qbittorrent
+# Qbittorrent
 
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 sudo apt update 
 sudo apt install qbittorrent -y
 
-;;
-
-10) # NetBeans
+# NetBeans
 
 wget https://www-eu.apache.org/dist/incubator/netbeans/incubating-netbeans/incubating-10.0/incubating-netbeans-10.0-bin.zip
 unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
@@ -201,9 +118,7 @@ Comment=Netbeans
 Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
 chmod +x /home/$superuser/Desktop/Netbeans.desktop
 
-;;
-
-11) # Gimp 2.10
+# Gimp 2.10
 
 sudo add-apt-repository ppa:alexlarsson/flatpak -y
 sudo apt update
@@ -212,9 +127,7 @@ wget https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref -y
 sudo mv org.gimp.GIMP.flatpakref /home/$superuser/Downloads/TempDL/
 
-;;
-
-12) # Nmap
+# Nmap
 if [ "$cpuarch" = "x86_64" ];then
 sudo apt install alien -y
 wget https://nmap.org/dist/nmap-7.70-1.x86_64.rpm
@@ -232,38 +145,28 @@ sudo dpkg --install nmap_7.70-2_i386.deb
 
 fi
 
-;;
-
-13) # Skype
+# Skype
 
 wget https://go.skype.com/skypeforlinux-64.deb
 sudo dpkg -i skypeforlinux-64.deb
 
-;;
-
-14) # Steam
+# Steam
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 sudo dpkg -i steam.deb
 
-;;
-
-15) # OBS-studio
+# OBS-studio
 
 sudo apt install ffmpeg
 sudo add-apt-repository ppa:obsproject/obs-studio -y
 sudo apt update
 sudo apt install obs-studio -y
 
-;;
-
-16) # OpenShot
+# OpenShot
 sudo add-apt-repository ppa:openshot.developers/ppa -y
 sudo apt update
 sudo apt install openshot-qt -y
 
-;;
-
-17) #Oracle VirtualBox 6.0
+#Oracle VirtualBox 6.0
 
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
@@ -274,9 +177,7 @@ sudo apt install virtualbox-6.0 -y
 wget https://download.virtualbox.org/virtualbox/6.0.0/Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
 sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack /home/$superuser/Downloads/TempDL/
 
-;;
-
-18) #Sublime Text 3
+#Sublime Text 3
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 sudo apt-get install apt-transport-https -y
@@ -284,18 +185,14 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-get update
 sudo apt-get install sublime-text -y
 
-;;
-
-19) # Brave Web Browser
+# Brave Web Browser
 
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ `lsb_release -sc` main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-`lsb_release -sc`.list
 sudo apt update
 sudo apt install brave-browser brave-keyring -y
 
-;;
-
-20) # Tor Browser 8.0.4
+# Tor Browser 8.0.4
 if [ "$cpuarch" = "x86_64" ];then
 
 wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz
@@ -308,151 +205,107 @@ tar xvJf tor-browser-linux32-8.0.4_en-US.tar.xz
 sudo mv tor-browser-linux32-8.0.4_en-US.tar.xz /home/$superuser/Downloads/TempDL/
 fi
 
-;;
-
-21) #VMware Workstation 15 Pro
+#VMware Workstation 15 Pro
 
 wget -O VMware-Workstation-15-Pro.bundle https://www.vmware.com/go/getworkstation-linux
 sudo apt-get install gcc build-essential linux-headers-$(uname -r) -y
 sudo bash VMware-Workstation-15-Pro.bundle
 sudo mv VMware-Workstation-15-Pro.bundle /home/$superuser/Downloads/TempDL/
 
-;;
-
-22) # Eclipse IDE
+# Eclipse IDE
 
 sudo add-apt-repository ppa:lyzardking/ubuntu-make -y
 sudo apt update
 sudo apt install ubuntu-make -y
 
-printf "\n"
-
-echo "1-) Eclipse IDE for Java Developers"
-echo "2-) Eclipse IDE for Java Enterprise edition Developers"
-echo "3-) Eclipse IDE for C/C++ Developer"
-echo "4-) Eclipse for PHP Developers"
-printf "\nSelect which Eclipse Package Do you Want to install: "
-read eclipsechoose
-
-case $eclipsechoose in
-1) # Eclipse IDE for Java Developers
+# Eclipse IDE for Java Developers
 
 umake ide eclipse
 
-;;
-
-2) #Eclipse IDE for Java Enterprise edition Developers
+#Eclipse IDE for Java Enterprise edition Developers
 
 umake ide eclipse-jee
 
-;;
-
-3) #Eclipse IDE for C/C++ Developer
+#Eclipse IDE for C/C++ Developer
 
 umake ide eclipse-cpp
 
-;;
-
-4) # Eclipse for PHP Developers
+# Eclipse for PHP Developers
 
 umake ide eclipse-php
 
-;;
-esac
-;;
-
-23) #Vuze (Bittorrent Client)
+#Vuze (Bittorrent Client)
 
 sudo snap install vuze-vs
 
-;;
-
-24) #Utorrent
+#Utorrent
 
 sudo snap install utorrent
 
-;;
-
-25) #Deluge
+#Deluge
 
 sudo apt-get install python-software-properties -y
 sudo add-apt-repository ppa:deluge-team/ppa -y
 sudo apt update
 sudo apt install deluge -y
 
-;;
-
-26) #Transmission
+#Transmission
 sudo add-apt-repository ppa:transmissionbt/ppa -y
 sudo apt update
 sudo apt transmission transmission-cli transmission-common transmission-daemon -y
 
-;;
-
-27) #MPV
+#MPV
 
 sudo add-apt-repository ppa:mc3man/mpv-tests -y
 sudo apt-get update
 sudo apt install mpv
 
-;;
-
-28) #SMPlayer
+#SMPlayer
 
 sudo add-apt-repository ppa:rvm/smplayer -y
 sudo apt update
 sudo apt-get install smplayer smplayer-themes smplayer-skins -y
 
-;;
-
-29) # Kazam
+# Kazam
 sudo add-apt-repository ppa:sylvain-pineau/kazam -y
 sudo apt update
 sudo apt install kazam -y
 sudo apt install python3-cairo python3-xlib -y
 
-;;
-
-30) # Audocity
+# Audocity
 
 sudo add-apt-repository ppa:ubuntuhandbook1/audacity -y
 sudo apt update
 sudo apt install audocity -y
 
-;;
-31) # PlayonLinux
+
+# PlayonLinux
 
 wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
 sudo wget http://deb.playonlinux.com/playonlinux_xenial.list -O /etc/apt/sources.list.d/playonlinux.list
 sudo apt update
 sudo apt-get install playonlinux
-;;
 
-32) #Conky
+#Conky
 
 sudo apt install conky-all -y
 sudo apt-add-repository ppa:teejee2008/ppa -y
 sudo apt update
 sudo apt install conky-manager -y
 
-;;
-
-33) #HandBrake
+#HandBrake
 
 sudo add-apt-repository ppa:stebbins/handbrake-releases -y
 sudo apt-get update
 sudo apt-get install handbrake-cli handbrake-gtk -y
 
-;;
-34) #Inkscape
+#Inkscape
 
 sudo add-apt-repository ppa:inkscape.dev/stable -y
 sudo apt update
 sudo apt install inkscape -y
 
-;;
-
-35) #Signal
+#Signal
 
 sudo apt install curl -y
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
@@ -460,18 +313,14 @@ echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sud
 sudo apt update
 sudo apt install signal-desktop -y
 
-;;
-
-36) #Dropbox
+#Dropbox
 
 echo "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" | sudo tee -a /etc/apt/sources.list.d/dropbox-xenial.list
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 sudo apt update
 sudo apt install dropbox python-gpgme -y
 
-;;
-
-37) #WPS Office
+#WPS Office
 if [ "$cpuarch" = "x86_64" ];then
 wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_amd64.deb
 sudo dpkg -i wps-office_10.1.0.6757_amd64.deb
@@ -481,22 +330,9 @@ wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.675
 sudo dpkg -i wps-office_10.1.0.6757_i386.deb
 sudo mv wps-office_10.1.0.6757_i386.deb /home/$superuser/Downloads/TempDL/
 fi
-;;
 
-38) #Open Office
-printf "\nOPENOFFICE NEEDS TO REMOVE THE LIBREOFFICE BEFORE INSTALLING IT, DO YOU CONFIRM (Y/N): "
-read openofficeverify
-if [ "$openofficeverify" = "Y" ] || [ "$openofficeverify" = "y" ];then
 
-echo "Installation confirmed"
-
-elif [ "$openofficeverify" = "N" ] || [ "$openofficeverify" = "n" ];then
-
-echo "Openoffice Installation Has Cancalled"
-
-exit
-
-fi
+#Open Office
 if [ "$cpuarch" = "x86_64" ];then
 sudo apt-get remove libreoffice* openoffice* -y
 sudo apt-get autoremove -y
@@ -515,26 +351,23 @@ sudo dpkg -i en-us/DEBS/*.deb
 sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
 sudo mv OpenOffice-4.1.6-32bit /home/$superuser/Downloads/TempDL/
 fi
-;;
 
-39) # MonoDevelop
+#MonoDevelop
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 sudo apt install apt-transport-https -y
 echo "deb https://download.mono-project.com/repo/ubuntu vs-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-vs.list
 sudo apt update
 sudo apt install monodevelop -y
-;;
 
-40) # Kodi
+# Kodi
 
 sudo apt-get install software-properties-common -y
 sudo add-apt-repository ppa:team-xbmc/ppa -y
 sudo apt-get update
 sudo apt-get install kodi -y
-;;
 
-41) # Unity 2018.3.0f2(Sadly still at beta on linux)
+# Unity 2018.3.0f2(Sadly still at beta on linux)
 
 printf "\nDo you want to install Unity Hub ? Y/N : "
 read unitychoose
@@ -561,33 +394,3 @@ wget https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.AppImage
 chmod +x UnityHubSetup.AppImage
 ./UnityHubSetup.AppImage
 sudo mv UnityHubSetup.AppImage /home/$superuser/Downloads/TempDL/
-
-elif [ "$unitychoose" = "N" ] || [ "$unitychoose" = "n" ];then
-
-wget https://beta.unity3d.com/download/6e9a27477296/UnitySetup-2018.3.0f2
-sudo chmod +x UnitySetup-2018.3.0f2
-./UnitySetup-2018.3.0f2
-sudo updatedb
-echo "#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Exec=/home/$superuser/Unity-2018.3.0f2/Editor/Unity
-Name=Unity-2018.3.0f2
-Comment=Unity-2018.3.0f2
-Icon=$unitylogopath" >> /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
-chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
-sudo mv UnitySetup-2018.3.0f2 /home/$superuser/Downloads/TempDL/
-
-fi
-
-;;
-
-49) # Install All
-
-sudo ./Ubuntu16-04-all-software-installation-without-prompt.sh
-
-;;
-esac
-done
