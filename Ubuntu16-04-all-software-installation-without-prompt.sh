@@ -377,6 +377,7 @@ wget https://beta.unity3d.com/download/6e9a27477296/UnitySetup-2018.3.0f2
 sudo chmod +x UnitySetup-2018.3.0f2
 ./UnitySetup-2018.3.0f2
 sudo updatedb
+unitylogopath=`locate Unity-2018.3.0f2/Editor/Data/Resources/LargeUnityIcon.png`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -394,3 +395,29 @@ wget https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.AppImage
 chmod +x UnityHubSetup.AppImage
 ./UnityHubSetup.AppImage
 sudo mv UnityHubSetup.AppImage /home/$superuser/Downloads/TempDL/
+
+# Unreal Engine 4
+
+sudo apt install git -y
+git clone git@github.com:EpicGames/UnrealEngine.git
+./UnrealEngine/Setup.sh
+./UnrealEngine/GenerateProjectFiles.sh
+cd UnrealEngine/
+sudo make
+sudo updatedb
+unreallogopath=`locate /UnrealVersionSelector/Private/Linux/Resources/Icon.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/UnrealEngine/Engine/Binaries/Linux/UE4Editor
+Name=Unreal Engine
+Comment=Unreal Engine
+Icon=$unreallogopath" >> /home/$superuser/Desktop/Unreal-Engine-4.desktop
+sudo mv UnrealEngine/ /home/$superuser/Downloads/TempDL/
+
+# Krita 4.1.7
+
+wget https://download.kde.org/stable/krita/4.1.7/krita-4.1.7-x86_64.appimage
+chmod +x krita-4.1.7-x86_64.appimage

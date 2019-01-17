@@ -3,7 +3,6 @@
 # Variables
 cpuarch=`uname -m`
 superuser=`getent group sudo | cut -d: -f4`
-unitylogopath=`locate Unity-2018.3.0f2/Editor/Data/Resources/LargeUnityIcon.png`
 # Select Which Softwares to be Installed
 
 while true
@@ -52,6 +51,8 @@ echo "38-) OpenOffice 4.1.6"
 echo "39-) MonoDevelop"
 echo "40-) Kodi"
 echo "41-) Unity 2018.3.0f2(Sadly still at beta on linux)"
+echo "42-) Unreal Engine 4"
+echo "43-) Krita 4.1.7"
 echo "49-) Install  All"
 echo "50-) Exit-Quit(Alternatively you can use Q or Ctrl-C)"
 printf "\nSelect: "
@@ -190,6 +191,10 @@ wget https://www-eu.apache.org/dist/incubator/netbeans/incubating-netbeans/incub
 unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
 sudo apt install default-jdk -y
 sudo mv incubating-netbeans-10.0-bin.zip /home/$superuser/Downloads/TempDL/
+
+printf "\nDo you want to create Desktop Shortcut (Y/N): "
+read shortcut
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -199,6 +204,7 @@ Exec=/home/$superuser/Downloads/TempDL/netbeans/bin/netbeans
 Name=Netbeans
 Comment=Netbeans
 Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
+else
 chmod +x /home/$superuser/Desktop/Netbeans.desktop
 
 ;;
@@ -544,6 +550,7 @@ wget https://beta.unity3d.com/download/6e9a27477296/UnitySetup-2018.3.0f2
 sudo chmod +x UnitySetup-2018.3.0f2
 ./UnitySetup-2018.3.0f2
 sudo updatedb
+unitylogopath=`locate Unity-2018.3.0f2/Editor/Data/Resources/LargeUnityIcon.png`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -581,6 +588,35 @@ chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
 sudo mv UnitySetup-2018.3.0f2 /home/$superuser/Downloads/TempDL/
 
 fi
+
+;;
+
+42) # Unreal Engine 4
+
+sudo apt install git -y
+git clone git@github.com:EpicGames/UnrealEngine.git
+./UnrealEngine/Setup.sh
+./UnrealEngine/GenerateProjectFiles.sh
+cd UnrealEngine/
+sudo make
+sudo updatedb
+unreallogopath=`locate /UnrealVersionSelector/Private/Linux/Resources/Icon.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/UnrealEngine/Engine/Binaries/Linux/UE4Editor
+Name=Unreal Engine
+Comment=Unreal Engine
+Icon=$unreallogopath" >> /home/$superuser/Desktop/Unreal-Engine-4.desktop
+sudo mv UnrealEngine/ /home/$superuser/Downloads/TempDL/
+;;
+
+43) # Krita 4.1.7
+
+wget https://download.kde.org/stable/krita/4.1.7/krita-4.1.7-x86_64.appimage
+chmod +x krita-4.1.7-x86_64.appimage
 
 ;;
 
