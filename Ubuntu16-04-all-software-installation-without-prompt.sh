@@ -421,3 +421,92 @@ sudo mv UnrealEngine/ /home/$superuser/Downloads/TempDL/
 
 wget https://download.kde.org/stable/krita/4.1.7/krita-4.1.7-x86_64.appimage
 chmod +x krita-4.1.7-x86_64.appimage
+
+# Kdenlive 18.12.1b
+
+wget -O /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage https://files.kde.org/kdenlive/release/kdenlive-18.12.1b-x86_64.appimage
+chmod +x /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
+wget -O /home/$superuser/Downloads/TempDL/kdenlive.png https://cdn.iconverticons.com/files/png/7f088b9c830c6591_256x256.png
+
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
+Name=Kdenlive
+Comment=Kdenlive
+Icon=/home/$superuser/Downloads/TempDL/kdenlive.png" >> /home/$superuser/Desktop/kdenlive.desktop
+chmod +x /home/$superuser/Desktop/kdenlive.desktop
+
+# Qt
+if [ "$cpuarch" = "x86_64" ];then
+wget -O /home/$superuser/Downloads/TempDL/qt-unified-linux-x64-online.run http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
+chmod +x /home/$superuser/Downloads/TempDL/qt-unified-linux-x64-online.run
+sudo sh /home/$superuser/Downloads/TempDL/qt-unified-linux-x64-online.run
+sudo updatedb
+qtlocation=`locate Qt/Tools/QtCreator/bin/qtcreator | grep -m1 Qt/Tools/QtCreator/bin/qtcreator`
+qticon=`locate QtIcon.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=$qtlocation
+Name=Qt Creator
+Comment=Qt Creator
+Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
+chmod +x /home/$superuser/Desktop/Qt Creator.desktop
+
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget -O /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run http://download.qt.io/official_releases/online_installers/qt-unified-linux-x86-online.run
+chmod +x /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run
+sudo sh /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run
+sudo updatedb
+qtlocation=`locate Qt/Tools/QtCreator/bin/qtcreator | grep -m1 Qt/Tools/QtCreator/bin/qtcreator`
+qticon=`locate QtIcon.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=$qtlocation
+Name=Qt Creator
+Comment=Qt Creator
+Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
+chmod +x /home/$superuser/Desktop/Qt Creator.desktop
+fi
+
+# AptanaStudio3
+sudo apt install default-jdk -y
+sudo apt install libjpeg62 libwebkitgtk-1.0-0 git-core -y
+wget -O /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip https://github.com/aptana/studio3/releases/download/3.7.2.201807301111/aptana.studio-linux.gtk.x86_64.zip
+unzip -d /home/$superuser/Downloads/TempDL/aptana-studio /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip
+chmod +x /home/$superuser/Downloads/TempDL/aptana-studio/AptanaStudio3
+
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/aptana-studio/AptanaStudio3
+Name=AptanaStudio3
+Comment=AptanaStudio3
+Icon=/home/$superuser/Downloads/TempDL/aptana-studio/icon.xpm" >> /home/$superuser/Desktop/AptanaStudio3.desktop
+chmod +x /home/$superuser/Desktop/AptanaStudio3.desktop
+
+# Irssi (PPA)
+
+wget -nv https://download.opensuse.org/repositories/home:ailin_nemui:irssi-test/xUbuntu_16.10/Release.key -O Release.key
+sudo apt-key add - < Release.key
+sudo apt update
+sudo mv Release.key /home/$superuser/Downloads/signing-keys/
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ailin_nemui:/irssi-test/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/home:ailin_nemui:irssi-test.list"
+sudo apt-get update
+sudo apt-get install irssi -y
+
+# Clementine (PPA)
+
+sudo add-apt-repository ppa:me-davidsansome/clementine -y
+sudo apt-get update
+sudo apt install clementine -y
