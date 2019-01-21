@@ -5,14 +5,17 @@ cpuarch=`uname -m`
 superuser=`getent group sudo | cut -d: -f4`
 # Select Which Softwares to be Installed
 
+printf "\nDo You Want to Enable Create Shortcut ? (Y/N)"
+read shortcut
+
 while true
 do
 
 printf "\n"
 
 echo "1-) PHP7.3 (PPA)"
-echo "2-) Nginx"
-echo "3-) Apache2"
+echo "2-) Nginx (PPA)"
+echo "3-) Apache2 (PPA)"
 echo "4-) VLC"
 echo "5-) Visual Studio Code"
 echo "6-) FFMPEG (PPA)"
@@ -60,10 +63,15 @@ echo "47-) Irssi (PPA)"
 echo "48-) Clementine (PPA)"
 echo "49-) Install  All"
 echo "50-) Exit-Quit(Alternatively you can use Q or Ctrl-C)"
+printf "\n"
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "Shortcut Enabled"
+else
+echo "Shortcut Disabled"
+fi
+
 printf "\nSelect: "
-
 read choose
-
 if [ "$choose" = "50" ] || [ "$choose" = "Quit" ] || [ "$choose" = "quit" ] || [ "$choose" = "Q" ] || [ "$choose" = "q" ];then
 
 exit
@@ -90,11 +98,23 @@ sudo apt install --no-install-recommends gnome-panel -y
 printf "\n"
 
 # Signing keys Folder
-mkdir /home/$superuser/Downloads/signing-keys/
-
+if [ -d "/home/$superuser/Downloads/signing-keys/" ];then
+:
+else
+mkdir -p /home/$superuser/Downloads/signing-keys/
+fi
 # Downloaded tmp files
-
-mkdir /home/$superuser/Downloads/TempDL/
+if [ -d "/home/$superuser/Downloads/TempDL/" ];then
+:
+else
+mkdir -p /home/$superuser/Downloads/TempDL/
+fi
+# Desktop Folder
+if [ -d "/home/$superuser/Destkop/" ];then
+:
+else
+mkdir -p /home/$superuser/Desktop/
+fi
 
 # INSTALLATION BY SELECTION
 # 1) PHP 7.3
@@ -106,22 +126,24 @@ sudo apt update
 sudo apt install -y php7.3 php7.3-w php7.3-fpm php7.3-pdo php7.3-mysql php7.3-curl php7.3-gd php7.3-mbstring
 ;;
 
-# 2- Nginx
+# 2- Nginx (PPA)
 2)
 
-sudo wget https://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
-echo -e "\n\n#OFFICIAL NGINX PACKAGES\n" >> /etc/apt/sources.list
-echo -e "deb http://nginx.org/packages/ubuntu/ xenial nginx\n" >> /etc/apt/sources.list
-echo "deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
+#NGINX 
+
+echo " 
+
+#NGINX
+
+deb http://nginx.org/packages/ubuntu/ xenial nginx
+deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
 sudo apt update
-sudo apt install nginx
-sudo mv nginx_signing.key /home/$superuser/Downloads/signing-keys/
+sudo apt install nginx -y
 
 ;;
 
 
-# 3- Apache2
+# 3- Apache2 (PPA)
 3)
 sudo add-apt-repository ppa:ondrej/apache2 -y
 sudo apt update
@@ -142,10 +164,24 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt install apt-transport-https -y
 sudo apt update
 sudo apt install code -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Desktop/Visual Studio Code
+Name=Visual Studio Code
+Comment=Visual Studio Code
+Icon=/usr/share/code/resources/app/resources/linux/code.png" >> /home/$superuser/Desktop/visual-studio-code.desktop
+chmod +x /home/$superuser/Desktop/visual-studio-code.desktop
+else
+:
+fi
 
 ;;
 
-6) #FFMPEG
+6) #FFMPEG (PPA)
 
 sudo add-apt-repository ppa:jonathonf/ffmpeg-4 -y
 sudo apt update
@@ -197,9 +233,6 @@ unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
 sudo apt install default-jdk -y
 sudo mv incubating-netbeans-10.0-bin.zip /home/$superuser/Downloads/TempDL/
 
-printf "\nDo you want to create Desktop Shortcut (Y/N): "
-read shortcut
-if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -209,9 +242,7 @@ Exec=/home/$superuser/Downloads/TempDL/netbeans/bin/netbeans
 Name=Netbeans
 Comment=Netbeans
 Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
-else
 chmod +x /home/$superuser/Desktop/Netbeans.desktop
-fi
 ;;
 
 11) # Gimp 2.10
@@ -290,10 +321,10 @@ sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack /home/$superuser/
 18) #Sublime Text 3
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo apt-get install apt-transport-https -y
+sudo apt install apt-transport-https -y
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt-get update
-sudo apt-get install sublime-text -y
+sudo apt update
+sudo apt install sublime-text -y
 
 ;;
 
@@ -324,7 +355,7 @@ fi
 21) #VMware Workstation 15 Pro
 
 wget -O VMware-Workstation-15-Pro.bundle https://www.vmware.com/go/getworkstation-linux
-sudo apt-get install gcc build-essential linux-headers-$(uname -r) -y
+sudo apt install gcc build-essential linux-headers-$(uname -r) -y
 sudo bash VMware-Workstation-15-Pro.bundle
 sudo mv VMware-Workstation-15-Pro.bundle /home/$superuser/Downloads/TempDL/
 
@@ -386,7 +417,7 @@ sudo snap install utorrent
 
 25) #Deluge
 
-sudo apt-get install python-software-properties -y
+sudo apt install python-software-properties -y
 sudo add-apt-repository ppa:deluge-team/ppa -y
 sudo apt update
 sudo apt install deluge -y
@@ -403,7 +434,7 @@ sudo apt transmission transmission-cli transmission-common transmission-daemon -
 27) #MPV
 
 sudo add-apt-repository ppa:mc3man/mpv-tests -y
-sudo apt-get update
+sudo apt update
 sudo apt install mpv
 
 ;;
@@ -412,7 +443,7 @@ sudo apt install mpv
 
 sudo add-apt-repository ppa:rvm/smplayer -y
 sudo apt update
-sudo apt-get install smplayer smplayer-themes smplayer-skins -y
+sudo apt install smplayer smplayer-themes smplayer-skins -y
 
 ;;
 
@@ -436,7 +467,7 @@ sudo apt install audocity -y
 wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
 sudo wget http://deb.playonlinux.com/playonlinux_xenial.list -O /etc/apt/sources.list.d/playonlinux.list
 sudo apt update
-sudo apt-get install playonlinux
+sudo apt install playonlinux
 ;;
 
 32) #Conky
@@ -451,8 +482,8 @@ sudo apt install conky-manager -y
 33) #HandBrake
 
 sudo add-apt-repository ppa:stebbins/handbrake-releases -y
-sudo apt-get update
-sudo apt-get install handbrake-cli handbrake-gtk -y
+sudo apt update
+sudo apt install handbrake-cli handbrake-gtk -y
 
 ;;
 34) #Inkscape
@@ -498,19 +529,14 @@ fi
 printf "\nOPENOFFICE NEEDS TO REMOVE THE LIBREOFFICE BEFORE INSTALLING IT, DO YOU CONFIRM (Y/N): "
 read openofficeverify
 if [ "$openofficeverify" = "Y" ] || [ "$openofficeverify" = "y" ];then
-
-echo "Installation confirmed"
-
+:
 elif [ "$openofficeverify" = "N" ] || [ "$openofficeverify" = "n" ];then
-
-echo "Openoffice Installation Has Cancalled"
-
 exit
 
 fi
 if [ "$cpuarch" = "x86_64" ];then
-sudo apt-get remove libreoffice* openoffice* -y
-sudo apt-get autoremove -y
+sudo apt remove libreoffice* openoffice* -y
+sudo apt autoremove -y
 wget -O Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz/download
 tar xzvf Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz
 sudo dpkg -i en-US/DEBS/*.deb
@@ -518,8 +544,8 @@ sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
 sudo mv en-US OpenOffice-4.1.6-64bit
 sudo mv OpenOffice-4.1.6-64bit /home/$superuser/Downloads/TempDL/
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
-sudo apt-get remove libreoffice* openoffice* -y
-sudo apt-get autoremove -y
+sudo apt remove libreoffice* openoffice* -y
+sudo apt autoremove -y
 wget -O Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz/download
 tar xzvf Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz
 sudo dpkg -i en-us/DEBS/*.deb
@@ -539,10 +565,10 @@ sudo apt install monodevelop -y
 
 40) # Kodi
 
-sudo apt-get install software-properties-common -y
+sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:team-xbmc/ppa -y
-sudo apt-get update
-sudo apt-get install kodi -y
+sudo apt update
+sudo apt install kodi -y
 ;;
 
 41) # Unity 2018.3.0f2(Sadly still at beta on linux)
@@ -720,15 +746,15 @@ sudo apt-key add - < Release.key
 sudo apt update
 sudo mv Release.key /home/$superuser/Downloads/signing-keys/
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ailin_nemui:/irssi-test/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/home:ailin_nemui:irssi-test.list"
-sudo apt-get update
-sudo apt-get install irssi -y
+sudo apt update
+sudo apt install irssi -y
 ;;
 
 
 48) # Clementine (PPA)
 
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
-sudo apt-get update
+sudo apt update
 sudo apt install clementine -y
 
 ;;
