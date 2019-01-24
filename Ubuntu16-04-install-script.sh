@@ -1,85 +1,256 @@
-#!/bin/sh
-
+#!/bin/bash
 # Variables
 cpuarch=`uname -m`
 superuser=`getent group sudo | cut -d: -f4`
 # Select Which Softwares to be Installed
 
-printf "\nDo You Want to Enable Create Shortcut ? (Y/N)"
-read shortcut
+choice () {
+    local choice=$1
+    if [[ ${opts[choice]} ]] # toggle
+    then
+        opts[choice]=
+    else
+        opts[choice]=+
+    fi
+}
 
-while true
+PS3='Please enter your choice: '
+while :
 do
+clear
+options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opts[3]}" "VLC ${opts[4]}" "Visual Studio Code ${opts[5]}" "FFMPEG (PPA) ${opts[6]}" 
+"Monitoring Tools ${opts[7]}" "WineHQ Staging ${opts[8]}" "Qbittorrent ${opts[9]}" "Netbeans ${opts[10]}" "Gimp ${opts[11]}" "Nmap 7.70 ${opts[12]}" 
+"Skype ${opts[13]}" "Steam ${opts[14]}" "OBS-Studio (PPA) ${opts[15]}" "OpenShot ${opts[16]}" "Oracle VirtualBox 6.0 ${opts[17]}" "Sublime Text 3 ${opts[18]}" 
+"Brave (Web Browser) ${opts[19]}" "Tor Browser 8.0.4 ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" "Vuze (Bittorrent Client) ${opts[23]}" 
+"Utorrent ${opts[24]}" "Deluge ${opts[25]}" "Transmission ${opts[26]}" "MPV ${opts[27]}" "SMPlayer ${opts[28]}" "Kazam ${opts[29]}" "Audocity ${opts[30]}" 
+"PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" "Signal ${opts[35]}" "Dropbox ${opts[36]}" 
+"WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" "Unity 2018.3.0f2 ${opts[41]}" 
+"Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}" "Irssi (PPA) ${opts[47]}" 
+"Clementine (PPA) ${opts[48]}" "Done ${opts[49]}")
+    select opt in "${options[@]}"
+    do
+        case $opt in
+            "PHP7.3 (PPA) ${opts[1]}")
+                choice 1
+                break
+                ;;
+            "Nginx (PPA) ${opts[2]}")
+                choice 2
+                break
+                ;;
+            "Apache2 (PPA) ${opts[3]}")
+                choice 3
+                break
+                ;;
+            "VLC ${opts[4]}")
+                choice 4
+                break
+                ;;
+            "Visual Studio Code ${opts[5]}")
+                choice 5
+                break
+                ;;
+            "FFMPEG (PPA) ${opts[6]}")
+                choice 6
+                break
+                ;;
+            "Monitoring Tools ${opts[7]}")
+                choice 7
+                break
+                ;;
+            "WineHQ Staging ${opts[8]}")
+                choice 8
+                break
+                ;;
+            "Qbittorrent ${opts[9]}")
+                choice 9
+                break
+                ;;
+            "Netbeans ${opts[10]}")
+                choice 10
+                break
+                ;;
+            "Gimp ${opts[11]}")
+                choice 11
+                break
+                ;;
+            "Nmap 7.70 ${opts[12]}")
+                choice 12
+                break
+                ;;
+            "Skype ${opts[13]}")
+                choice 13
+                break
+                ;;
+            "Steam ${opts[14]}")
+                choice 14
+                break
+                ;;
+            "OBS-Studio (PPA) ${opts[15]}")
+                choice 15
+                break
+                ;;
+            "OpenShot ${opts[16]}")
+                choice 16
+                break
+                ;;
+            "Oracle VirtualBox 6.0 ${opts[17]}")
+                choice 17
+                break
+                ;;
+            "Sublime Text 3 ${opts[18]}")
+                choice 18
+                break
+                ;;
+            "Brave (Web Browser) ${opts[19]}")
+                choice 19
+                break
+                ;;
+            "Tor Browser 8.0.4 ${opts[20]}")
+                choice 20
+                break
+                ;;
+            "VMware Workstation 15 Pro ${opts[21]}")
+                choice 21
+                break
+                ;;
+            "Eclipse IDE ${opts[22]}")
+                choice 22
+                break
+                ;;
+            "Vuze (Bittorrent Client) ${opts[23]}")
+                choice 23
+                break
+                ;;
+            "Utorrent ${opts[24]}")
+                choice 24
+                break
+                ;;
+            "Deluge ${opts[25]}")
+                choice 25
+                break
+                ;;
+            "Transmission ${opts[26]}")
+                choice 26
+                break
+                ;;
+            "MPV ${opts[27]}")
+                choice 27
+                break
+                ;;
+            "SMPlayer ${opts[28]}")
+                choice 28
+                break
+                ;;
+            "Kazam ${opts[29]}")
+                choice 29
+                break
+                ;;
+            "Audocity ${opts[30]}")
+                choice 30
+                break
+                ;;
+            "PlayonLinux ${opts[31]}")
+                choice 31
+                break
+                ;;
+            "Conky (PPA) ${opts[32]}")
+                choice 32
+                break
+                ;;
+            "HandBrake (PPA) ${opts[33]}")
+                choice 33
+                break
+                ;;
+            "Inkscape (PPA) ${opts[34]}")
+                choice 34
+                break
+                ;;
+            "Signal ${opts[35]}")
+                choice 35
+                break
+                ;;
+            "Dropbox ${opts[36]}")
+                choice 36
+                break
+                ;;
+            "WPS Office 10.1 ${opts[37]}")
+                choice 37
+                break
+                ;;
+            "OpenOffice 4.1.6 ${opts[38]}")
+                choice 38
+                break
+                ;;
+            "MonoDevelop ${opts[39]}")
+                choice 39
+                break
+                ;;
+            "Kodi (PPA  ) ${opts[40]}")
+                choice 40
+                break
+                ;;
+            "Unity 2018.3.0f2 ${opts[41]}")
+                choice 41
+                break
+                ;;
+            "Unreal Engine 4 ${opts[42]}")
+                choice 42
+                break
+                ;;
+            "Krita 4.1.7 ${opts[43]}")
+                choice 43
+                break
+                ;;
+            "Kdenlive 18.12.1b ${opts[44]}")
+                choice 44
+                break
+                ;;
+            "Qt ${opts[45]}")
+                choice 45
+                break
+                ;;
+            "AptanaStudio3 ${opts[46]}")
+                choice 46
+                break
+                ;;
+            "Irssi (PPA) ${opts[47]}")
+                choice 47
+                break
+                ;;
+            "Clementine (PPA) ${opts[48]}")
+                choice 48
+                break
+                ;;
+            "Done ${opts[49]}")
+                break 2
+                ;;
+            *) printf '%s\n' 'Please Choose Between 1-48';;
+        esac
+    done
+done
 
-printf "\n"
-
-echo "1-) PHP7.3 (PPA)"
-echo "2-) Nginx (PPA)"
-echo "3-) Apache2 (PPA)"
-echo "4-) VLC"
-echo "5-) Visual Studio Code"
-echo "6-) FFMPEG (PPA)"
-echo "7-) Monitoring Tools"
-echo "8-) WineHQ Staging"
-echo "9-) Qbittorrent"
-echo "10-) Netbeans"
-echo "11-) Gimp"
-echo "12-) Nmap 7.70"
-echo "13-) Skype"
-echo "14-) Steam"
-echo "15-) OBS-Studio (PPA)"
-echo "16-) OpenShot"
-echo "17-) Oracle VirtualBox 6.0"
-echo "18-) Sublime Text 3"
-echo "19-) Brave (Web Browser)"
-echo "20-) Tor Browser 8.0.4"
-echo "21-) VMware Workstation 15 Pro"
-echo "22-) Eclipse IDE"
-echo "23-) Vuze (Bittorrent Client)"
-echo "24-) Utorrent"
-echo "25-) Deluge"
-echo "26-) Transmission"
-echo "27-) MPV"
-echo "28-) SMPlayer"
-echo "29-) Kazam"
-echo "30-) Audocity"
-echo "31-) PlayonLinux"
-echo "32-) Conky (PPA)"
-echo "33-) HandBrake (PPA)"
-echo "34-) Inkscape (PPA)"
-echo "35-) Signal"
-echo "36-) Dropbox"
-echo "37-) WPS Office 10.1"
-echo "38-) OpenOffice 4.1.6"
-echo "39-) MonoDevelop"
-echo "40-) Kodi (PPA)"
-echo "41-) Unity 2018.3.0f2(Sadly still at beta on linux)"
-echo "42-) Unreal Engine 4"
-echo "43-) Krita 4.1.7"
-echo "44-) Kdenlive 18.12.1b"
-echo "45-) Qt"
-echo "46-) AptanaStudio3"
-echo "47-) Irssi (PPA)"
-echo "48-) Clementine (PPA)"
-echo "49-) Install  All"
-echo "50-) Exit-Quit(Alternatively you can use Q or Ctrl-C)"
-printf "\n"
-if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
-echo "Shortcut Enabled"
-else
-echo "Shortcut Disabled"
-fi
-
-printf "\nSelect: "
-read choose
-if [ "$choose" = "50" ] || [ "$choose" = "Quit" ] || [ "$choose" = "quit" ] || [ "$choose" = "Q" ] || [ "$choose" = "q" ];then
-
-exit
-
-fi
+printf '%s\n\n' 'Options chosen:'
+for opt in "${!opts[@]}"
+do
+    if [[ ${opts[opt]} ]]
+    then
+        printf '%s\n' "Option $opt"
+        fi
+done
 
 
-# Loading Bar Starts
+#printf "\nDo You Want to Enable Create Shortcut ? (Y/N)"
+#read shortcut
+#if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+#echo "Shortcut Enabled"
+#else
+#echo "Shortcut Disabled"
+#fi
+#sleep 1
+
+
+# Loading Bar
 
 printf "Installation starting"
 value=0
@@ -90,7 +261,7 @@ printf "."
 sleep 0.05
 done
 printf "\n"
-# Loading Bar Ends
+
 
 sudo apt update
 sudo apt install wget curl -y
@@ -118,7 +289,7 @@ fi
 
 # INSTALLATION BY SELECTION
 # 1) PHP 7.3
-case $choose in
+case $opt in
 1)
 sudo apt install -y python-software-properties
 sudo add-apt-repository ppa:ondrej/php -y
@@ -137,6 +308,7 @@ echo "
 
 deb http://nginx.org/packages/ubuntu/ xenial nginx
 deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
 sudo apt update
 sudo apt install nginx -y
 
@@ -164,7 +336,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt install apt-transport-https -y
 sudo apt update
 sudo apt install code -y
-if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+#if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -175,9 +347,9 @@ Name=Visual Studio Code
 Comment=Visual Studio Code
 Icon=/usr/share/code/resources/app/resources/linux/code.png" >> /home/$superuser/Desktop/visual-studio-code.desktop
 chmod +x /home/$superuser/Desktop/visual-studio-code.desktop
-else
-:
-fi
+#else
+#:
+#fi
 
 ;;
 
@@ -765,4 +937,3 @@ sudo ./Ubuntu16-04-all-software-installation-without-prompt.sh
 
 ;;
 esac
-done
