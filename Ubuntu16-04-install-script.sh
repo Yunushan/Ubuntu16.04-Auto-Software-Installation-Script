@@ -240,14 +240,22 @@ do
 done
 
 
-#printf "\nDo You Want to Enable Create Shortcut ? (Y/N)"
-#read shortcut
-#if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
-#echo "Shortcut Enabled"
-#else
-#echo "Shortcut Disabled"
-#fi
-#sleep 1
+if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ] || [ "$opt" = "11" ] || [ "$opt" = "12" ] || [ "$opt" = "13" ] || [ "$opt" = "14" ] || \
+ [ "$opt" = "15" ] || [ "$opt" = "16" ] || [ "$opt" = "17" ] || [ "$opt" = "18" ] || [ "$opt" = "19" ] || [ "$opt" = "20" ] || [ "$opt" = "21" ] || [ "$opt" = "22" ] || \
+ [ "$opt" = "23" ] || [ "$opt" = "24" ] || [ "$opt" = "25" ] || [ "$opt" = "26" ] || [ "$opt" = "27" ] || [ "$opt" = "28" ] || [ "$opt" = "29" ] || [ "$opt" = "30" ] || \
+ [ "$opt" = "31" ] || [ "$opt" = "33" ] || [ "$opt" = "34" ] || [ "$opt" = "35" ] || [ "$opt" = "36" ] || [ "$opt" = "37" ] || [ "$opt" = "38" ] || [ "$opt" = "39" ] || \
+ [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] 
+then
+
+printf "\nDo You Want to Enable Create Shortcut ? (Y/N)"
+read shortcut
+fi
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "Shortcut Enabled"
+else
+echo "Shortcut Disabled"
+fi
+sleep 1
 
 
 # Loading Bar
@@ -326,6 +334,21 @@ sudo apt install apache2 -y
 4) # VLC
 
 snap install vlc
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/vlc
+Name=VLC
+Comment=VLC
+Icon=/snap/vlc/770/usr/share/icon/hicolor/256x256/apps/vlc.png" >> /home/$superuser/Desktop/vlc.desktop
+chmod +x /home/$superuser/vlc.desktop
+else
+:
+fi
+
 ;;
 
 5) # Visual Studio Code
@@ -336,7 +359,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt install apt-transport-https -y
 sudo apt update
 sudo apt install code -y
-#if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -347,9 +370,9 @@ Name=Visual Studio Code
 Comment=Visual Studio Code
 Icon=/usr/share/code/resources/app/resources/linux/code.png" >> /home/$superuser/Desktop/visual-studio-code.desktop
 chmod +x /home/$superuser/Desktop/visual-studio-code.desktop
-#else
-#:
-#fi
+else
+:
+fi
 
 ;;
 
@@ -395,6 +418,20 @@ fi
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 sudo apt update 
 sudo apt install qbittorrent -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/qbittorrent
+Name=Qbittorrent
+Comment=Qbittorrent
+Icon=/usr/share/icons/hicolor/192x192/qbittorrent.png" >> /home/$superuser/Desktop/qbittorrent.desktop
+chmod +x /home/$superuser/qbittorrent.desktop
+else
+:
+fi
 
 ;;
 
@@ -404,7 +441,7 @@ wget https://www-eu.apache.org/dist/incubator/netbeans/incubating-netbeans/incub
 unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
 sudo apt install default-jdk -y
 sudo mv incubating-netbeans-10.0-bin.zip /home/$superuser/Downloads/TempDL/
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -415,6 +452,9 @@ Name=Netbeans
 Comment=Netbeans
 Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
 chmod +x /home/$superuser/Desktop/Netbeans.desktop
+else
+:
+fi
 ;;
 
 11) # Gimp 2.10
@@ -425,25 +465,55 @@ sudo apt install flatpak -y
 wget https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref -y
 sudo mv org.gimp.GIMP.flatpakref /home/$superuser/Downloads/TempDL/
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/netbeans/bin/netbeans
+Name=Netbeans
+Comment=Netbeans
+Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
+chmod +x /home/$superuser/Desktop/Netbeans.desktop
+else
+:
+fi
 
 ;;
 
 12) # Nmap
 if [ "$cpuarch" = "x86_64" ];then
 sudo apt install alien -y
-wget https://nmap.org/dist/nmap-7.70-1.x86_64.rpm
-sudo alien nmap-7.70-1.x86_64.rpm
-sudo dpkg --install nmap_7.70-2_amd64.deb
-
+wget -O /home/$superuser/Downloads/TempDL/nmap-7.70-1.x86_64.rpm https://nmap.org/dist/nmap-7.70-1.x86_64.rpm
+sudo alien /home/$superuser/Downloads/TempDL/nmap-7.70-1.x86_64.rpm
+sudo dpkg --install /home/$superuser/Downloads/TempDL/nmap_7.70-2_amd64.deb
+wget -O /home/$superuser/Downloads/TempDL/nmap.png https://www.macupdate.com/images/icons256/36710.png
 
 
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 
 sudo apt install alien -y
-wget https://nmap.org/dist/nmap-7.70-1.i686.rpm
-sudo alien nmap-7.70-1.i686.rpm
-sudo dpkg --install nmap_7.70-2_i386.deb
+wget -O /home/$superuser/Downloads/TempDL/nmap-7.70-1.i686.rpm https://nmap.org/dist/nmap-7.70-1.i686.rpm
+sudo alien /home/$superuser/Downloads/TempDL/nmap-7.70-1.i686.rpm
+sudo dpkg --install /home/$superuser/Downloads/TempDL/nmap_7.70-2_i386.deb
+wget -O /home/$superuser/Downloads/TempDL/nmap.png https://www.macupdate.com/images/icons256/36710.png
 
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/nmap
+Name=Nmap
+Comment=Nmap
+Icon=/home/$superuser/Downloads/TempDL/nmap.png" >> /home/$superuser/Desktop/nmap.desktop
+chmod +x /home/$superuser/Desktop/nmap.desktop
+else
+:
 fi
 
 ;;
@@ -452,12 +522,40 @@ fi
 
 wget https://go.skype.com/skypeforlinux-64.deb
 sudo dpkg -i skypeforlinux-64.deb
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/skypeforlinux
+Name=Skype
+Comment=Skype
+Icon=/usr/share/icons/hicolor/256x256/apps/skypeforlinux.png" >> /home/$superuser/Desktop/skype.desktop
+chmod +x /home/$superuser/Desktop/skype.desktop
+else
+:
+fi
 
 ;;
 
 14) # Steam
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 sudo dpkg -i steam.deb
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/steam
+Name=Steam
+Comment=Steam
+Icon=/usr/share/icons/hicolor/256x256/apps/steam.png" >> /home/$superuser/Desktop/steam.desktop
+chmod +x /home/$superuser/Desktop/steam.desktop
+else
+:
+fi
 
 ;;
 
@@ -467,6 +565,20 @@ sudo apt install ffmpeg
 sudo add-apt-repository ppa:obsproject/obs-studio -y
 sudo apt update
 sudo apt install obs-studio -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/obs
+Name=OBS-Studio
+Comment=OBS-Studio
+Icon=/usr/share/icons/hicolor/256x256/apps/obs.png" >> /home/$superuser/Desktop/obs.desktop
+chmod +x /home/$superuser/Desktop/obs.desktop
+else
+:
+fi
 
 ;;
 
@@ -485,8 +597,8 @@ echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_re
 sudo apt update
 sudo apt install linux-headers-$(uname -r) dkms -y
 sudo apt install virtualbox-6.0 -y
-wget https://download.virtualbox.org/virtualbox/6.0.0/Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
-sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack /home/$superuser/Downloads/TempDL/
+wget https://download.virtualbox.org/virtualbox/6.0.2/Oracle_VM_VirtualBox_Extension_Pack-6.0.2.vbox-extpack
+sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.2.vbox-extpack /home/$superuser/Downloads/TempDL/
 
 ;;
 
