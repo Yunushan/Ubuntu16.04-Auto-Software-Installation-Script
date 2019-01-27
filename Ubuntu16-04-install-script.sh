@@ -303,6 +303,7 @@ sudo apt install -y python-software-properties
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 sudo apt install -y php7.3 php7.3-w php7.3-fpm php7.3-pdo php7.3-mysql php7.3-curl php7.3-gd php7.3-mbstring
+printf "\nPhp installation Has Finished"
 ;;
 
 # 2- Nginx (PPA)
@@ -319,7 +320,7 @@ deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
 sudo apt update
 sudo apt install nginx -y
-
+printf "\nNginx installation Has Finished"
 ;;
 
 
@@ -328,13 +329,14 @@ sudo apt install nginx -y
 sudo add-apt-repository ppa:ondrej/apache2 -y
 sudo apt update
 sudo apt install apache2 -y
-
+printf "\nApache2 installation Has Finished"
 ;;
 
 4) # VLC
 
 snap install vlc
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -348,7 +350,7 @@ chmod +x /home/$superuser/vlc.desktop
 else
 :
 fi
-
+printf "\nVLC installation Has Finished"
 ;;
 
 5) # Visual Studio Code
@@ -360,6 +362,7 @@ sudo apt install apt-transport-https -y
 sudo apt update
 sudo apt install code -y
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -373,7 +376,7 @@ chmod +x /home/$superuser/Desktop/visual-studio-code.desktop
 else
 :
 fi
-
+printf "\nVisual Studio Code installation Has Finished"
 ;;
 
 6) #FFMPEG (PPA)
@@ -381,12 +384,13 @@ fi
 sudo add-apt-repository ppa:jonathonf/ffmpeg-4 -y
 sudo apt update
 sudo apt install ffmpeg -y
+printf "\nFfmpeg installation Has Finished"
 ;;
 
 7) #Monitoring Tools
 
 sudo apt install htop iftop atop glances monit powertop iotop apachetop -y
-
+printf "\nMonitoring Tools installation Has Finished"
 ;;
 
 8) # WINEHQ
@@ -411,6 +415,7 @@ sudo apt update
 sudo apt install --install-recommends winehq-staging -y
 sudo mv winehq.key /home/$superuser/Downloads/signing-keys/
 fi
+printf "\nWineHQ installation Has Finished"
 ;;
 
 9) # Qbittorrent
@@ -419,6 +424,7 @@ sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 sudo apt update 
 sudo apt install qbittorrent -y
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -432,7 +438,7 @@ chmod +x /home/$superuser/qbittorrent.desktop
 else
 :
 fi
-
+printf "\nQbittorrent installation Has Finished"
 ;;
 
 10) # NetBeans
@@ -442,6 +448,7 @@ unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
 sudo apt install default-jdk -y
 sudo mv incubating-netbeans-10.0-bin.zip /home/$superuser/Downloads/TempDL/
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -455,6 +462,7 @@ chmod +x /home/$superuser/Desktop/Netbeans.desktop
 else
 :
 fi
+printf "\nNetBeans installation Has Finished"
 ;;
 
 11) # Gimp 2.10
@@ -466,6 +474,7 @@ wget https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref -y
 sudo mv org.gimp.GIMP.flatpakref /home/$superuser/Downloads/TempDL/
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -479,7 +488,7 @@ chmod +x /home/$superuser/Desktop/Netbeans.desktop
 else
 :
 fi
-
+printf "\nGimp installation Has Finished"
 ;;
 
 12) # Nmap
@@ -502,6 +511,7 @@ wget -O /home/$superuser/Downloads/TempDL/nmap.png https://www.macupdate.com/ima
 fi
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -515,7 +525,7 @@ chmod +x /home/$superuser/Desktop/nmap.desktop
 else
 :
 fi
-
+printf "\nGimp installation Has Finished"
 ;;
 
 13) # Skype
@@ -523,6 +533,7 @@ fi
 wget https://go.skype.com/skypeforlinux-64.deb
 sudo dpkg -i skypeforlinux-64.deb
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -536,13 +547,14 @@ chmod +x /home/$superuser/Desktop/skype.desktop
 else
 :
 fi
-
+printf "\nSkype installation Has Finished"
 ;;
 
 14) # Steam
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 sudo dpkg -i steam.deb
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -556,7 +568,7 @@ chmod +x /home/$superuser/Desktop/steam.desktop
 else
 :
 fi
-
+printf "\nSteam installation Has Finished"
 ;;
 
 15) # OBS-studio
@@ -566,6 +578,7 @@ sudo add-apt-repository ppa:obsproject/obs-studio -y
 sudo apt update
 sudo apt install obs-studio -y
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -579,14 +592,29 @@ chmod +x /home/$superuser/Desktop/obs.desktop
 else
 :
 fi
-
+printf "\nOBS-Studio installation Has Finished"
 ;;
 
 16) # OpenShot
 sudo add-apt-repository ppa:openshot.developers/ppa -y
 sudo apt update
 sudo apt install openshot-qt -y
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/openshot-qt
+Name=Openshot
+Comment=Openshot
+Icon=/usr/share/icons/hicolor/256/apps/openshot-qt.png" >> /home/$superuser/Desktop/openshot.desktop
+chmod +x /home/$superuser/Desktop/openshot.desktop
+else
+:
+fi
+printf "\nOpenShot installation Has Finished"
 ;;
 
 17) #Oracle VirtualBox 6.0
@@ -599,7 +627,22 @@ sudo apt install linux-headers-$(uname -r) dkms -y
 sudo apt install virtualbox-6.0 -y
 wget https://download.virtualbox.org/virtualbox/6.0.2/Oracle_VM_VirtualBox_Extension_Pack-6.0.2.vbox-extpack
 sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.2.vbox-extpack /home/$superuser/Downloads/TempDL/
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/virtualbox
+Name=Oracle VM VirtualBox
+Comment=Oracle VM VirtualBox
+Icon=/usr/share/icons/hicolor/64x64/virtualbox.png" >> /home/$superuser/Desktop/virtualbox.desktop
+chmod +x /home/$superuser/Desktop/virtualbox.desktop
+else
+:
+fi
+printf "\nVirtualBox installation Has Finished"
 ;;
 
 18) #Sublime Text 3
@@ -609,7 +652,22 @@ sudo apt install apt-transport-https -y
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt update
 sudo apt install sublime-text -y
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/subl
+Name=Sublime Text 3
+Comment=Sublime Text 3
+Icon=/usr/share/icons/hicolor/256x256/apps/sublime-text.png" >> /home/$superuser/Desktop/sublime-text.desktop
+chmod +x /home/$superuser/Desktop/sublime-text.desktop
+else
+:
+fi
+printf "\nSublime Text 3 installation Has Finished"
 ;;
 
 19) # Brave Web Browser
@@ -618,7 +676,22 @@ curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ `lsb_release -sc` main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-`lsb_release -sc`.list
 sudo apt update
 sudo apt install brave-browser brave-keyring -y
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/brave-browser
+Name=Brave
+Comment=Brave
+Icon=/usr/share/icons/hicolor/256x256/apps/brave-browser.png" >> /home/$superuser/Desktop/brave-browser.desktop
+chmod +x /home/$superuser/Desktop/brave-browser.desktop
+else
+:
+fi
+printf "\nBrave Web Browser installation Has Finished"
 ;;
 
 20) # Tor Browser 8.0.4
@@ -632,6 +705,7 @@ elif [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i686" ];then
 wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux32-8.0.4_en-US.tar.xz
 tar xvJf tor-browser-linux32-8.0.4_en-US.tar.xz
 sudo mv tor-browser-linux32-8.0.4_en-US.tar.xz /home/$superuser/Downloads/TempDL/
+printf "\nTor Browser installation Has Finished"
 fi
 
 ;;
@@ -642,7 +716,7 @@ wget -O VMware-Workstation-15-Pro.bundle https://www.vmware.com/go/getworkstatio
 sudo apt install gcc build-essential linux-headers-$(uname -r) -y
 sudo bash VMware-Workstation-15-Pro.bundle
 sudo mv VMware-Workstation-15-Pro.bundle /home/$superuser/Downloads/TempDL/
-
+printf "\nVMware Workstation 15 Pro installation Has Finished"
 ;;
 
 22) # Eclipse IDE
@@ -685,18 +759,19 @@ umake ide eclipse-php
 
 ;;
 esac
+printf "\nEclipse installation Has Finished"
 ;;
 
 23) #Vuze (Bittorrent Client)
 
 sudo snap install vuze-vs
-
+printf "\nVuze installation Has Finished"
 ;;
 
 24) #Utorrent
 
 sudo snap install utorrent
-
+printf "\nUtorrent installation Has Finished"
 ;;
 
 25) #Deluge
@@ -705,14 +780,14 @@ sudo apt install python-software-properties -y
 sudo add-apt-repository ppa:deluge-team/ppa -y
 sudo apt update
 sudo apt install deluge -y
-
+printf "\nDeluge installation Has Finished"
 ;;
 
 26) #Transmission
 sudo add-apt-repository ppa:transmissionbt/ppa -y
 sudo apt update
 sudo apt transmission transmission-cli transmission-common transmission-daemon -y
-
+printf "\nTransmission installation Has Finished"
 ;;
 
 27) #MPV
@@ -720,7 +795,7 @@ sudo apt transmission transmission-cli transmission-common transmission-daemon -
 sudo add-apt-repository ppa:mc3man/mpv-tests -y
 sudo apt update
 sudo apt install mpv
-
+printf "\nMPV installation Has Finished"
 ;;
 
 28) #SMPlayer
@@ -728,7 +803,7 @@ sudo apt install mpv
 sudo add-apt-repository ppa:rvm/smplayer -y
 sudo apt update
 sudo apt install smplayer smplayer-themes smplayer-skins -y
-
+printf "\nSMPlayer installation Has Finished"
 ;;
 
 29) # Kazam
@@ -736,7 +811,7 @@ sudo add-apt-repository ppa:sylvain-pineau/kazam -y
 sudo apt update
 sudo apt install kazam -y
 sudo apt install python3-cairo python3-xlib -y
-
+printf "\nKazam installation Has Finished"
 ;;
 
 30) # Audocity
@@ -744,7 +819,7 @@ sudo apt install python3-cairo python3-xlib -y
 sudo add-apt-repository ppa:ubuntuhandbook1/audacity -y
 sudo apt update
 sudo apt install audocity -y
-
+printf "\nAudocity installation Has Finished"
 ;;
 31) # PlayonLinux
 
@@ -752,6 +827,7 @@ wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
 sudo wget http://deb.playonlinux.com/playonlinux_xenial.list -O /etc/apt/sources.list.d/playonlinux.list
 sudo apt update
 sudo apt install playonlinux
+printf "\nPlayonlinux installation Has Finished"
 ;;
 
 32) #Conky
@@ -760,7 +836,7 @@ sudo apt install conky-all -y
 sudo apt-add-repository ppa:teejee2008/ppa -y
 sudo apt update
 sudo apt install conky-manager -y
-
+printf "\nConky installation Has Finished"
 ;;
 
 33) #HandBrake
@@ -768,14 +844,14 @@ sudo apt install conky-manager -y
 sudo add-apt-repository ppa:stebbins/handbrake-releases -y
 sudo apt update
 sudo apt install handbrake-cli handbrake-gtk -y
-
+printf "\nHandBrake installation Has Finished"
 ;;
 34) #Inkscape
 
 sudo add-apt-repository ppa:inkscape.dev/stable -y
 sudo apt update
 sudo apt install inkscape -y
-
+printf "\nInkscape installation Has Finished"
 ;;
 
 35) #Signal
@@ -785,7 +861,7 @@ curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 sudo apt update
 sudo apt install signal-desktop -y
-
+printf "\nSignal installation Has Finished"
 ;;
 
 36) #Dropbox
@@ -794,7 +870,7 @@ echo "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" | sudo 
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 sudo apt update
 sudo apt install dropbox python-gpgme -y
-
+printf "\nDropbox installation Has Finished"
 ;;
 
 37) #WPS Office
@@ -807,6 +883,7 @@ wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.675
 sudo dpkg -i wps-office_10.1.0.6757_i386.deb
 sudo mv wps-office_10.1.0.6757_i386.deb /home/$superuser/Downloads/TempDL/
 fi
+printf "\nWPS Office installation Has Finished"
 ;;
 
 38) #Open Office
@@ -836,6 +913,7 @@ sudo dpkg -i en-us/DEBS/*.deb
 sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
 sudo mv OpenOffice-4.1.6-32bit /home/$superuser/Downloads/TempDL/
 fi
+printf "\nOpen Office installation Has Finished"
 ;;
 
 39) # MonoDevelop
@@ -845,6 +923,7 @@ sudo apt install apt-transport-https -y
 echo "deb https://download.mono-project.com/repo/ubuntu vs-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-vs.list
 sudo apt update
 sudo apt install monodevelop -y
+printf "\nMonoDevelop installation Has Finished"
 ;;
 
 40) # Kodi
@@ -853,6 +932,7 @@ sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:team-xbmc/ppa -y
 sudo apt update
 sudo apt install kodi -y
+printf "\nKodi installation Has Finished"
 ;;
 
 41) # Unity 2018.3.0f2(Sadly still at beta on linux)
@@ -903,7 +983,7 @@ chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
 sudo mv UnitySetup-2018.3.0f2 /home/$superuser/Downloads/TempDL/
 
 fi
-
+printf "\nUnity installation Has Finished"
 ;;
 
 42) # Unreal Engine 4
@@ -926,6 +1006,7 @@ Name=Unreal Engine
 Comment=Unreal Engine
 Icon=$unreallogopath" >> /home/$superuser/Desktop/Unreal-Engine-4.desktop
 sudo mv UnrealEngine/ /home/$superuser/Downloads/TempDL/
+printf "\nUnreal Engine 4 installation Has Finished"
 ;;
 
 43) # Krita 4.1.7
@@ -945,6 +1026,7 @@ Name=Krita
 Comment=Krita
 Icon=/home/$superuser/Downloads/TempDL/krita.png" >> /home/$superuser/Desktop/Krita.desktop
 chmod +x /home/$superuser/Desktop/krita.desktop
+printf "\nKrita installation Has Finished"
 ;;
 
 44) # Kdenlive 18.12.1b
@@ -963,6 +1045,7 @@ Name=Kdenlive
 Comment=Kdenlive
 Icon=/home/$superuser/Downloads/TempDL/kdenlive.png" >> /home/$superuser/Desktop/kdenlive.desktop
 chmod +x /home/$superuser/Desktop/kdenlive.desktop
+printf "\nKdenlive installation Has Finished"
 ;;
 
 45) # Qt
@@ -1002,6 +1085,7 @@ Comment=Qt Creator
 Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
 chmod +x /home/$superuser/Desktop/Qt Creator.desktop
 fi
+printf "\nQt installation Has Finished"
 ;;
 
 46) # AptanaStudio3
@@ -1021,6 +1105,7 @@ Name=AptanaStudio3
 Comment=AptanaStudio3
 Icon=/home/$superuser/Downloads/TempDL/aptana-studio/icon.xpm" >> /home/$superuser/Desktop/AptanaStudio3.desktop
 chmod +x /home/$superuser/Desktop/AptanaStudio3.desktop
+printf "\nAptanaStudio3 installation Has Finished"
 ;;
 
 47) # Irssi (PPA)
@@ -1032,6 +1117,7 @@ sudo mv Release.key /home/$superuser/Downloads/signing-keys/
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ailin_nemui:/irssi-test/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/home:ailin_nemui:irssi-test.list"
 sudo apt update
 sudo apt install irssi -y
+printf "\nIrssi installation Has Finished"
 ;;
 
 
@@ -1040,7 +1126,7 @@ sudo apt install irssi -y
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
 sudo apt update
 sudo apt install clementine -y
-
+printf "\nClementine installation Has Finished"
 ;;
 
 49) # Install All
