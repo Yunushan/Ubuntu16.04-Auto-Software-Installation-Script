@@ -247,7 +247,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] 
 then
 
-printf "\nDo You Want to Enable Create Shortcut ? (Y/N)"
+printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
 read shortcut
 fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
@@ -697,25 +697,51 @@ printf "\nBrave Web Browser installation Has Finished"
 20) # Tor Browser 8.0.4
 if [ "$cpuarch" = "x86_64" ];then
 
-wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz
-tar xvJf tor-browser-linux64-8.0.4_en-US.tar.xz
-sudo mv tor-browser-linux64-8.0.4_en-US.tar.xz /home/$superuser/Downloads/TempDL/
+wget -O /home/$superuser/Downloads/TempDL/tor-browser-linux64-8.0.4_en-US.tar.xz https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz
+tar xvJf /home/$superuser/Downloads/TempDL/tor-browser-linux64-8.0.4_en-US.tar.xz
 
 elif [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i686" ];then
-wget https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux32-8.0.4_en-US.tar.xz
-tar xvJf tor-browser-linux32-8.0.4_en-US.tar.xz
-sudo mv tor-browser-linux32-8.0.4_en-US.tar.xz /home/$superuser/Downloads/TempDL/
-printf "\nTor Browser installation Has Finished"
+wget -O /home/$superuser/Downloads/TempDL/tor-browser-linux32-8.0.4_en-US.tar.xz  https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux32-8.0.4_en-US.tar.xz
+tar xvJf /home/$superuser/Downloads/TempDL/tor-browser-linux32-8.0.4_en-US.tar.xz
 fi
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/tor-browser_en-US/start-tor-browser.desktop
+Name=Tor Browser
+Comment=Tor Browser
+Icon=/home/$superuser/Downloads/TempDL/tor-browser_en-US/Browser/browser/chrome/icons/default64.png" >> /home/$superuser/Desktop/tor-browser.desktop
+chmod +x /home/$superuser/Desktop/tor-browser.desktop
+else
+:
+fi
+printf "\nBrave Web Browser installation Has Finished"
 ;;
 
 21) #VMware Workstation 15 Pro
 
-wget -O VMware-Workstation-15-Pro.bundle https://www.vmware.com/go/getworkstation-linux
+wget -O /home/$superuser/Downloads/TempDL/VMware-Workstation-15-Pro.bundle https://www.vmware.com/go/getworkstation-linux
 sudo apt install gcc build-essential linux-headers-$(uname -r) -y
-sudo bash VMware-Workstation-15-Pro.bundle
-sudo mv VMware-Workstation-15-Pro.bundle /home/$superuser/Downloads/TempDL/
+sudo bash /home/$superuser/Downloads/TempDL/VMware-Workstation-15-Pro.bundle
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/vmware
+Name=VMware Workstation 15 Pro
+Comment=VMware Workstation 15 Pro
+Icon=/usr/share/icons/hicolor/256x256/apps/vmware-workstation.png" >> /home/$superuser/Desktop/vmware-workstation.desktop
+chmod +x /home/$superuser/Desktop/vmware-workstation.desktop
+else
+:
+fi
 printf "\nVMware Workstation 15 Pro installation Has Finished"
 ;;
 
@@ -738,25 +764,25 @@ case $eclipsechoose in
 1) # Eclipse IDE for Java Developers
 
 umake ide eclipse
-
+printf "\nEclipse installation Has Finished"
 ;;
 
 2) #Eclipse IDE for Java Enterprise edition Developers
 
 umake ide eclipse-jee
-
+printf "\nEclipse Java installation Has Finished"
 ;;
 
 3) #Eclipse IDE for C/C++ Developer
 
 umake ide eclipse-cpp
-
+printf "\nEclipse C++ installation Has Finished"
 ;;
 
 4) # Eclipse for PHP Developers
 
 umake ide eclipse-php
-
+printf "\nEclipse Php installation Has Finished"
 ;;
 esac
 printf "\nEclipse installation Has Finished"
@@ -780,13 +806,43 @@ sudo apt install python-software-properties -y
 sudo add-apt-repository ppa:deluge-team/ppa -y
 sudo apt update
 sudo apt install deluge -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/deluge
+Name=Deluge
+Comment=Deluge
+Icon=/usr/share/icons/hicolor/256x256/apps/deluge.png" >> /home/$superuser/Desktop/deluge.desktop
+chmod +x /home/$superuser/Desktop/deluge.desktop
+else
+:
+fi
 printf "\nDeluge installation Has Finished"
 ;;
 
 26) #Transmission
 sudo add-apt-repository ppa:transmissionbt/ppa -y
 sudo apt update
-sudo apt transmission transmission-cli transmission-common transmission-daemon -y
+sudo apt install transmission transmission-cli transmission-common transmission-daemon -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/transmission-cli
+Name=Transmission
+Comment=Transmission
+Icon=/usr/share/icons/hicolor/256x256/apps/transmission.png" >> /home/$superuser/Desktop/transmission.desktop
+chmod +x /home/$superuser/Desktop/transmission.desktop
+else
+:
+fi
 printf "\nTransmission installation Has Finished"
 ;;
 
@@ -794,7 +850,22 @@ printf "\nTransmission installation Has Finished"
 
 sudo add-apt-repository ppa:mc3man/mpv-tests -y
 sudo apt update
-sudo apt install mpv
+sudo apt install mpv -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/mpv
+Name=MPV
+Comment=MPV
+Icon=/usr/share/icons/hicolor/64x64/apps/mpv.png" >> /home/$superuser/Desktop/mpv.desktop
+chmod +x /home/$superuser/Desktop/mpv.desktop
+else
+:
+fi
 printf "\nMPV installation Has Finished"
 ;;
 
@@ -803,6 +874,21 @@ printf "\nMPV installation Has Finished"
 sudo add-apt-repository ppa:rvm/smplayer -y
 sudo apt update
 sudo apt install smplayer smplayer-themes smplayer-skins -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/smplayer
+Name=Smplayer
+Comment=Smplayer
+Icon=/usr/share/icons/hicolor/256x256/apps/smplayer.png" >> /home/$superuser/Desktop/smplayer.desktop
+chmod +x /home/$superuser/Desktop/smplayer.desktop
+else
+:
+fi
 printf "\nSMPlayer installation Has Finished"
 ;;
 
@@ -811,6 +897,21 @@ sudo add-apt-repository ppa:sylvain-pineau/kazam -y
 sudo apt update
 sudo apt install kazam -y
 sudo apt install python3-cairo python3-xlib -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/kazam
+Name=Smplayer
+Comment=Smplayer
+Icon=/usr/share/icons/hicolor/64x64/apps/kazam.png" >> /home/$superuser/Desktop/kazam.desktop
+chmod +x /home/$superuser/Desktop/kazam.desktop
+else
+:
+fi
 printf "\nKazam installation Has Finished"
 ;;
 
@@ -818,7 +919,22 @@ printf "\nKazam installation Has Finished"
 
 sudo add-apt-repository ppa:ubuntuhandbook1/audacity -y
 sudo apt update
-sudo apt install audocity -y
+sudo apt install audacity -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/audacity
+Name=Audacity
+Comment=Audacity
+Icon=/usr/share/icons/hicolor/48x48/apps/audacity.png" >> /home/$superuser/Desktop/audacity.desktop
+chmod +x /home/$superuser/Desktop/audacity.desktop
+else
+:
+fi
 printf "\nAudocity installation Has Finished"
 ;;
 31) # PlayonLinux
@@ -826,7 +942,22 @@ printf "\nAudocity installation Has Finished"
 wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
 sudo wget http://deb.playonlinux.com/playonlinux_xenial.list -O /etc/apt/sources.list.d/playonlinux.list
 sudo apt update
-sudo apt install playonlinux
+sudo apt install playonlinux -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/playonlinux
+Name=Playonlinux
+Comment=Playonlinux
+Icon=/usr/share/playonlinux/resources/images/setups/top.png" >> /home/$superuser/Desktop/playonlinux.desktop
+chmod +x /home/$superuser/Desktop/playonlinux.desktop
+else
+:
+fi
 printf "\nPlayonlinux installation Has Finished"
 ;;
 
@@ -836,6 +967,21 @@ sudo apt install conky-all -y
 sudo apt-add-repository ppa:teejee2008/ppa -y
 sudo apt update
 sudo apt install conky-manager -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/conky-manager
+Name=Conky-Manager
+Comment=Conky-Manager
+Icon=/usr/share/conky-manager/images/conky-manager.png" >> /home/$superuser/Desktop/conky-manager.desktop
+chmod +x /home/$superuser/Desktop/conky-manager.desktop
+else
+:
+fi
 printf "\nConky installation Has Finished"
 ;;
 
@@ -844,6 +990,21 @@ printf "\nConky installation Has Finished"
 sudo add-apt-repository ppa:stebbins/handbrake-releases -y
 sudo apt update
 sudo apt install handbrake-cli handbrake-gtk -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/ghb
+Name=HandBrake
+Comment=HandBrake
+Icon=/usr/share/icons/hicolor/scalable/apps/fr.handbrake.ghb.svg" >> /home/$superuser/Desktop/handbrake.desktop
+chmod +x /home/$superuser/Desktop/handbrake.desktop
+else
+:
+fi
 printf "\nHandBrake installation Has Finished"
 ;;
 34) #Inkscape
@@ -851,6 +1012,21 @@ printf "\nHandBrake installation Has Finished"
 sudo add-apt-repository ppa:inkscape.dev/stable -y
 sudo apt update
 sudo apt install inkscape -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/inkscape
+Name=Inkscape
+Comment=Inkscape
+Icon=/usr/share/inkscape/icons/inkscape.svg" >> /home/$superuser/Desktop/inkscape.desktop
+chmod +x /home/$superuser/Desktop/inkscape.desktop
+else
+:
+fi
 printf "\nInkscape installation Has Finished"
 ;;
 
@@ -861,6 +1037,21 @@ curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 sudo apt update
 sudo apt install signal-desktop -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/Signal/signal-desktop
+Name=Signal-Desktop
+Comment=Signal-Desktop
+Icon=/usr/share/icons/hicolor/256x256/apps/signal-desktop.png" >> /home/$superuser/Desktop/signal-desktop.desktop
+chmod +x /home/$superuser/Desktop/signal-desktop.desktop
+else
+:
+fi
 printf "\nSignal installation Has Finished"
 ;;
 
@@ -870,6 +1061,21 @@ echo "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu xenial main" | sudo 
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 sudo apt update
 sudo apt install dropbox python-gpgme -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/dropbox
+Name=Dropbox
+Comment=Dropbox
+Icon=/usr/share/icons/hicolor/256x256/apps/dropbox.png" >> /home/$superuser/Desktop/dropbox.desktop
+chmod +x /home/$superuser/Desktop/dropbox.desktop
+else
+:
+fi
 printf "\nDropbox installation Has Finished"
 ;;
 
@@ -882,6 +1088,22 @@ elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" 
 wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_i386.deb
 sudo dpkg -i wps-office_10.1.0.6757_i386.deb
 sudo mv wps-office_10.1.0.6757_i386.deb /home/$superuser/Downloads/TempDL/
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/wps
+Name=WPS Office
+Comment=wPS Office
+Icon=/usr/share/icons/hicolor/256x256/apps/wps-office-wpsmain.png" >> /home/$superuser/Desktop/wps-office.desktop
+chmod +x /home/$superuser/Desktop/wps-office.desktop
+else
+:
 fi
 printf "\nWPS Office installation Has Finished"
 ;;
@@ -913,6 +1135,22 @@ sudo dpkg -i en-us/DEBS/*.deb
 sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
 sudo mv OpenOffice-4.1.6-32bit /home/$superuser/Downloads/TempDL/
 fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/openoffice4
+Name=Open Office
+Comment=Open Office
+Icon=/usr/share/icons/hicolor/128x128/apps/openoffice4-main.png" >> /home/$superuser/Desktop/open-office.desktop
+chmod +x /home/$superuser/Desktop/open-office.desktop
+else
+:
+fi
 printf "\nOpen Office installation Has Finished"
 ;;
 
@@ -923,6 +1161,21 @@ sudo apt install apt-transport-https -y
 echo "deb https://download.mono-project.com/repo/ubuntu vs-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-vs.list
 sudo apt update
 sudo apt install monodevelop -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/monodevelop
+Name=MonoDevelop
+Comment=MonoDevelop
+Icon=/usr/share/icons/hicolor/256x256/apps/monodevelop.png" >> /home/$superuser/Desktop/monodevelop.desktop
+chmod +x /home/$superuser/Desktop/monodevelop.desktop
+else
+:
+fi
 printf "\nMonoDevelop installation Has Finished"
 ;;
 
@@ -932,6 +1185,21 @@ sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:team-xbmc/ppa -y
 sudo apt update
 sudo apt install kodi -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/kodi
+Name=Kodi
+Comment=Kodi
+Icon=/usr/share/icons/hicolor/256x256/apps/kodi.png" >> /home/$superuser/Desktop/kodi.desktop
+chmod +x /home/$superuser/Desktop/kodi.desktop
+else
+:
+fi
 printf "\nKodi installation Has Finished"
 ;;
 
@@ -994,6 +1262,7 @@ git clone git@github.com:EpicGames/UnrealEngine.git
 ./UnrealEngine/GenerateProjectFiles.sh
 cd UnrealEngine/
 sudo make
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 unreallogopath=`locate /UnrealVersionSelector/Private/Linux/Resources/Icon.png`
 echo "#!/usr/bin/env xdg-open
@@ -1006,6 +1275,9 @@ Name=Unreal Engine
 Comment=Unreal Engine
 Icon=$unreallogopath" >> /home/$superuser/Desktop/Unreal-Engine-4.desktop
 sudo mv UnrealEngine/ /home/$superuser/Downloads/TempDL/
+else
+:
+fi
 printf "\nUnreal Engine 4 installation Has Finished"
 ;;
 
@@ -1015,7 +1287,8 @@ wget https://download.kde.org/stable/krita/4.1.7/krita-4.1.7-x86_64.appimage
 sudo mv krita-4.1.7-x86_64.appimage /home/$superuser/Downloads/TempDL/
 chmod +x /home/$superuser/Downloads/TempDL/krita-4.1.7-x86_64.appimage
 wget -O /home/$superuser/Downloads/TempDL/krita.png https://www.macupdate.com/images/icons256/57212.png
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -1026,6 +1299,9 @@ Name=Krita
 Comment=Krita
 Icon=/home/$superuser/Downloads/TempDL/krita.png" >> /home/$superuser/Desktop/Krita.desktop
 chmod +x /home/$superuser/Desktop/krita.desktop
+else
+:
+fi
 printf "\nKrita installation Has Finished"
 ;;
 
@@ -1034,7 +1310,8 @@ printf "\nKrita installation Has Finished"
 wget -O /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage https://files.kde.org/kdenlive/release/kdenlive-18.12.1b-x86_64.appimage
 chmod +x /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
 wget -O /home/$superuser/Downloads/TempDL/kdenlive.png https://cdn.iconverticons.com/files/png/7f088b9c830c6591_256x256.png
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -1045,6 +1322,9 @@ Name=Kdenlive
 Comment=Kdenlive
 Icon=/home/$superuser/Downloads/TempDL/kdenlive.png" >> /home/$superuser/Desktop/kdenlive.desktop
 chmod +x /home/$superuser/Desktop/kdenlive.desktop
+else
+:
+fi
 printf "\nKdenlive installation Has Finished"
 ;;
 
@@ -1053,6 +1333,7 @@ if [ "$cpuarch" = "x86_64" ];then
 wget -O /home/$superuser/Downloads/TempDL/qt-unified-linux-x64-online.run http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
 chmod +x /home/$superuser/Downloads/TempDL/qt-unified-linux-x64-online.run
 sudo sh /home/$superuser/Downloads/TempDL/qt-unified-linux-x64-online.run
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 qtlocation=`locate Qt/Tools/QtCreator/bin/qtcreator | grep -m1 Qt/Tools/QtCreator/bin/qtcreator`
 qticon=`locate QtIcon.png`
@@ -1066,6 +1347,9 @@ Name=Qt Creator
 Comment=Qt Creator
 Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
 chmod +x /home/$superuser/Desktop/Qt Creator.desktop
+else
+:
+fi
 
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 wget -O /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run http://download.qt.io/official_releases/online_installers/qt-unified-linux-x86-online.run
@@ -1094,7 +1378,8 @@ sudo apt install libjpeg62 libwebkitgtk-1.0-0 git-core -y
 wget -O /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip https://github.com/aptana/studio3/releases/download/3.7.2.201807301111/aptana.studio-linux.gtk.x86_64.zip
 unzip -d /home/$superuser/Downloads/TempDL/aptana-studio /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip
 chmod +x /home/$superuser/Downloads/TempDL/aptana-studio/AptanaStudio3
-
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -1105,6 +1390,9 @@ Name=AptanaStudio3
 Comment=AptanaStudio3
 Icon=/home/$superuser/Downloads/TempDL/aptana-studio/icon.xpm" >> /home/$superuser/Desktop/AptanaStudio3.desktop
 chmod +x /home/$superuser/Desktop/AptanaStudio3.desktop
+else
+:
+fi
 printf "\nAptanaStudio3 installation Has Finished"
 ;;
 
@@ -1117,6 +1405,22 @@ sudo mv Release.key /home/$superuser/Downloads/signing-keys/
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/ailin_nemui:/irssi-test/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/home:ailin_nemui:irssi-test.list"
 sudo apt update
 sudo apt install irssi -y
+wget -O /home/$superuser/Downloads/TempDL/irssi-logo.png https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Irssi_logo.svg/2000px-Irssi_logo.svg.png
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/irssi
+Name=Irssi
+Comment=Irssi
+Icon=/home/$superuser/Downloads/TempDL/irssi-logo.png" >> /home/$superuser/Desktop/irssi.desktop
+chmod +x /home/$superuser/Desktop/irssi.desktop
+else
+:
+fi
 printf "\nIrssi installation Has Finished"
 ;;
 
@@ -1126,12 +1430,21 @@ printf "\nIrssi installation Has Finished"
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
 sudo apt update
 sudo apt install clementine -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/clementine
+Name=Clementine
+Comment=Clementine
+Icon=/usr/share/icons/hicolor/128x128/apps/clementine.png" >> /home/$superuser/Desktop/clementine.desktop
+chmod +x /home/$superuser/Desktop/clementine.desktop
+else
+:
+fi
 printf "\nClementine installation Has Finished"
-;;
-
-49) # Install All
-
-sudo ./Ubuntu16-04-all-software-installation-without-prompt.sh
-
 ;;
 esac
