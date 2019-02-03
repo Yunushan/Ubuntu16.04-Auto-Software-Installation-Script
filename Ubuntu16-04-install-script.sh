@@ -26,7 +26,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" "Signal ${opts[35]}" "Dropbox ${opts[36]}" 
 "WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" "Unity 2018.3.0f2 ${opts[41]}" 
 "Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}" "Irssi (PPA) ${opts[47]}" 
-"Clementine (PPA) ${opts[48]}" "Done ${opts[49]}")
+"Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}" "Done ${opts[53]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -222,10 +222,26 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 48
                 break
                 ;;
-            "Done ${opts[49]}")
+            "TeamViewer 14 ${opts[49]}")
+                choice 49
+                break
+                ;;
+            "TeamSpeak 3 ${opts[50]}")
+                choice 50
+                break
+                ;;
+             "Discord ${opts[51]}")
+                choice 51
+                break
+                ;;
+            "Android Studio ${opts[52]}")
+                choice 52
+                break
+                ;;
+            "Done ${opts[53]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-48';;
+            *) printf '%s\n' 'Please Choose Between 1-53';;
         esac
     done
 done
@@ -244,7 +260,8 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "15" ] || [ "$opt" = "16" ] || [ "$opt" = "17" ] || [ "$opt" = "18" ] || [ "$opt" = "19" ] || [ "$opt" = "20" ] || [ "$opt" = "21" ] || [ "$opt" = "22" ] || \
  [ "$opt" = "23" ] || [ "$opt" = "24" ] || [ "$opt" = "25" ] || [ "$opt" = "26" ] || [ "$opt" = "27" ] || [ "$opt" = "28" ] || [ "$opt" = "29" ] || [ "$opt" = "30" ] || \
  [ "$opt" = "31" ] || [ "$opt" = "33" ] || [ "$opt" = "34" ] || [ "$opt" = "35" ] || [ "$opt" = "36" ] || [ "$opt" = "37" ] || [ "$opt" = "38" ] || [ "$opt" = "39" ] || \
- [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] 
+ [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] || \
+ [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -294,6 +311,8 @@ if [ -d "/home/$superuser/Destkop/" ];then
 else
 mkdir -p /home/$superuser/Desktop/
 fi
+#Virtualbox
+vboxversion=$(wget -qO - https://download.virtualbox.org/virtualbox/LATEST.TXT)
 
 # INSTALLATION BY SELECTION
 # 1) PHP 7.3
@@ -303,7 +322,7 @@ sudo apt install -y python-software-properties
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 sudo apt install -y php7.3 php7.3-w php7.3-fpm php7.3-pdo php7.3-mysql php7.3-curl php7.3-gd php7.3-mbstring
-printf "\nPhp installation Has Finished"
+printf "\nPhp installation Has Finished\n\n"
 ;;
 
 # 2- Nginx (PPA)
@@ -320,7 +339,7 @@ deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
 sudo apt update
 sudo apt install nginx -y
-printf "\nNginx installation Has Finished"
+printf "\nNginx installation Has Finished\n\n"
 ;;
 
 
@@ -329,7 +348,7 @@ printf "\nNginx installation Has Finished"
 sudo add-apt-repository ppa:ondrej/apache2 -y
 sudo apt update
 sudo apt install apache2 -y
-printf "\nApache2 installation Has Finished"
+printf "\nApache2 installation Has Finished\n\n"
 ;;
 
 4) # VLC
@@ -346,11 +365,11 @@ Exec=/snap/bin/vlc
 Name=VLC
 Comment=VLC
 Icon=/snap/vlc/770/usr/share/icon/hicolor/256x256/apps/vlc.png" >> /home/$superuser/Desktop/vlc.desktop
-chmod +x /home/$superuser/vlc.desktop
+sudo chmod +x /home/$superuser/vlc.desktop
 else
 :
 fi
-printf "\nVLC installation Has Finished"
+printf "\nVLC installation Has Finished\n\n"
 ;;
 
 5) # Visual Studio Code
@@ -372,11 +391,11 @@ Exec=/home/$superuser/Desktop/Visual Studio Code
 Name=Visual Studio Code
 Comment=Visual Studio Code
 Icon=/usr/share/code/resources/app/resources/linux/code.png" >> /home/$superuser/Desktop/visual-studio-code.desktop
-chmod +x /home/$superuser/Desktop/visual-studio-code.desktop
+sudo chmod +x /home/$superuser/Desktop/visual-studio-code.desktop
 else
 :
 fi
-printf "\nVisual Studio Code installation Has Finished"
+printf "\nVisual Studio Code installation Has Finished\n\n"
 ;;
 
 6) #FFMPEG (PPA)
@@ -390,7 +409,7 @@ printf "\nFfmpeg installation Has Finished"
 7) #Monitoring Tools
 
 sudo apt install htop iftop atop glances monit powertop iotop apachetop -y
-printf "\nMonitoring Tools installation Has Finished"
+printf "\nMonitoring Tools installation Has Finished\n\n"
 ;;
 
 8) # WINEHQ
@@ -415,7 +434,7 @@ sudo apt update
 sudo apt install --install-recommends winehq-staging -y
 sudo mv winehq.key /home/$superuser/Downloads/signing-keys/
 fi
-printf "\nWineHQ installation Has Finished"
+printf "\nWineHQ installation Has Finished\n\n"
 ;;
 
 9) # Qbittorrent
@@ -434,11 +453,11 @@ Exec=/usr/bin/qbittorrent
 Name=Qbittorrent
 Comment=Qbittorrent
 Icon=/usr/share/icons/hicolor/192x192/qbittorrent.png" >> /home/$superuser/Desktop/qbittorrent.desktop
-chmod +x /home/$superuser/qbittorrent.desktop
+sudo chmod +x /home/$superuser/qbittorrent.desktop
 else
 :
 fi
-printf "\nQbittorrent installation Has Finished"
+printf "\nQbittorrent installation Has Finished\n\n"
 ;;
 
 10) # NetBeans
@@ -458,11 +477,11 @@ Exec=/home/$superuser/Downloads/TempDL/netbeans/bin/netbeans
 Name=Netbeans
 Comment=Netbeans
 Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
-chmod +x /home/$superuser/Desktop/Netbeans.desktop
+sudo chmod +x /home/$superuser/Desktop/Netbeans.desktop
 else
 :
 fi
-printf "\nNetBeans installation Has Finished"
+printf "\nNetBeans installation Has Finished\n\n"
 ;;
 
 11) # Gimp 2.10
@@ -484,11 +503,11 @@ Exec=/home/$superuser/Downloads/TempDL/netbeans/bin/netbeans
 Name=Netbeans
 Comment=Netbeans
 Icon=/home/$superuser/Downloads/TempDL/netbeans/nb/netbeans.icns" >> /home/$superuser/Desktop/Netbeans.desktop
-chmod +x /home/$superuser/Desktop/Netbeans.desktop
+sudo chmod +x /home/$superuser/Desktop/Netbeans.desktop
 else
 :
 fi
-printf "\nGimp installation Has Finished"
+printf "\nGimp installation Has Finished\n\n"
 ;;
 
 12) # Nmap
@@ -521,11 +540,11 @@ Exec=/usr/bin/nmap
 Name=Nmap
 Comment=Nmap
 Icon=/home/$superuser/Downloads/TempDL/nmap.png" >> /home/$superuser/Desktop/nmap.desktop
-chmod +x /home/$superuser/Desktop/nmap.desktop
+sudo chmod +x /home/$superuser/Desktop/nmap.desktop
 else
 :
 fi
-printf "\nGimp installation Has Finished"
+printf "\nGimp installation Has Finished\n\n"
 ;;
 
 13) # Skype
@@ -543,11 +562,11 @@ Exec=/opt/skypeforlinux
 Name=Skype
 Comment=Skype
 Icon=/usr/share/icons/hicolor/256x256/apps/skypeforlinux.png" >> /home/$superuser/Desktop/skype.desktop
-chmod +x /home/$superuser/Desktop/skype.desktop
+sudo chmod +x /home/$superuser/Desktop/skype.desktop
 else
 :
 fi
-printf "\nSkype installation Has Finished"
+printf "\nSkype installation Has Finished\n\n"
 ;;
 
 14) # Steam
@@ -564,11 +583,11 @@ Exec=/usr/bin/steam
 Name=Steam
 Comment=Steam
 Icon=/usr/share/icons/hicolor/256x256/apps/steam.png" >> /home/$superuser/Desktop/steam.desktop
-chmod +x /home/$superuser/Desktop/steam.desktop
+sudo chmod +x /home/$superuser/Desktop/steam.desktop
 else
 :
 fi
-printf "\nSteam installation Has Finished"
+printf "\nSteam installation Has Finished\n\n"
 ;;
 
 15) # OBS-studio
@@ -588,11 +607,11 @@ Exec=/usr/bin/obs
 Name=OBS-Studio
 Comment=OBS-Studio
 Icon=/usr/share/icons/hicolor/256x256/apps/obs.png" >> /home/$superuser/Desktop/obs.desktop
-chmod +x /home/$superuser/Desktop/obs.desktop
+sudo chmod +x /home/$superuser/Desktop/obs.desktop
 else
 :
 fi
-printf "\nOBS-Studio installation Has Finished"
+printf "\nOBS-Studio installation Has Finished\n\n"
 ;;
 
 16) # OpenShot
@@ -610,14 +629,14 @@ Exec=/usr/bin/openshot-qt
 Name=Openshot
 Comment=Openshot
 Icon=/usr/share/icons/hicolor/256/apps/openshot-qt.png" >> /home/$superuser/Desktop/openshot.desktop
-chmod +x /home/$superuser/Desktop/openshot.desktop
+sudo chmod +x /home/$superuser/Desktop/openshot.desktop
 else
 :
 fi
-printf "\nOpenShot installation Has Finished"
+printf "\nOpenShot installation Has Finished\n\n"
 ;;
 
-17) #Oracle VirtualBox 6.0
+17) #Oracle VirtualBox 6.0 (With Extension Pack)
 
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
@@ -625,8 +644,8 @@ echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_re
 sudo apt update
 sudo apt install linux-headers-$(uname -r) dkms -y
 sudo apt install virtualbox-6.0 -y
-wget https://download.virtualbox.org/virtualbox/6.0.2/Oracle_VM_VirtualBox_Extension_Pack-6.0.2.vbox-extpack
-sudo mv Oracle_VM_VirtualBox_Extension_Pack-6.0.2.vbox-extpack /home/$superuser/Downloads/TempDL/
+wget -O /home/$superuser/Downloads/TempDL/Oracle_VM_VirtualBox_Extension_Pack-Latest.vbox-extpack "https://download.virtualbox.org/virtualbox/${vboxversion}/Oracle_VM_VirtualBox_Extension_Pack-${vboxversion}.vbox-extpack"
+echo "y" | sudo vboxmanage extpack install --replace /home/$superuser/Downloads/TempDL/Oracle_VM_VirtualBox_Extension_Pack-Latest.vbox-extpack
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 echo "#!/usr/bin/env xdg-open
@@ -637,12 +656,12 @@ Terminal=false
 Exec=/usr/bin/virtualbox
 Name=Oracle VM VirtualBox
 Comment=Oracle VM VirtualBox
-Icon=/usr/share/icons/hicolor/64x64/virtualbox.png" >> /home/$superuser/Desktop/virtualbox.desktop
-chmod +x /home/$superuser/Desktop/virtualbox.desktop
+Icon=/usr/share/icons/hicolor/64x64/apps/virtualbox.png" >> /home/$superuser/Desktop/virtualbox.desktop
+sudo chmod +x /home/$superuser/Desktop/virtualbox.desktop
 else
 :
 fi
-printf "\nVirtualBox installation Has Finished"
+printf "\nVirtualBox installation Has Finished\n\n"
 ;;
 
 18) #Sublime Text 3
@@ -663,11 +682,11 @@ Exec=/usr/bin/subl
 Name=Sublime Text 3
 Comment=Sublime Text 3
 Icon=/usr/share/icons/hicolor/256x256/apps/sublime-text.png" >> /home/$superuser/Desktop/sublime-text.desktop
-chmod +x /home/$superuser/Desktop/sublime-text.desktop
+sudo chmod +x /home/$superuser/Desktop/sublime-text.desktop
 else
 :
 fi
-printf "\nSublime Text 3 installation Has Finished"
+printf "\nSublime Text 3 installation Has Finished\n\n"
 ;;
 
 19) # Brave Web Browser
@@ -687,11 +706,11 @@ Exec=/usr/bin/brave-browser
 Name=Brave
 Comment=Brave
 Icon=/usr/share/icons/hicolor/256x256/apps/brave-browser.png" >> /home/$superuser/Desktop/brave-browser.desktop
-chmod +x /home/$superuser/Desktop/brave-browser.desktop
+sudo chmod +x /home/$superuser/Desktop/brave-browser.desktop
 else
 :
 fi
-printf "\nBrave Web Browser installation Has Finished"
+printf "\nBrave Web Browser installation Has Finished\n\n"
 ;;
 
 20) # Tor Browser 8.0.4
@@ -715,11 +734,11 @@ Exec=/home/$superuser/Downloads/TempDL/tor-browser_en-US/start-tor-browser.deskt
 Name=Tor Browser
 Comment=Tor Browser
 Icon=/home/$superuser/Downloads/TempDL/tor-browser_en-US/Browser/browser/chrome/icons/default64.png" >> /home/$superuser/Desktop/tor-browser.desktop
-chmod +x /home/$superuser/Desktop/tor-browser.desktop
+sudo chmod +x /home/$superuser/Desktop/tor-browser.desktop
 else
 :
 fi
-printf "\nBrave Web Browser installation Has Finished"
+printf "\nBrave Web Browser installation Has Finished\n\n"
 ;;
 
 21) #VMware Workstation 15 Pro
@@ -738,11 +757,11 @@ Exec=/usr/bin/vmware
 Name=VMware Workstation 15 Pro
 Comment=VMware Workstation 15 Pro
 Icon=/usr/share/icons/hicolor/256x256/apps/vmware-workstation.png" >> /home/$superuser/Desktop/vmware-workstation.desktop
-chmod +x /home/$superuser/Desktop/vmware-workstation.desktop
+sudo chmod +x /home/$superuser/Desktop/vmware-workstation.desktop
 else
 :
 fi
-printf "\nVMware Workstation 15 Pro installation Has Finished"
+printf "\nVMware Workstation 15 Pro installation Has Finished\n\n"
 ;;
 
 22) # Eclipse IDE
@@ -785,19 +804,19 @@ umake ide eclipse-php
 printf "\nEclipse Php installation Has Finished"
 ;;
 esac
-printf "\nEclipse installation Has Finished"
+printf "\nEclipse installation Has Finished\n\n"
 ;;
 
 23) #Vuze (Bittorrent Client)
 
 sudo snap install vuze-vs
-printf "\nVuze installation Has Finished"
+printf "\nVuze installation Has Finished\n\n"
 ;;
 
 24) #Utorrent
 
 sudo snap install utorrent
-printf "\nUtorrent installation Has Finished"
+printf "\nUtorrent installation Has Finished\n\n"
 ;;
 
 25) #Deluge
@@ -817,11 +836,11 @@ Exec=/usr/bin/deluge
 Name=Deluge
 Comment=Deluge
 Icon=/usr/share/icons/hicolor/256x256/apps/deluge.png" >> /home/$superuser/Desktop/deluge.desktop
-chmod +x /home/$superuser/Desktop/deluge.desktop
+sudo chmod +x /home/$superuser/Desktop/deluge.desktop
 else
 :
 fi
-printf "\nDeluge installation Has Finished"
+printf "\nDeluge installation Has Finished\n\n"
 ;;
 
 26) #Transmission
@@ -839,11 +858,11 @@ Exec=/usr/bin/transmission-cli
 Name=Transmission
 Comment=Transmission
 Icon=/usr/share/icons/hicolor/256x256/apps/transmission.png" >> /home/$superuser/Desktop/transmission.desktop
-chmod +x /home/$superuser/Desktop/transmission.desktop
+sudo chmod +x /home/$superuser/Desktop/transmission.desktop
 else
 :
 fi
-printf "\nTransmission installation Has Finished"
+printf "\nTransmission installation Has Finished\n\n"
 ;;
 
 27) #MPV
@@ -862,11 +881,11 @@ Exec=/usr/bin/mpv
 Name=MPV
 Comment=MPV
 Icon=/usr/share/icons/hicolor/64x64/apps/mpv.png" >> /home/$superuser/Desktop/mpv.desktop
-chmod +x /home/$superuser/Desktop/mpv.desktop
+sudo chmod +x /home/$superuser/Desktop/mpv.desktop
 else
 :
 fi
-printf "\nMPV installation Has Finished"
+printf "\nMPV installation Has Finished\n\n"
 ;;
 
 28) #SMPlayer
@@ -885,11 +904,11 @@ Exec=/usr/bin/smplayer
 Name=Smplayer
 Comment=Smplayer
 Icon=/usr/share/icons/hicolor/256x256/apps/smplayer.png" >> /home/$superuser/Desktop/smplayer.desktop
-chmod +x /home/$superuser/Desktop/smplayer.desktop
+sudo chmod +x /home/$superuser/Desktop/smplayer.desktop
 else
 :
 fi
-printf "\nSMPlayer installation Has Finished"
+printf "\nSMPlayer installation Has Finished\n\n"
 ;;
 
 29) # Kazam
@@ -908,11 +927,11 @@ Exec=/usr/bin/kazam
 Name=Smplayer
 Comment=Smplayer
 Icon=/usr/share/icons/hicolor/64x64/apps/kazam.png" >> /home/$superuser/Desktop/kazam.desktop
-chmod +x /home/$superuser/Desktop/kazam.desktop
+sudo chmod +x /home/$superuser/Desktop/kazam.desktop
 else
 :
 fi
-printf "\nKazam installation Has Finished"
+printf "\nKazam installation Has Finished\n\n"
 ;;
 
 30) # Audocity
@@ -931,11 +950,11 @@ Exec=/usr/bin/audacity
 Name=Audacity
 Comment=Audacity
 Icon=/usr/share/icons/hicolor/48x48/apps/audacity.png" >> /home/$superuser/Desktop/audacity.desktop
-chmod +x /home/$superuser/Desktop/audacity.desktop
+sudo chmod +x /home/$superuser/Desktop/audacity.desktop
 else
 :
 fi
-printf "\nAudocity installation Has Finished"
+printf "\nAudocity installation Has Finished\n\n"
 ;;
 31) # PlayonLinux
 
@@ -954,11 +973,11 @@ Exec=/usr/bin/playonlinux
 Name=Playonlinux
 Comment=Playonlinux
 Icon=/usr/share/playonlinux/resources/images/setups/top.png" >> /home/$superuser/Desktop/playonlinux.desktop
-chmod +x /home/$superuser/Desktop/playonlinux.desktop
+sudo chmod +x /home/$superuser/Desktop/playonlinux.desktop
 else
 :
 fi
-printf "\nPlayonlinux installation Has Finished"
+printf "\nPlayonlinux installation Has Finished\n\n"
 ;;
 
 32) #Conky
@@ -978,11 +997,11 @@ Exec=/usr/bin/conky-manager
 Name=Conky-Manager
 Comment=Conky-Manager
 Icon=/usr/share/conky-manager/images/conky-manager.png" >> /home/$superuser/Desktop/conky-manager.desktop
-chmod +x /home/$superuser/Desktop/conky-manager.desktop
+sudo chmod +x /home/$superuser/Desktop/conky-manager.desktop
 else
 :
 fi
-printf "\nConky installation Has Finished"
+printf "\nConky installation Has Finished\n\n"
 ;;
 
 33) #HandBrake
@@ -1001,11 +1020,11 @@ Exec=/usr/bin/ghb
 Name=HandBrake
 Comment=HandBrake
 Icon=/usr/share/icons/hicolor/scalable/apps/fr.handbrake.ghb.svg" >> /home/$superuser/Desktop/handbrake.desktop
-chmod +x /home/$superuser/Desktop/handbrake.desktop
+sudo chmod +x /home/$superuser/Desktop/handbrake.desktop
 else
 :
 fi
-printf "\nHandBrake installation Has Finished"
+printf "\nHandBrake installation Has Finished\n\n"
 ;;
 34) #Inkscape
 
@@ -1023,11 +1042,11 @@ Exec=/usr/bin/inkscape
 Name=Inkscape
 Comment=Inkscape
 Icon=/usr/share/inkscape/icons/inkscape.svg" >> /home/$superuser/Desktop/inkscape.desktop
-chmod +x /home/$superuser/Desktop/inkscape.desktop
+sudo chmod +x /home/$superuser/Desktop/inkscape.desktop
 else
 :
 fi
-printf "\nInkscape installation Has Finished"
+printf "\nInkscape installation Has Finished\n\n"
 ;;
 
 35) #Signal
@@ -1048,11 +1067,11 @@ Exec=/opt/Signal/signal-desktop
 Name=Signal-Desktop
 Comment=Signal-Desktop
 Icon=/usr/share/icons/hicolor/256x256/apps/signal-desktop.png" >> /home/$superuser/Desktop/signal-desktop.desktop
-chmod +x /home/$superuser/Desktop/signal-desktop.desktop
+sudo chmod +x /home/$superuser/Desktop/signal-desktop.desktop
 else
 :
 fi
-printf "\nSignal installation Has Finished"
+printf "\nSignal installation Has Finished\n\n"
 ;;
 
 36) #Dropbox
@@ -1072,11 +1091,11 @@ Exec=/usr/bin/dropbox
 Name=Dropbox
 Comment=Dropbox
 Icon=/usr/share/icons/hicolor/256x256/apps/dropbox.png" >> /home/$superuser/Desktop/dropbox.desktop
-chmod +x /home/$superuser/Desktop/dropbox.desktop
+sudo chmod +x /home/$superuser/Desktop/dropbox.desktop
 else
 :
 fi
-printf "\nDropbox installation Has Finished"
+printf "\nDropbox installation Has Finished\n\n"
 ;;
 
 37) #WPS Office
@@ -1101,11 +1120,11 @@ Exec=/usr/bin/wps
 Name=WPS Office
 Comment=wPS Office
 Icon=/usr/share/icons/hicolor/256x256/apps/wps-office-wpsmain.png" >> /home/$superuser/Desktop/wps-office.desktop
-chmod +x /home/$superuser/Desktop/wps-office.desktop
+sudo chmod +x /home/$superuser/Desktop/wps-office.desktop
 else
 :
 fi
-printf "\nWPS Office installation Has Finished"
+printf "\nWPS Office installation Has Finished\n\n"
 ;;
 
 38) #Open Office
@@ -1147,11 +1166,11 @@ Exec=/usr/bin/openoffice4
 Name=Open Office
 Comment=Open Office
 Icon=/usr/share/icons/hicolor/128x128/apps/openoffice4-main.png" >> /home/$superuser/Desktop/open-office.desktop
-chmod +x /home/$superuser/Desktop/open-office.desktop
+sudo chmod +x /home/$superuser/Desktop/open-office.desktop
 else
 :
 fi
-printf "\nOpen Office installation Has Finished"
+printf "\nOpen Office installation Has Finished\n\n"
 ;;
 
 39) # MonoDevelop
@@ -1172,11 +1191,11 @@ Exec=/usr/bin/monodevelop
 Name=MonoDevelop
 Comment=MonoDevelop
 Icon=/usr/share/icons/hicolor/256x256/apps/monodevelop.png" >> /home/$superuser/Desktop/monodevelop.desktop
-chmod +x /home/$superuser/Desktop/monodevelop.desktop
+sudo chmod +x /home/$superuser/Desktop/monodevelop.desktop
 else
 :
 fi
-printf "\nMonoDevelop installation Has Finished"
+printf "\nMonoDevelop installation Has Finished\n\n"
 ;;
 
 40) # Kodi
@@ -1196,7 +1215,7 @@ Exec=/usr/bin/kodi
 Name=Kodi
 Comment=Kodi
 Icon=/usr/share/icons/hicolor/256x256/apps/kodi.png" >> /home/$superuser/Desktop/kodi.desktop
-chmod +x /home/$superuser/Desktop/kodi.desktop
+sudo chmod +x /home/$superuser/Desktop/kodi.desktop
 else
 :
 fi
@@ -1223,12 +1242,12 @@ Exec=/home/$superuser/Unity-2018.3.0f2/Editor/Unity
 Name=Unity-2018.3.0f2
 Comment=Unity-2018.3.0f2
 Icon=$unitylogopath" >> /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
-chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
+sudo chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
 sudo mv UnitySetup-2018.3.0f2 /home/$superuser/Downloads/TempDL/
 
 # Unity Hub
 wget https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.AppImage
-chmod +x UnityHubSetup.AppImage
+sudo chmod +x UnityHubSetup.AppImage
 ./UnityHubSetup.AppImage
 sudo mv UnityHubSetup.AppImage /home/$superuser/Downloads/TempDL/
 
@@ -1247,11 +1266,11 @@ Exec=/home/$superuser/Unity-2018.3.0f2/Editor/Unity
 Name=Unity-2018.3.0f2
 Comment=Unity-2018.3.0f2
 Icon=$unitylogopath" >> /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
-chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
+sudo chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
 sudo mv UnitySetup-2018.3.0f2 /home/$superuser/Downloads/TempDL/
 
 fi
-printf "\nUnity installation Has Finished"
+printf "\nUnity installation Has Finished\n\n"
 ;;
 
 42) # Unreal Engine 4
@@ -1278,7 +1297,7 @@ sudo mv UnrealEngine/ /home/$superuser/Downloads/TempDL/
 else
 :
 fi
-printf "\nUnreal Engine 4 installation Has Finished"
+printf "\nUnreal Engine 4 installation Has Finished\n\n"
 ;;
 
 43) # Krita 4.1.7
@@ -1298,11 +1317,11 @@ Exec=/home/$superuser/Downloads/TempDL/Krita
 Name=Krita
 Comment=Krita
 Icon=/home/$superuser/Downloads/TempDL/krita.png" >> /home/$superuser/Desktop/Krita.desktop
-chmod +x /home/$superuser/Desktop/krita.desktop
+sudo chmod +x /home/$superuser/Desktop/krita.desktop
 else
 :
 fi
-printf "\nKrita installation Has Finished"
+printf "\nKrita installation Has Finished\n\n"
 ;;
 
 44) # Kdenlive 18.12.1b
@@ -1321,11 +1340,11 @@ Exec=/home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
 Name=Kdenlive
 Comment=Kdenlive
 Icon=/home/$superuser/Downloads/TempDL/kdenlive.png" >> /home/$superuser/Desktop/kdenlive.desktop
-chmod +x /home/$superuser/Desktop/kdenlive.desktop
+sudo chmod +x /home/$superuser/Desktop/kdenlive.desktop
 else
 :
 fi
-printf "\nKdenlive installation Has Finished"
+printf "\nKdenlive installation Has Finished\n\n"
 ;;
 
 45) # Qt
@@ -1346,7 +1365,7 @@ Exec=$qtlocation
 Name=Qt Creator
 Comment=Qt Creator
 Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
-chmod +x /home/$superuser/Desktop/Qt Creator.desktop
+sudo chmod +x /home/$superuser/Desktop/Qt Creator.desktop
 else
 :
 fi
@@ -1367,9 +1386,9 @@ Exec=$qtlocation
 Name=Qt Creator
 Comment=Qt Creator
 Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
-chmod +x /home/$superuser/Desktop/Qt Creator.desktop
+sudo chmod +x /home/$superuser/Desktop/Qt Creator.desktop
 fi
-printf "\nQt installation Has Finished"
+printf "\nQt installation Has Finished\n\n"
 ;;
 
 46) # AptanaStudio3
@@ -1389,11 +1408,11 @@ Exec=/home/$superuser/Downloads/TempDL/aptana-studio/AptanaStudio3
 Name=AptanaStudio3
 Comment=AptanaStudio3
 Icon=/home/$superuser/Downloads/TempDL/aptana-studio/icon.xpm" >> /home/$superuser/Desktop/AptanaStudio3.desktop
-chmod +x /home/$superuser/Desktop/AptanaStudio3.desktop
+sudo chmod +x /home/$superuser/Desktop/AptanaStudio3.desktop
 else
 :
 fi
-printf "\nAptanaStudio3 installation Has Finished"
+printf "\nAptanaStudio3 installation Has Finished\n\n"
 ;;
 
 47) # Irssi (PPA)
@@ -1417,11 +1436,11 @@ Exec=/usr/bin/irssi
 Name=Irssi
 Comment=Irssi
 Icon=/home/$superuser/Downloads/TempDL/irssi-logo.png" >> /home/$superuser/Desktop/irssi.desktop
-chmod +x /home/$superuser/Desktop/irssi.desktop
+sudo chmod +x /home/$superuser/Desktop/irssi.desktop
 else
 :
 fi
-printf "\nIrssi installation Has Finished"
+printf "\nIrssi installation Has Finished\n\n"
 ;;
 
 
@@ -1441,10 +1460,147 @@ Exec=/usr/bin/clementine
 Name=Clementine
 Comment=Clementine
 Icon=/usr/share/icons/hicolor/128x128/apps/clementine.png" >> /home/$superuser/Desktop/clementine.desktop
-chmod +x /home/$superuser/Desktop/clementine.desktop
+sudo chmod +x /home/$superuser/Desktop/clementine.desktop
 else
 :
 fi
-printf "\nClementine installation Has Finished"
+printf "\nClementine installation Has Finished\n\n"
 ;;
+
+49) # TeamViewer 14
+
+if [ "$cpuarch" = "x86_64" ];then
+wget -O /home/$superuser/Downloads/TempDL/teamviewer_amd64.deb https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/teamviewer_amd64.deb
+sudo apt -f install -y
+
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget -O /home/$superuser/Downloads/TempDL/teamviewer_i386.deb https://download.teamviewer.com/download/linux/teamviewer_i386.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/teamviewer_i386.deb
+sudo apt -f install -y
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/teamviewer
+Name=Teamviewer 14
+Comment=Teamviewer 14
+Icon=/opt/teamviewer/tv_bin/desktop/teamviewer_48.png" >> /home/$superuser/Desktop/teamviewer.desktop
+sudo chmod +x /home/$superuser/Desktop/teamviewer.desktop
+else
+:
+fi
+printf "\nTeamViewer 14 installation Has Finished\n\n"
+;;
+
+50) # TeamSpeak 3
+
+wget -O /home/$superuser/Downloads/TempDL/ts-stacked-bluelight.zip https://www.teamspeak.com/downloads/media-pack/png/ts-stacked-bluelight.zip
+unzip /home/$superuser/Downloads/TempDL/ts-stacked-bluelight.zip -d /home/$superuser/Downloads/TempDL/
+
+if [ "$cpuarch" = "x86_64" ];then
+wget -O /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64-3.2.3.run https://files.teamspeak-services.com/releases/client/3.2.3/TeamSpeak3-Client-linux_amd64-3.2.3.run
+sudo chmod +x /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64-3.2.3.run
+sudo bash /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64-3.2.3.run
+sudo chown -R $superuser:$superuser TeamSpeak3-Client-linux_amd64/
+sudo mv TeamSpeak3-Client-linux_amd64/ /home/$superuser/Downloads/TempDL/
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+teamspeaklocation=`locate ts3client_runscript`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=$teamspeaklocation
+Name=TeamSpeak 3
+Comment=TeamSpeak 3
+Icon=/home/$superuser/Downloads/TempDL/ts_stacked_bluelight.png" >> /home/$superuser/Desktop/teamspeak.desktop
+sudo chmod +x /home/$superuser/Desktop/teamspeak.desktop
+else
+:
+fi
+
+if [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget -O /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86-3.2.3.run https://files.teamspeak-services.com/releases/client/3.2.3/TeamSpeak3-Client-linux_x86-3.2.3.run
+sudo chmod +x /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86-3.2.3.run
+sudo bash /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86-3.2.3.run
+sudo chown -R $superuser:$superuser TeamSpeak3-Client-linux_x86/
+sudo mv TeamSpeak3-Client-linux_x86/ /home/$superuser/Downloads/TempDL/
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+teamspeaklocation=`locate ts3client_runscript`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=$teamspeaklocation
+Name=TeamSpeak 3
+Comment=TeamSpeak 3
+Icon=/home/$superuser/Downloads/TempDL/ts_stacked_bluelight.png" >> /home/$superuser/Desktop/teamspeak.desktop
+sudo chmod +x /home/$superuser/Desktop/teamspeak.desktop
+else
+:
+fi
+printf "\nTeamSpeak 3 installation Has Finished\n\n"
+;;
+
+51) # Discord
+wget -O /home/$superuser/Downloads/TempDL/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+sudo dpkg -i /home/$superuser/Downloads/TempDL/discord.deb
+sudo apt -f install -y
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/discord
+Name=Discord
+Comment=Discord
+Icon=/usr/share/discord/discord.png" >> /home/$superuser/Desktop/discord.desktop
+sudo chmod +x /home/$superuser/Desktop/discord.desktop
+else
+:
+fi
+printf "\nDiscord installation Has Finished\n\n"
+;;
+
+52) # Android Studio
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt update
+sudo apt install java-common oracle-java8-installer -y
+sudo apt-add-repository ppa:maarten-fonville/android-studio -y
+sudo apt update 
+sudo apt-get install android-studio -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/android-studio/bin/studio.sh
+Name=Android Studio
+Comment=Android Studio
+Icon=/opt/android-studio/bin/studio.png" >> /home/$superuser/Desktop/android-studio.desktop
+sudo chmod +x /home/$superuser/Desktop/android-studio.desktop
+else
+:
+fi
+printf "\nAndroid Studio installation Has Finished\n\n"
+;;
+
 esac
