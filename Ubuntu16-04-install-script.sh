@@ -26,7 +26,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" "Signal ${opts[35]}" "Dropbox ${opts[36]}" 
 "WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" "Unity 2018.3.0f2 ${opts[41]}" 
 "Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}" "Irssi (PPA) ${opts[47]}" 
-"Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}" "Done ${opts[53]}")
+"Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}" "Geary (PPA) ${opts[53]}" 
+"Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0-beta-24 (Messaging App) ${opts[56]}" "Done ${opts[60]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -238,10 +239,26 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 52
                 break
                 ;;
-            "Done ${opts[53]}")
+            "Geary (PPA) ${opts[53]}")
+                choice 53
+                break
+                ;;
+            "Uget (PPA) ${opts[54]}")
+                choice 54
+                break
+                ;;
+            "Sayonara (PPA) ${opts[55]}")
+                choice 55
+                break
+                ;;
+           "Franz 5.0.0-beta-24 (Messaging App) ${opts[56]}")
+                choice 56
+                break
+                ;;
+            "Done ${opts[60]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-53';;
+            *) printf '%s\n' 'Please Choose Between 1-60';;
         esac
     done
 done
@@ -261,7 +278,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "23" ] || [ "$opt" = "24" ] || [ "$opt" = "25" ] || [ "$opt" = "26" ] || [ "$opt" = "27" ] || [ "$opt" = "28" ] || [ "$opt" = "29" ] || [ "$opt" = "30" ] || \
  [ "$opt" = "31" ] || [ "$opt" = "33" ] || [ "$opt" = "34" ] || [ "$opt" = "35" ] || [ "$opt" = "36" ] || [ "$opt" = "37" ] || [ "$opt" = "38" ] || [ "$opt" = "39" ] || \
  [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] || \
- [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ]
+ [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -1603,4 +1620,103 @@ fi
 printf "\nAndroid Studio installation Has Finished\n\n"
 ;;
 
+
+53) # Geary (PPA)
+
+sudo add-apt-repository ppa:geary-team/releases -y
+sudo apt update
+sudo apt install geary -y
+wget -O /home/$superuser/Downloads/TempDL/geary.png https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Geary.svg/1200px-Geary.svg.png
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/geary
+Name=Geary
+Comment=Geary
+Icon=/home/$superuser/Downloads/TempDL/geary.png" >> /home/$superuser/Desktop/geary.desktop
+chmod +x /home/$superuser/Desktop/geary.desktop
+else
+:
+fi
+printf "\nGeary installation Has Finished"
+;;
+
+54) # uGet (PPA)
+if [ "$cpuarch" = "x86_64" ];then
+wget -O /home/$superuser/Downloads/TempDL/ubuntu-64-xenial-download https://ugetdm.com/go/ubuntu-64-xenial-download
+sudo dpkg -i /home/$superuser/Downloads/TempDL/ubuntu-64-xenial-download
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget -O /home/$superuser/Downloads/TempDL/ubuntu-32-xenial-download https://ugetdm.com/go/ubuntu-32-xenial-download
+sudo dpkg -i /home/$superuser/Downloads/TempDL/ubuntu-32-xenial-download
+fi
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/uget-gtk
+Name=uGet
+Comment=uGet
+Icon=/usr/share/icons/hicolor/128x128/apps/uget-icon.png" >> /home/$superuser/Desktop/uget.desktop
+chmod +x /home/$superuser/Desktop/uget.desktop
+else
+:
+fi
+printf "\nuGet installation Has Finished"
+;;
+
+55) # Sayonara Player (PPA)
+
+sudo apt-add-repository ppa:lucioc/sayonara -y
+sudo apt update
+sudo apt install sayonara -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/sayonara
+Name=Sayonara
+Comment=Sayonara
+Icon=/usr/share/icons/hicolor/128x128/apps/sayonara.png" >> /home/$superuser/Desktop/sayonara.desktop
+chmod +x /home/$superuser/Desktop/sayonara.desktop
+else
+:
+fi
+printf "\nSayonara Player installation Has Finished"
+;;
+
+56) # Franz 5.0.0-beta-24 (Messaging App)
+if [ "$cpuarch" = "x86_64" ];then
+wget -O /home/$superuser/Downloads/TempDL/franz_5.0.0-beta.24_amd64.deb https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.24/franz_5.0.0-beta.24_amd64.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/franz_5.0.0-beta.24_amd64.deb
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+printf "\nOnly 64 Bit Processors Supported"
+sleep 1
+fi
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/local/bin/franz
+Name=Franz
+Comment=Franz
+Icon=/usr/share/icons/hicolor/128x128/apps/franz.png" >> /home/$superuser/Desktop/franz.desktop
+chmod +x /home/$superuser/Desktop/franz.desktop
+else
+:
+fi
+printf "\nFranz installation Has Finished"
+;;
 esac
