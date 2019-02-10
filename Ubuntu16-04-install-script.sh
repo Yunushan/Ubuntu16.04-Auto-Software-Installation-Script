@@ -27,7 +27,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" "Unity 2018.3.0f2 ${opts[41]}" 
 "Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}" "Irssi (PPA) ${opts[47]}" 
 "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}" "Geary (PPA) ${opts[53]}" 
-"Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0-beta-24 (Messaging App) ${opts[56]}" "Done ${opts[60]}")
+"Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0-beta-24 (Messaging App) ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}" "Spotify ${opts[59]}" 
+"Done ${opts[60]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -255,6 +256,18 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 56
                 break
                 ;;
+            "balenaEtcher ${opts[57]}")
+                choice 57
+                break
+                ;;
+            "Vivaldi ${opts[58]}")
+                choice 58
+                break
+                ;;
+            "Spotify ${opts[59]}")
+                choice 59
+                break
+                ;;
             "Done ${opts[60]}")
                 break 2
                 ;;
@@ -278,7 +291,8 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "23" ] || [ "$opt" = "24" ] || [ "$opt" = "25" ] || [ "$opt" = "26" ] || [ "$opt" = "27" ] || [ "$opt" = "28" ] || [ "$opt" = "29" ] || [ "$opt" = "30" ] || \
  [ "$opt" = "31" ] || [ "$opt" = "33" ] || [ "$opt" = "34" ] || [ "$opt" = "35" ] || [ "$opt" = "36" ] || [ "$opt" = "37" ] || [ "$opt" = "38" ] || [ "$opt" = "39" ] || \
  [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] || \
- [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ]
+ [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ] || \
+ [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -1718,5 +1732,73 @@ else
 :
 fi
 printf "\nFranz installation Has Finished"
+;;
+
+57) # balenaEtcher
+echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
+sudo apt update
+sudo apt install balena-etcher-electron -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/local/bin/balena-etcher-electron
+Name=balenaEtcher
+Comment=balenaEtcher
+Icon=/usr/share/icons/hicolor/128x128/apps/balena-etcher-electron.png" >> /home/$superuser/Desktop/balena-etcher.desktop
+chmod +x /home/$superuser/Desktop/balena-etcher.desktop
+else
+:
+fi
+printf "\nbalenaEtcher installation Has Finished"
+;;
+
+58) # Vivaldi
+echo "deb http://repo.vivaldi.com/stable/deb/ stable main" | sudo tee /etc/apt/sources.list.d/vivaldi.list > /dev/null
+wget -O - http://repo.vivaldi.com/stable/linux_signing_key.pub | sudo apt-key add -
+sudo apt update && sudo apt install vivaldi-stable -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/vivaldi
+Name=Vivaldi
+Comment=Vivaldi
+Icon=/usr/share/icons/hicolor/128x128/apps/vivaldi.png" >> /home/$superuser/Desktop/vivaldi.desktop
+chmod +x /home/$superuser/Desktop/vivaldi.desktop
+else
+:
+fi
+printf "\nVivaldi installation Has Finished"
+;;
+
+59) # Spotify
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt update
+sudo apt install spotify-client -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/spotify
+Name=Spotify
+Comment=Spotify
+Icon=/usr/share/icons/hicolor/128x128/apps/spotify-client.png" >> /home/$superuser/Desktop/spotify.desktop
+chmod +x /home/$superuser/Desktop/spotify.desktop
+else
+:
+fi
+printf "\nSpotify installation Has Finished"
 ;;
 esac
