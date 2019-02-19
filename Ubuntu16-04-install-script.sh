@@ -27,8 +27,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" "Unity 2018.3.0f2 ${opts[41]}" 
 "Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}" "Irssi (PPA) ${opts[47]}" 
 "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}" "Geary (PPA) ${opts[53]}" 
-"Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0-beta-24 (Messaging App) ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}" "Spotify ${opts[59]}" 
-"Done ${opts[60]}")
+"Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0 ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}" "Spotify ${opts[59]}" 
+"MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Done ${opts[65]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -268,10 +268,18 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 59
                 break
                 ;;
-            "Done ${opts[60]}")
+            "MusicBrainz Picard (PPA) ${opts[60]}")
+                choice 60
+                break
+                ;;
+            "pCloud Drive ${opts[61]}")
+                choice 61
+                break
+                ;;
+            "Done ${opts[65]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-60';;
+            *) printf '%s\n' 'Please Choose Between 1-65';;
         esac
     done
 done
@@ -292,7 +300,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "31" ] || [ "$opt" = "33" ] || [ "$opt" = "34" ] || [ "$opt" = "35" ] || [ "$opt" = "36" ] || [ "$opt" = "37" ] || [ "$opt" = "38" ] || [ "$opt" = "39" ] || \
  [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] || \
  [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ] || \
- [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ]
+ [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -1708,10 +1716,11 @@ fi
 printf "\nSayonara Player installation Has Finished"
 ;;
 
-56) # Franz 5.0.0-beta-24 (Messaging App)
+56) # Franz 5.0.0 (Messaging App)
 if [ "$cpuarch" = "x86_64" ];then
-wget -O /home/$superuser/Downloads/TempDL/franz_5.0.0-beta.24_amd64.deb https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.24/franz_5.0.0-beta.24_amd64.deb
-sudo dpkg -i /home/$superuser/Downloads/TempDL/franz_5.0.0-beta.24_amd64.deb
+wget -O /home/$superuser/Downloads/TempDL/franz_5.0.0_amd64.deb https://github.com/meetfranz/franz/releases/download/v5.0.0/franz_5.0.0_amd64.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/franz_5.0.0_amd64.deb
+sudo apt install libgconf-2-4 -y
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 printf "\nOnly 64 Bit Processors Supported"
 sleep 1
@@ -1800,5 +1809,53 @@ else
 :
 fi
 printf "\nSpotify installation Has Finished"
+;;
+
+60) # MusicBrainz Picard (PPA)
+sudo add-apt-repository ppa:musicbrainz-developers/stable -y
+sudo apt update -y
+sudo apt install picard -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/picard
+Name=Picard
+Comment=Picard
+Icon=/usr/share/icons/hicolor/128x128/apps/picard.png" >> /home/$superuser/Desktop/picard.desktop
+chmod +x /home/$superuser/Desktop/picard.desktop
+else
+:
+fi
+printf "\nPicard installation Has Finished"
+;;
+
+61) # pCloud Drive
+if [ "$cpuarch" = "x86_64" ];then
+wget -O /home/$superuser/Downloads/TempDL/pcloud https://www.pcloud.com/tr/how-to-install-pcloud-drive-linux.html?download=electron-64
+chmod +x /home/$superuser/Downloads/TempDL/pcloud
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget -O /home/$superuser/Downloads/TempDL/pcloud https://www.pcloud.com/tr/how-to-install-pcloud-drive-linux.html?download=electron-32
+chmod +x /home/$superuser/Downloads/TempDL/pcloud
+fi
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/pcloud
+Name=pCloud Drive
+Comment=pCloud Drive
+Icon=/home/$superuser/.local/share/icons/hicolor/128x128/apps/appimagekit-pcloud.png" >> /home/$superuser/Desktop/pcloud.desktop
+chmod +x /home/$superuser/Desktop/pcloud.desktop
+else
+:
+fi
+printf "\npCloud Drive installation Has Finished"
 ;;
 esac
