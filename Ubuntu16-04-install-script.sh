@@ -21,14 +21,15 @@ clear
 options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opts[3]}" "VLC ${opts[4]}" "Visual Studio Code ${opts[5]}" "FFMPEG (PPA) ${opts[6]}" 
 "Monitoring Tools ${opts[7]}" "WineHQ Staging ${opts[8]}" "Qbittorrent ${opts[9]}" "Netbeans ${opts[10]}" "Gimp ${opts[11]}" "Nmap 7.70 ${opts[12]}" 
 "Skype ${opts[13]}" "Steam ${opts[14]}" "OBS-Studio (PPA) ${opts[15]}" "OpenShot ${opts[16]}" "Oracle VirtualBox 6.0 ${opts[17]}" "Sublime Text 3 ${opts[18]}" 
-"Brave (Web Browser) ${opts[19]}" "Tor Browser 8.0.4 ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" "Vuze (Bittorrent Client) ${opts[23]}" 
-"Utorrent ${opts[24]}" "Deluge ${opts[25]}" "Transmission ${opts[26]}" "MPV ${opts[27]}" "SMPlayer ${opts[28]}" "Kazam ${opts[29]}" "Audocity ${opts[30]}" 
-"PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" "Signal ${opts[35]}" "Dropbox ${opts[36]}" 
-"WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" "Unity 2018.3.0f2 ${opts[41]}" 
-"Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}" "Irssi (PPA) ${opts[47]}" 
-"Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}" "Geary (PPA) ${opts[53]}" 
-"Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0 ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}" "Spotify ${opts[59]}" 
-"MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Done ${opts[65]}")
+"Brave (Web Browser) ${opts[19]}" "Tor Browser 8.0.4 ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" 
+"Vuze (Bittorrent Client) ${opts[23]}" "Utorrent ${opts[24]}" "Deluge ${opts[25]}" "Transmission ${opts[26]}" "MPV ${opts[27]}" "SMPlayer ${opts[28]}"
+"Kazam ${opts[29]}" "Audocity ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
+"Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
+"Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}"
+"Irssi (PPA) ${opts[47]}" "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}"
+"Geary (PPA) ${opts[53]}" "Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0 ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
+"Spotify ${opts[59]}" "MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Timeshift (PPA) ${opts[62]}" "Peek (GIF Recorder) (PPA) ${opts[63]}" 
+"Stacer (System Optimizer) (PPA) ${opts[64]}" "Done ${opts[65]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -276,6 +277,18 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 61
                 break
                 ;;
+            "Timeshift (PPA) ${opts[62]}")
+                choice 62
+                break
+                ;;
+            "Peek (GIF Recorder) (PPA) ${opts[63]}")
+                choice 63
+                break
+                ;;
+             "Stacer (System Optimizer) (PPA) ${opts[64]}")
+                choice 64
+                break
+                ;;
             "Done ${opts[65]}")
                 break 2
                 ;;
@@ -293,6 +306,9 @@ do
         fi
 done
 
+if [ "${opts[opt]}" = "" ];then
+exit
+fi
 
 if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ] || [ "$opt" = "11" ] || [ "$opt" = "12" ] || [ "$opt" = "13" ] || [ "$opt" = "14" ] || \
  [ "$opt" = "15" ] || [ "$opt" = "16" ] || [ "$opt" = "17" ] || [ "$opt" = "18" ] || [ "$opt" = "19" ] || [ "$opt" = "20" ] || [ "$opt" = "21" ] || [ "$opt" = "22" ] || \
@@ -300,7 +316,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "31" ] || [ "$opt" = "33" ] || [ "$opt" = "34" ] || [ "$opt" = "35" ] || [ "$opt" = "36" ] || [ "$opt" = "37" ] || [ "$opt" = "38" ] || [ "$opt" = "39" ] || \
  [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] || \
  [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ] || \
- [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ]
+ [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ] || [ "$opt" = "62" ] || [ "$opt" = "63" ] || [ "$opt" = "64" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -1623,7 +1639,7 @@ sudo apt update
 sudo apt install java-common oracle-java8-installer -y
 sudo apt-add-repository ppa:maarten-fonville/android-studio -y
 sudo apt update 
-sudo apt-get install android-studio -y
+sudo apt install android-studio -y
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 echo "#!/usr/bin/env xdg-open
@@ -1664,7 +1680,7 @@ chmod +x /home/$superuser/Desktop/geary.desktop
 else
 :
 fi
-printf "\nGeary installation Has Finished"
+printf "\nGeary installation Has Finished\n\n"
 ;;
 
 54) # uGet (PPA)
@@ -1690,7 +1706,7 @@ chmod +x /home/$superuser/Desktop/uget.desktop
 else
 :
 fi
-printf "\nuGet installation Has Finished"
+printf "\nuGet installation Has Finished\n\n"
 ;;
 
 55) # Sayonara Player (PPA)
@@ -1713,7 +1729,7 @@ chmod +x /home/$superuser/Desktop/sayonara.desktop
 else
 :
 fi
-printf "\nSayonara Player installation Has Finished"
+printf "\nSayonara Player installation Has Finished\n\n"
 ;;
 
 56) # Franz 5.0.0 (Messaging App)
@@ -1740,7 +1756,7 @@ chmod +x /home/$superuser/Desktop/franz.desktop
 else
 :
 fi
-printf "\nFranz installation Has Finished"
+printf "\nFranz installation Has Finished\n\n"
 ;;
 
 57) # balenaEtcher
@@ -1763,7 +1779,7 @@ chmod +x /home/$superuser/Desktop/balena-etcher.desktop
 else
 :
 fi
-printf "\nbalenaEtcher installation Has Finished"
+printf "\nbalenaEtcher installation Has Finished\n\n"
 ;;
 
 58) # Vivaldi
@@ -1785,7 +1801,7 @@ chmod +x /home/$superuser/Desktop/vivaldi.desktop
 else
 :
 fi
-printf "\nVivaldi installation Has Finished"
+printf "\nVivaldi installation Has Finished\n\n"
 ;;
 
 59) # Spotify
@@ -1808,7 +1824,7 @@ chmod +x /home/$superuser/Desktop/spotify.desktop
 else
 :
 fi
-printf "\nSpotify installation Has Finished"
+printf "\nSpotify installation Has Finished\n\n"
 ;;
 
 60) # MusicBrainz Picard (PPA)
@@ -1830,7 +1846,7 @@ chmod +x /home/$superuser/Desktop/picard.desktop
 else
 :
 fi
-printf "\nPicard installation Has Finished"
+printf "\nPicard installation Has Finished\n\n"
 ;;
 
 61) # pCloud Drive
@@ -1856,6 +1872,72 @@ chmod +x /home/$superuser/Desktop/pcloud.desktop
 else
 :
 fi
-printf "\npCloud Drive installation Has Finished"
+printf "\npCloud Drive installation Has Finished\n\n"
+;;
+
+62) # Timeshift
+sudo add-apt-repository -y ppa:teejee2008/ppa -y
+sudo apt update
+sudo apt install timeshift -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/timeshift-launcher
+Name=Timeshift
+Comment=Timeshift
+Icon=/usr/share/icons/hicolor/128x128/apps/timeshift.png" >> /home/$superuser/Desktop/timeshift.desktop
+chmod +x /home/$superuser/Desktop/timeshift.desktop
+else
+:
+fi
+printf "\nTimeshift installation Has Finished\n\n"
+;;
+
+63) # Peek (GIF Recorder) (PPA)
+sudo add-apt-repository ppa:peek-developers/stable -y
+sudo apt update
+sudo apt install peek -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/peek
+Name=Peek
+Comment=Peek
+Icon=/usr/share/icons/hicolor/128x128/apps/com.uploadedlobster.peek.png" >> /home/$superuser/Desktop/peek.desktop
+chmod +x /home/$superuser/Desktop/peek.desktop
+else
+:
+fi
+printf "\nPeek installation Has Finished\n\n"
+;;
+
+64) # Stacer (System Optimizer) (PPA)
+sudo add-apt-repository ppa:oguzhaninan/stacer -y
+sudo apt update
+sudo apt install stacer -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/stacer
+Name=Stacer
+Comment=Stacer
+Icon=/usr/share/icons/hicolor/128x128/apps/stacer.png" >> /home/$superuser/Desktop/stacer.desktop
+chmod +x /home/$superuser/Desktop/stacer.desktop
+else
+:
+fi
+printf "\nStacer installation Has Finished\n\n"
 ;;
 esac
