@@ -19,15 +19,15 @@ while :
 do
 clear
 options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opts[3]}" "VLC ${opts[4]}" "Visual Studio Code ${opts[5]}" "FFMPEG (PPA) ${opts[6]}" 
-"Monitoring Tools ${opts[7]}" "WineHQ Staging ${opts[8]}" "Qbittorrent ${opts[9]}" "Netbeans ${opts[10]}" "Gimp ${opts[11]}" "Nmap 7.70 ${opts[12]}" 
-"Skype ${opts[13]}" "Steam ${opts[14]}" "OBS-Studio (PPA) ${opts[15]}" "OpenShot ${opts[16]}" "Oracle VirtualBox 6.0 ${opts[17]}" "Sublime Text 3 ${opts[18]}" 
+"Monitoring Tools ${opts[7]}" "WineHQ Staging ${opts[8]}" "Qbittorrent ${opts[9]}" "Netbeans 10 ${opts[10]}" "Gimp (Flatpak) ${opts[11]}" "Nmap ${opts[12]}" 
+"Skype ${opts[13]}" "Steam ${opts[14]}" "OBS-Studio (PPA) ${opts[15]}" "OpenShot ${opts[16]}" "Oracle VirtualBox 6 ${opts[17]}" "Sublime Text 3 ${opts[18]}" 
 "Brave (Web Browser) ${opts[19]}" "Tor Browser 8.0.4 ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" 
-"Vuze (Bittorrent Client) ${opts[23]}" "Utorrent ${opts[24]}" "Deluge ${opts[25]}" "Transmission ${opts[26]}" "MPV ${opts[27]}" "SMPlayer ${opts[28]}"
-"Kazam ${opts[29]}" "Audocity ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
+"Vuze (Bittorrent Client) ${opts[23]}" "Utorrent ${opts[24]}" "Deluge (PPA) ${opts[25]}" "Transmission (PPA) ${opts[26]}" "MPV (PPA) ${opts[27]}" "SMPlayer (PPA) ${opts[28]}"
+"Kazam (PPA) ${opts[29]}" "Audocity (PPA) ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
 "Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
 "Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}"
 "Irssi (PPA) ${opts[47]}" "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}"
-"Geary (PPA) ${opts[53]}" "Uget (PPA) ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0 ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
+"Geary (PPA) ${opts[53]}" "Uget ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0 ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
 "Spotify ${opts[59]}" "MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Timeshift (PPA) ${opts[62]}" "Peek (GIF Recorder) (PPA) ${opts[63]}" 
 "Stacer (System Optimizer) (PPA) ${opts[64]}" "Done ${opts[65]}")
     select opt in "${options[@]}"
@@ -69,15 +69,15 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 9
                 break
                 ;;
-            "Netbeans ${opts[10]}")
+            "Netbeans 10 ${opts[10]}")
                 choice 10
                 break
                 ;;
-            "Gimp ${opts[11]}")
+            "Gimp (Flatpak) ${opts[11]}")
                 choice 11
                 break
                 ;;
-            "Nmap 7.70 ${opts[12]}")
+            "Nmap ${opts[12]}")
                 choice 12
                 break
                 ;;
@@ -97,7 +97,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 16
                 break
                 ;;
-            "Oracle VirtualBox 6.0 ${opts[17]}")
+            "Oracle VirtualBox 6 ${opts[17]}")
                 choice 17
                 break
                 ;;
@@ -189,7 +189,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 39
                 break
                 ;;
-            "Kodi (PPA  ) ${opts[40]}")
+            "Kodi (PPA) ${opts[40]}")
                 choice 40
                 break
                 ;;
@@ -245,7 +245,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 53
                 break
                 ;;
-            "Uget (PPA) ${opts[54]}")
+            "Uget ${opts[54]}")
                 choice 54
                 break
                 ;;
@@ -370,7 +370,7 @@ fi
 vboxversion=$(wget -qO - https://download.virtualbox.org/virtualbox/LATEST.TXT)
 
 # INSTALLATION BY SELECTION
-# 1) PHP 7.3
+# 1) PHP 7.3 (PPA)
 case $opt in
 1)
 sudo apt install -y python-software-properties
@@ -515,10 +515,10 @@ fi
 printf "\nQbittorrent installation Has Finished\n\n"
 ;;
 
-10) # NetBeans
+10) # NetBeans 10
 
 wget https://www-eu.apache.org/dist/incubator/netbeans/incubating-netbeans/incubating-10.0/incubating-netbeans-10.0-bin.zip
-unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
+sudo unzip incubating-netbeans-10.0-bin.zip -d /home/$superuser/Downloads/TempDL/
 sudo apt install default-jdk -y
 sudo mv incubating-netbeans-10.0-bin.zip /home/$superuser/Downloads/TempDL/
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
@@ -536,10 +536,10 @@ sudo chmod +x /home/$superuser/Desktop/Netbeans.desktop
 else
 :
 fi
-printf "\nNetBeans installation Has Finished\n\n"
+printf "\nNetBeans 10 installation Has Finished\n\n"
 ;;
 
-11) # Gimp 2.10
+11) # Gimp (Flatpak)
 
 sudo add-apt-repository ppa:alexlarsson/flatpak -y
 sudo apt update
@@ -566,20 +566,21 @@ printf "\nGimp installation Has Finished\n\n"
 ;;
 
 12) # Nmap
+sudo apt install lynx -y
 if [ "$cpuarch" = "x86_64" ];then
 sudo apt install alien -y
-wget -O /home/$superuser/Downloads/TempDL/nmap-7.70-1.x86_64.rpm https://nmap.org/dist/nmap-7.70-1.x86_64.rpm
-sudo alien /home/$superuser/Downloads/TempDL/nmap-7.70-1.x86_64.rpm
-sudo dpkg --install /home/$superuser/Downloads/TempDL/nmap_7.70-2_amd64.deb
+nmap64=`lynx -dump https://nmap.org/dist/ | awk '/nmap-7.*\.x86_64.rpm$/{url=$2}END{print url}'`
+wget -O /home/$superuser/Downloads/TempDL/nmap.x86_64.rpm $nmap64
+sudo alien -kvi /home/$superuser/Downloads/TempDL/nmap.x86_64.rpm
 wget -O /home/$superuser/Downloads/TempDL/nmap.png https://www.macupdate.com/images/icons256/36710.png
 
 
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 
 sudo apt install alien -y
-wget -O /home/$superuser/Downloads/TempDL/nmap-7.70-1.i686.rpm https://nmap.org/dist/nmap-7.70-1.i686.rpm
-sudo alien /home/$superuser/Downloads/TempDL/nmap-7.70-1.i686.rpm
-sudo dpkg --install /home/$superuser/Downloads/TempDL/nmap_7.70-2_i386.deb
+nmap32=`lynx -dump https://nmap.org/dist/ | awk '/nmap-7.*\.i686.rpm$/{url=$2}END{print url}'`
+wget -O /home/$superuser/Downloads/TempDL/nmap.i686.rpm $nmap32
+sudo alien -kvi /home/$superuser/Downloads/TempDL/nmap-7*.i686.rpm
 wget -O /home/$superuser/Downloads/TempDL/nmap.png https://www.macupdate.com/images/icons256/36710.png
 
 fi
@@ -599,7 +600,7 @@ sudo chmod +x /home/$superuser/Desktop/nmap.desktop
 else
 :
 fi
-printf "\nGimp installation Has Finished\n\n"
+printf "\nNMap installation Has Finished\n\n"
 ;;
 
 13) # Skype
@@ -691,7 +692,7 @@ fi
 printf "\nOpenShot installation Has Finished\n\n"
 ;;
 
-17) #Oracle VirtualBox 6.0 (With Extension Pack)
+17) #Oracle VirtualBox 6 (With Extension Pack)
 
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
@@ -716,7 +717,7 @@ sudo chmod +x /home/$superuser/Desktop/virtualbox.desktop
 else
 :
 fi
-printf "\nVirtualBox installation Has Finished\n\n"
+printf "\nVirtualBox 6 installation Has Finished\n\n"
 ;;
 
 18) #Sublime Text 3
@@ -874,7 +875,7 @@ sudo snap install utorrent
 printf "\nUtorrent installation Has Finished\n\n"
 ;;
 
-25) #Deluge
+25) #Deluge (PPA)
 
 sudo apt install python-software-properties -y
 sudo add-apt-repository ppa:deluge-team/ppa -y
@@ -898,7 +899,7 @@ fi
 printf "\nDeluge installation Has Finished\n\n"
 ;;
 
-26) #Transmission
+26) #Transmission (PPA)
 sudo add-apt-repository ppa:transmissionbt/ppa -y
 sudo apt update
 sudo apt install transmission transmission-cli transmission-common transmission-daemon -y
@@ -920,7 +921,7 @@ fi
 printf "\nTransmission installation Has Finished\n\n"
 ;;
 
-27) #MPV
+27) #MPV (PPA)
 
 sudo add-apt-repository ppa:mc3man/mpv-tests -y
 sudo apt update
@@ -943,7 +944,7 @@ fi
 printf "\nMPV installation Has Finished\n\n"
 ;;
 
-28) #SMPlayer
+28) #SMPlayer (PPA)
 
 sudo add-apt-repository ppa:rvm/smplayer -y
 sudo apt update
@@ -966,7 +967,7 @@ fi
 printf "\nSMPlayer installation Has Finished\n\n"
 ;;
 
-29) # Kazam
+29) # Kazam (PPA)
 sudo add-apt-repository ppa:sylvain-pineau/kazam -y
 sudo apt update
 sudo apt install kazam -y
@@ -989,7 +990,7 @@ fi
 printf "\nKazam installation Has Finished\n\n"
 ;;
 
-30) # Audocity
+30) # Audocity (PPA)
 
 sudo add-apt-repository ppa:ubuntuhandbook1/audacity -y
 sudo apt update
@@ -1035,7 +1036,7 @@ fi
 printf "\nPlayonlinux installation Has Finished\n\n"
 ;;
 
-32) #Conky
+32) #Conky (PPA)
 
 sudo apt install conky-all -y
 sudo apt-add-repository ppa:teejee2008/ppa -y
@@ -1059,7 +1060,7 @@ fi
 printf "\nConky installation Has Finished\n\n"
 ;;
 
-33) #HandBrake
+33) #HandBrake (PPA)
 
 sudo add-apt-repository ppa:stebbins/handbrake-releases -y
 sudo apt update
@@ -1081,7 +1082,7 @@ else
 fi
 printf "\nHandBrake installation Has Finished\n\n"
 ;;
-34) #Inkscape
+34) #Inkscape (PPA)
 
 sudo add-apt-repository ppa:inkscape.dev/stable -y
 sudo apt update
@@ -1155,13 +1156,13 @@ printf "\nDropbox installation Has Finished\n\n"
 
 37) #WPS Office
 if [ "$cpuarch" = "x86_64" ];then
-wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_amd64.deb
-sudo dpkg -i wps-office_10.1.0.6757_amd64.deb
-sudo mv wps-office_10.1.0.6757_amd64.deb /home/$superuser/Downloads/TempDL/
+wpsoffice64=`lynx -dump http://wps-community.org/downloads | awk '/wps-office.*\_amd64.deb$/{url=$2}END{print url}'`
+wget -O /home/$superuser/Downloads/TempDL/wpsoffice64.deb $wpsoffice64
+sudo dpkg -i /home/$superuser/Downloads/TempDL/wpsoffice64.deb
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
-wget http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_i386.deb
-sudo dpkg -i wps-office_10.1.0.6757_i386.deb
-sudo mv wps-office_10.1.0.6757_i386.deb /home/$superuser/Downloads/TempDL/
+wpsoffice32=`lynx -dump http://wps-community.org/downloads | awk '/wps-office.*\_i386.deb$/{url=$2}END{print url}'`
+wget -O /home/$superuser/Downloads/TempDL/wpsoffice32.deb $wpsoffice32
+sudo dpkg -i /home/$superuser/Downloads/TempDL/wpsoffice32.deb
 fi
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
@@ -1253,7 +1254,7 @@ fi
 printf "\nMonoDevelop installation Has Finished\n\n"
 ;;
 
-40) # Kodi
+40) # Kodi (PPA)
 
 sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:team-xbmc/ppa -y
@@ -1277,7 +1278,7 @@ fi
 printf "\nKodi installation Has Finished"
 ;;
 
-41) # Unity 2018.3.0f2(Sadly still at beta on linux)
+41) # Unity 2018.3.0f2
 
 printf "\nDo you want to install Unity Hub ? Y/N : "
 read unitychoose
@@ -1325,7 +1326,7 @@ sudo chmod +x /home/$superuser/Desktop/Unity-2018.3.0f2.desktop
 sudo mv UnitySetup-2018.3.0f2 /home/$superuser/Downloads/TempDL/
 
 fi
-printf "\nUnity installation Has Finished\n\n"
+printf "\nUnity 2018.3.0f2 installation Has Finished\n\n"
 ;;
 
 42) # Unreal Engine 4
@@ -1359,7 +1360,7 @@ printf "\nUnreal Engine 4 installation Has Finished\n\n"
 
 wget https://download.kde.org/stable/krita/4.1.7/krita-4.1.7-x86_64.appimage
 sudo mv krita-4.1.7-x86_64.appimage /home/$superuser/Downloads/TempDL/
-chmod +x /home/$superuser/Downloads/TempDL/krita-4.1.7-x86_64.appimage
+sudo chmod +x /home/$superuser/Downloads/TempDL/krita-4.1.7-x86_64.appimage
 wget -O /home/$superuser/Downloads/TempDL/krita.png https://www.macupdate.com/images/icons256/57212.png
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
@@ -1382,7 +1383,7 @@ printf "\nKrita installation Has Finished\n\n"
 44) # Kdenlive 18.12.1b
 
 wget -O /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage https://files.kde.org/kdenlive/release/kdenlive-18.12.1b-x86_64.appimage
-chmod +x /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
+sudo chmod +x /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
 wget -O /home/$superuser/Downloads/TempDL/kdenlive.png https://cdn.iconverticons.com/files/png/7f088b9c830c6591_256x256.png
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
@@ -1419,15 +1420,15 @@ Terminal=false
 Exec=$qtlocation
 Name=Qt Creator
 Comment=Qt Creator
-Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
-sudo chmod +x /home/$superuser/Desktop/Qt Creator.desktop
+Icon=$qticon" >> /home/$superuser/Desktop/Qt-Creator.desktop
+sudo chmod +x /home/$superuser/Desktop/Qt-Creator.desktop
 else
 :
 fi
 
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 wget -O /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run http://download.qt.io/official_releases/online_installers/qt-unified-linux-x86-online.run
-chmod +x /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run
+sudo chmod +x /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run
 sudo sh /home/$superuser/Downloads/TempDL/qt-unified-linux-x86-online.run
 sudo updatedb
 qtlocation=`locate Qt/Tools/QtCreator/bin/qtcreator | grep -m1 Qt/Tools/QtCreator/bin/qtcreator`
@@ -1440,8 +1441,8 @@ Terminal=false
 Exec=$qtlocation
 Name=Qt Creator
 Comment=Qt Creator
-Icon=$qticon" >> /home/$superuser/Desktop/Qt Creator.desktop
-sudo chmod +x /home/$superuser/Desktop/Qt Creator.desktop
+Icon=$qticon" >> /home/$superuser/Desktop/Qt-Creator.desktop
+sudo chmod +x /home/$superuser/Desktop/Qt-Creator.desktop
 fi
 printf "\nQt installation Has Finished\n\n"
 ;;
@@ -1450,8 +1451,8 @@ printf "\nQt installation Has Finished\n\n"
 sudo apt install default-jdk -y
 sudo apt install libjpeg62 libwebkitgtk-1.0-0 git-core -y
 wget -O /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip https://github.com/aptana/studio3/releases/download/3.7.2.201807301111/aptana.studio-linux.gtk.x86_64.zip
-unzip -d /home/$superuser/Downloads/TempDL/aptana-studio /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip
-chmod +x /home/$superuser/Downloads/TempDL/aptana-studio/AptanaStudio3
+sudo unzip -d /home/$superuser/Downloads/TempDL/aptana-studio /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip
+sudo chmod +x /home/$superuser/Downloads/TempDL/aptana-studio/AptanaStudio3
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 echo "#!/usr/bin/env xdg-open
@@ -1554,14 +1555,15 @@ printf "\nTeamViewer 14 installation Has Finished\n\n"
 ;;
 
 50) # TeamSpeak 3
-
+sudo apt install lynx -y
 wget -O /home/$superuser/Downloads/TempDL/ts-stacked-bluelight.zip https://www.teamspeak.com/downloads/media-pack/png/ts-stacked-bluelight.zip
-unzip /home/$superuser/Downloads/TempDL/ts-stacked-bluelight.zip -d /home/$superuser/Downloads/TempDL/
+sudo unzip /home/$superuser/Downloads/TempDL/ts-stacked-bluelight.zip -d /home/$superuser/Downloads/TempDL/
 
 if [ "$cpuarch" = "x86_64" ];then
-wget -O /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64-3.2.3.run https://files.teamspeak-services.com/releases/client/3.2.3/TeamSpeak3-Client-linux_amd64-3.2.3.run
-sudo chmod +x /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64-3.2.3.run
-sudo bash /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64-3.2.3.run
+teamspeak64=`lynx -dump https://www.teamspeak.com/en/your-download/ | grep Client-linux_amd64 | awk '/http/{print $2}'`
+wget -O /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64.run $teamspeak64
+sudo chmod +x /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64.run
+sudo bash /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_amd64.run
 sudo chown -R $superuser:$superuser TeamSpeak3-Client-linux_amd64/
 sudo mv TeamSpeak3-Client-linux_amd64/ /home/$superuser/Downloads/TempDL/
 fi
@@ -1584,9 +1586,10 @@ else
 fi
 
 if [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
-wget -O /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86-3.2.3.run https://files.teamspeak-services.com/releases/client/3.2.3/TeamSpeak3-Client-linux_x86-3.2.3.run
-sudo chmod +x /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86-3.2.3.run
-sudo bash /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86-3.2.3.run
+teamspeak32=`lynx -dump https://www.teamspeak.com/en/your-download/ | grep Client-linux_x86 | awk '/http/{print $2}'`
+wget -O /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86.run $teamspeak32
+sudo chmod +x /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86.run
+sudo bash /home/$superuser/Downloads/TempDL/TeamSpeak3-Client-linux_x86.run
 sudo chown -R $superuser:$superuser TeamSpeak3-Client-linux_x86/
 sudo mv TeamSpeak3-Client-linux_x86/ /home/$superuser/Downloads/TempDL/
 fi
@@ -1676,20 +1679,22 @@ Exec=/usr/bin/geary
 Name=Geary
 Comment=Geary
 Icon=/home/$superuser/Downloads/TempDL/geary.png" >> /home/$superuser/Desktop/geary.desktop
-chmod +x /home/$superuser/Desktop/geary.desktop
+sudo chmod +x /home/$superuser/Desktop/geary.desktop
 else
 :
 fi
 printf "\nGeary installation Has Finished\n\n"
 ;;
 
-54) # uGet (PPA)
+54) # uGet
 if [ "$cpuarch" = "x86_64" ];then
 wget -O /home/$superuser/Downloads/TempDL/ubuntu-64-xenial-download https://ugetdm.com/go/ubuntu-64-xenial-download
 sudo dpkg -i /home/$superuser/Downloads/TempDL/ubuntu-64-xenial-download
+sudo apt -f install -y
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 wget -O /home/$superuser/Downloads/TempDL/ubuntu-32-xenial-download https://ugetdm.com/go/ubuntu-32-xenial-download
 sudo dpkg -i /home/$superuser/Downloads/TempDL/ubuntu-32-xenial-download
+sudo apt -f install -y
 fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
@@ -1702,7 +1707,7 @@ Exec=/usr/bin/uget-gtk
 Name=uGet
 Comment=uGet
 Icon=/usr/share/icons/hicolor/128x128/apps/uget-icon.png" >> /home/$superuser/Desktop/uget.desktop
-chmod +x /home/$superuser/Desktop/uget.desktop
+sudo chmod +x /home/$superuser/Desktop/uget.desktop
 else
 :
 fi
@@ -1725,7 +1730,7 @@ Exec=/usr/bin/sayonara
 Name=Sayonara
 Comment=Sayonara
 Icon=/usr/share/icons/hicolor/128x128/apps/sayonara.png" >> /home/$superuser/Desktop/sayonara.desktop
-chmod +x /home/$superuser/Desktop/sayonara.desktop
+sudo chmod +x /home/$superuser/Desktop/sayonara.desktop
 else
 :
 fi
@@ -1734,8 +1739,9 @@ printf "\nSayonara Player installation Has Finished\n\n"
 
 56) # Franz 5.0.0 (Messaging App)
 if [ "$cpuarch" = "x86_64" ];then
-wget -O /home/$superuser/Downloads/TempDL/franz_5.0.0_amd64.deb https://github.com/meetfranz/franz/releases/download/v5.0.0/franz_5.0.0_amd64.deb
-sudo dpkg -i /home/$superuser/Downloads/TempDL/franz_5.0.0_amd64.deb
+franz64=`lynx -dump https://github.com/meetfranz/franz/releases/ | grep _amd64.deb* | awk '/http/{print $2}' | head -1`
+wget -O /home/$superuser/Downloads/TempDL/franz-amd64.deb $franz64
+sudo dpkg -i /home/$superuser/Downloads/TempDL/franz-amd64.deb
 sudo apt install libgconf-2-4 -y
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 printf "\nOnly 64 Bit Processors Supported"
@@ -1752,7 +1758,7 @@ Exec=/usr/local/bin/franz
 Name=Franz
 Comment=Franz
 Icon=/usr/share/icons/hicolor/128x128/apps/franz.png" >> /home/$superuser/Desktop/franz.desktop
-chmod +x /home/$superuser/Desktop/franz.desktop
+sudo chmod +x /home/$superuser/Desktop/franz.desktop
 else
 :
 fi
@@ -1775,7 +1781,7 @@ Exec=/usr/local/bin/balena-etcher-electron
 Name=balenaEtcher
 Comment=balenaEtcher
 Icon=/usr/share/icons/hicolor/128x128/apps/balena-etcher-electron.png" >> /home/$superuser/Desktop/balena-etcher.desktop
-chmod +x /home/$superuser/Desktop/balena-etcher.desktop
+sudo chmod +x /home/$superuser/Desktop/balena-etcher.desktop
 else
 :
 fi
@@ -1797,7 +1803,7 @@ Exec=/usr/bin/vivaldi
 Name=Vivaldi
 Comment=Vivaldi
 Icon=/usr/share/icons/hicolor/128x128/apps/vivaldi.png" >> /home/$superuser/Desktop/vivaldi.desktop
-chmod +x /home/$superuser/Desktop/vivaldi.desktop
+sudo chmod +x /home/$superuser/Desktop/vivaldi.desktop
 else
 :
 fi
@@ -1820,7 +1826,7 @@ Exec=/usr/bin/spotify
 Name=Spotify
 Comment=Spotify
 Icon=/usr/share/icons/hicolor/128x128/apps/spotify-client.png" >> /home/$superuser/Desktop/spotify.desktop
-chmod +x /home/$superuser/Desktop/spotify.desktop
+sudo chmod +x /home/$superuser/Desktop/spotify.desktop
 else
 :
 fi
@@ -1842,7 +1848,7 @@ Exec=/usr/bin/picard
 Name=Picard
 Comment=Picard
 Icon=/usr/share/icons/hicolor/128x128/apps/picard.png" >> /home/$superuser/Desktop/picard.desktop
-chmod +x /home/$superuser/Desktop/picard.desktop
+sudo chmod +x /home/$superuser/Desktop/picard.desktop
 else
 :
 fi
@@ -1852,10 +1858,10 @@ printf "\nPicard installation Has Finished\n\n"
 61) # pCloud Drive
 if [ "$cpuarch" = "x86_64" ];then
 wget -O /home/$superuser/Downloads/TempDL/pcloud https://www.pcloud.com/tr/how-to-install-pcloud-drive-linux.html?download=electron-64
-chmod +x /home/$superuser/Downloads/TempDL/pcloud
+sudo chmod +x /home/$superuser/Downloads/TempDL/pcloud
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 wget -O /home/$superuser/Downloads/TempDL/pcloud https://www.pcloud.com/tr/how-to-install-pcloud-drive-linux.html?download=electron-32
-chmod +x /home/$superuser/Downloads/TempDL/pcloud
+sudo chmod +x /home/$superuser/Downloads/TempDL/pcloud
 fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
@@ -1868,14 +1874,14 @@ Exec=/home/$superuser/Downloads/TempDL/pcloud
 Name=pCloud Drive
 Comment=pCloud Drive
 Icon=/home/$superuser/.local/share/icons/hicolor/128x128/apps/appimagekit-pcloud.png" >> /home/$superuser/Desktop/pcloud.desktop
-chmod +x /home/$superuser/Desktop/pcloud.desktop
+sudo chmod +x /home/$superuser/Desktop/pcloud.desktop
 else
 :
 fi
 printf "\npCloud Drive installation Has Finished\n\n"
 ;;
 
-62) # Timeshift
+62) # Timeshift (PPA)
 sudo add-apt-repository -y ppa:teejee2008/ppa -y
 sudo apt update
 sudo apt install timeshift -y
@@ -1890,7 +1896,7 @@ Exec=/usr/bin/timeshift-launcher
 Name=Timeshift
 Comment=Timeshift
 Icon=/usr/share/icons/hicolor/128x128/apps/timeshift.png" >> /home/$superuser/Desktop/timeshift.desktop
-chmod +x /home/$superuser/Desktop/timeshift.desktop
+sudo chmod +x /home/$superuser/Desktop/timeshift.desktop
 else
 :
 fi
@@ -1912,7 +1918,7 @@ Exec=/usr/bin/peek
 Name=Peek
 Comment=Peek
 Icon=/usr/share/icons/hicolor/128x128/apps/com.uploadedlobster.peek.png" >> /home/$superuser/Desktop/peek.desktop
-chmod +x /home/$superuser/Desktop/peek.desktop
+sudo chmod +x /home/$superuser/Desktop/peek.desktop
 else
 :
 fi
@@ -1934,7 +1940,7 @@ Exec=/usr/bin/stacer
 Name=Stacer
 Comment=Stacer
 Icon=/usr/share/icons/hicolor/128x128/apps/stacer.png" >> /home/$superuser/Desktop/stacer.desktop
-chmod +x /home/$superuser/Desktop/stacer.desktop
+sudo chmod +x /home/$superuser/Desktop/stacer.desktop
 else
 :
 fi
