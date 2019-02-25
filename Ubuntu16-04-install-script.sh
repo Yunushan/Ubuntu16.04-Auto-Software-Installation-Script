@@ -26,10 +26,10 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Kazam (PPA) ${opts[29]}" "Audocity (PPA) ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
 "Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office ${opts[37]}" "OpenOffice ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
 "Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita (64 Bit Only) ${opts[43]}" "Kdenlive (64 Bit Only) ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 (64 Bit Only) ${opts[46]}"
-"Irssi (PPA) ${opts[47]}" "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}"
+"Irssi (PPA) (IRC) ${opts[47]}" "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}"
 "Geary (PPA) ${opts[53]}" "Uget ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz (Messaging App) ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
 "Spotify ${opts[59]}" "MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Timeshift (PPA) ${opts[62]}" "Peek (GIF Recorder) (PPA) ${opts[63]}" 
-"Stacer (System Optimizer) (PPA) ${opts[64]}" "Done ${opts[65]}")
+"Stacer (System Optimizer) (PPA) ${opts[64]}" "Jenkins ${opts[65]}" "Docker ${opts[66]}" "Python 2 & 3 (From Source) ${opts[67]}" "Done ${opts[68]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -285,14 +285,26 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 63
                 break
                 ;;
-             "Stacer (System Optimizer) (PPA) ${opts[64]}")
+            "Stacer (System Optimizer) (PPA) ${opts[64]}")
                 choice 64
                 break
                 ;;
-            "Done ${opts[65]}")
+            "Jenkins ${opts[65]}")
+                choice 65
+                break
+                ;;
+            "Docker ${opts[66]}")
+                choice 66
+                break
+                ;;
+            "Python 2 & 3 (From Source) ${opts[67]}")
+                choice 67
+                break
+                ;;
+            "Done ${opts[68]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-65';;
+            *) printf '%s\n' 'Please Choose Between 1-68';;
         esac
     done
 done
@@ -1957,5 +1969,81 @@ else
 :
 fi
 printf "\nStacer installation Has Finished\n\n"
+;;
+
+65) # Jenkins
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install default-jre -y
+sudo apt install jenkins -y
+printf "\nJenkins installation Has Finished\n\n"
+;;
+
+66) # Docker
+sudo apt-get remove docker docker-engine docker.io containerd runc -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg-agent -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io -y
+printf "\nDocker installation Has Finished\n\n"
+;;
+
+67) # Python 2 & 3 (From Source)
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget -y
+printf "\nPlease Choose your option"
+printf "\n1-)Install Python 2"
+printf "\n2-)Install Python 3"
+printf "\n3-)Install Python 2 and 3\nChoose:"
+read pythonoption
+if [ "$pythonoption" = "1" ];then
+printf "\n1-)Install Python 2 Selected"
+python2location=`lynx -dump https://www.python.org/downloads/ | awk '/http/{print $2}' | grep release/python-2 | head -n 1`
+python2location=`lynx -dump $python2location | awk '/http/{print $2}' | grep .tgz | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/python2-latest.tgz $python2location
+sudo mkdir -p /home/$superuser/Downloads/TempDL/python2-latest
+sudo tar xvf /home/$superuser/Downloads/TempDL/python2-latest.tgz -C /home/$superuser/Downloads/TempDL/python2-latest --strip-components 1
+sudo /home/$superuser/Downloads/TempDL/python2-latest/./configure
+sudo make -C /home/$superuser/Downloads/TempDL/python2-latest/
+sudo make install -C /home/$superuser/Downloads/TempDL/python2-latest/
+printf "\nPython 2 installation Has Finished\n\n"
+
+elif [ "$pythonoption" = "2" ];then
+printf "\n2-)Install Python 3 Selected"
+python3location=`lynx -dump https://www.python.org/downloads/ | awk '/http/{print $2}' | grep release/python-3 | head -n 1`
+python3location=`lynx -dump $python3location | awk '/http/{print $2}' | grep .tgz | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/python3-latest.tgz $python3location
+sudo mkdir -p /home/$superuser/Downloads/TempDL/python3-latest
+sudo tar xvf /home/$superuser/Downloads/TempDL/python3-latest.tgz -C /home/$superuser/Downloads/TempDL/python3-latest --strip-components 1
+sudo /home/$superuser/Downloads/TempDL/python3-latest/./configure
+sudo make -C /home/$superuser/Downloads/TempDL/python3-latest/
+sudo make install -C /home/$superuser/Downloads/TempDL/python3-latest/
+printf "\nPython 3 installation Has Finished\n\n"
+
+elif [ "$pythonoption" = "3" ];then
+printf "\n3-)Install Python 2 and 3 Selected"
+python2location=`lynx -dump https://www.python.org/downloads/ | awk '/http/{print $2}' | grep release/python-2 | head -n 1`
+python2location=`lynx -dump $python2location | awk '/http/{print $2}' | grep .tgz | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/python2-latest.tgz $python2location
+sudo mkdir -p /home/$superuser/Downloads/TempDL/python2-latest
+sudo tar xvf /home/$superuser/Downloads/TempDL/python2-latest.tgz -C /home/$superuser/Downloads/TempDL/python2-latest --strip-components 1
+sudo /home/$superuser/Downloads/TempDL/python2-latest/./configure
+sudo make -C /home/$superuser/Downloads/TempDL/python2-latest/
+sudo make install -C /home/$superuser/Downloads/TempDL/python2-latest/
+printf "\nPython 2 installation Has Finished\n\n"
+
+python3location=`lynx -dump https://www.python.org/downloads/ | awk '/http/{print $2}' | grep release/python-3 | head -n 1`
+python3location=`lynx -dump $python3location | awk '/http/{print $2}' | grep .tgz | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/python3-latest.tgz $python3location
+sudo mkdir -p /home/$superuser/Downloads/TempDL/python3-latest
+sudo tar xvf /home/$superuser/Downloads/TempDL/python3-latest.tgz -C /home/$superuser/Downloads/TempDL/python3-latest --strip-components 1
+sudo /home/$superuser/Downloads/TempDL/python3-latest/./configure
+sudo make -C /home/$superuser/Downloads/TempDL/python3-latest/
+sudo make install -C /home/$superuser/Downloads/TempDL/python3-latest/
+printf "\nPython 2 and 3 installation Has Finished\n\n"
+else
+:
+fi
 ;;
 esac
