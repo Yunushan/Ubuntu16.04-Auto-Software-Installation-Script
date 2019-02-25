@@ -24,8 +24,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Brave (Web Browser) ${opts[19]}" "Tor Browser 8.0.4 ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" 
 "Vuze (Bittorrent Client) ${opts[23]}" "Utorrent ${opts[24]}" "Deluge (PPA) ${opts[25]}" "Transmission (PPA) ${opts[26]}" "MPV (PPA) ${opts[27]}" "SMPlayer (PPA) ${opts[28]}"
 "Kazam (PPA) ${opts[29]}" "Audocity (PPA) ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
-"Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office 10.1 ${opts[37]}" "OpenOffice 4.1.6 ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
-"Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita 4.1.7 ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}"
+"Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office ${opts[37]}" "OpenOffice ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
+"Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}"
 "Irssi (PPA) ${opts[47]}" "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}"
 "Geary (PPA) ${opts[53]}" "Uget ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0 ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
 "Spotify ${opts[59]}" "MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Timeshift (PPA) ${opts[62]}" "Peek (GIF Recorder) (PPA) ${opts[63]}" 
@@ -177,11 +177,11 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 36
                 break
                 ;;
-            "WPS Office 10.1 ${opts[37]}")
+            "WPS Office ${opts[37]}")
                 choice 37
                 break
                 ;;
-            "OpenOffice 4.1.6 ${opts[38]}")
+            "OpenOffice ${opts[38]}")
                 choice 38
                 break
                 ;;
@@ -201,7 +201,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 42
                 break
                 ;;
-            "Krita 4.1.7 ${opts[43]}")
+            "Krita ${opts[43]}")
                 choice 43
                 break
                 ;;
@@ -1187,28 +1187,30 @@ printf "\nWPS Office installation Has Finished\n\n"
 printf "\nOPENOFFICE NEEDS TO REMOVE THE LIBREOFFICE BEFORE INSTALLING IT, DO YOU CONFIRM (Y/N): "
 read openofficeverify
 if [ "$openofficeverify" = "Y" ] || [ "$openofficeverify" = "y" ];then
-:
+sudo apt install lynx -y
 elif [ "$openofficeverify" = "N" ] || [ "$openofficeverify" = "n" ];then
 exit
-
 fi
 if [ "$cpuarch" = "x86_64" ];then
 sudo apt remove libreoffice* openoffice* -y
 sudo apt autoremove -y
-wget -O Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz/download
-tar xzvf Apache_OpenOffice_4.1.6_Linux_x86-64_install-deb_en-US.tar.gz
-sudo dpkg -i en-US/DEBS/*.deb
-sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
-sudo mv en-US OpenOffice-4.1.6-64bit
-sudo mv OpenOffice-4.1.6-64bit /home/$superuser/Downloads/TempDL/
+openofficedirectory=`lynx -dump https://sourceforge.net/projects/openofficeorg.mirror/files/ | grep mirror/files/ | awk '/http/{print $2}' | head -6 | tail -1`
+openofficedirectory="${openofficedirectory}binaries/en-US/"
+openofficedirectory=`lynx -dump $openofficedirectory | grep x86-64_install-deb_en-US.tar.gz/download | awk '/http/{print $2}'`
+wget -O /home/$superuser/Downloads/TempDL/openoffice_x86-64_install-deb_en-US.tar.gz $openofficedirectory
+sudo tar xzvf /home/$superuser/Downloads/TempDL/openoffice_x86-64_install-deb_en-US.tar.gz
+sudo dpkg -i /home/$superuser/Downloads/TempDL/en-US/DEBS/*.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/en-US/DEBS/desktop-integration/*.deb
 elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 sudo apt remove libreoffice* openoffice* -y
 sudo apt autoremove -y
-wget -O Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.6/binaries/en-US/Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz/download
-tar xzvf Apache_OpenOffice_4.1.6_Linux_x86_install-deb_en-US.tar.gz
-sudo dpkg -i en-us/DEBS/*.deb
-sudo dpkg -i en-US/DEBS/desktop-integration/*.deb
-sudo mv OpenOffice-4.1.6-32bit /home/$superuser/Downloads/TempDL/
+openofficedirectory=`lynx -dump https://sourceforge.net/projects/openofficeorg.mirror/files/ | grep mirror/files/ | awk '/http/{print $2}' | head -6 | tail -1`
+openofficedirectory="${openofficedirectory}binaries/en-US/"
+openofficedirectory=`lynx -dump $openofficedirectory | grep x86_install-deb_en-US.tar.gz/download | awk '/http/{print $2}'`
+wget -O /home/$superuser/Downloads/TempDL/openoffice_x86_install-deb_en-US.tar.gz $openofficedirectory
+sudo tar xzvf /home/$superuser/Downloads/TempDL/openoffice_x86_install-deb_en-US.tar.gz
+sudo dpkg -i /home/$superuser/Downloads/TempDL/en-US/DEBS/*.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/en-US/DEBS/desktop-integration/*.deb
 fi
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
@@ -1356,12 +1358,15 @@ fi
 printf "\nUnreal Engine 4 installation Has Finished\n\n"
 ;;
 
-43) # Krita 4.1.7
-
-wget https://download.kde.org/stable/krita/4.1.7/krita-4.1.7-x86_64.appimage
-sudo mv krita-4.1.7-x86_64.appimage /home/$superuser/Downloads/TempDL/
-sudo chmod +x /home/$superuser/Downloads/TempDL/krita-4.1.7-x86_64.appimage
+43) # Krita
+if [ "$cpuarch" = "x86_64" ];then
+sudo apt install lynx -y
+kritalocation=`lynx -dump https://download.kde.org/stable/krita/ | grep /stable/krita/ | awk '/http/{print $2}' | head -n 4 | tail -n 1`
+kritalocation=`lynx -dump $kritalocation | grep x86_64.appimage | awk '/http/{print $2}' | head -n 5 | tail -n 1`
+wget -O /home/$superuser/Downloads/TempDL/krita-86x_64.appimage $kritalocation
+sudo chmod +x /home/$superuser/Downloads/TempDL/krita-x86_64.appimage
 wget -O /home/$superuser/Downloads/TempDL/krita.png https://www.macupdate.com/images/icons256/57212.png
+fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 echo "#!/usr/bin/env xdg-open
