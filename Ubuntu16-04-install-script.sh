@@ -25,9 +25,9 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Vuze (Bittorrent Client) ${opts[23]}" "Utorrent ${opts[24]}" "Deluge (PPA) ${opts[25]}" "Transmission (PPA) ${opts[26]}" "MPV (PPA) ${opts[27]}" "SMPlayer (PPA) ${opts[28]}"
 "Kazam (PPA) ${opts[29]}" "Audocity (PPA) ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
 "Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office ${opts[37]}" "OpenOffice ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
-"Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita ${opts[43]}" "Kdenlive 18.12.1b ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 ${opts[46]}"
+"Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita (64 Bit Only) ${opts[43]}" "Kdenlive (64 Bit Only) ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 (64 Bit Only) ${opts[46]}"
 "Irssi (PPA) ${opts[47]}" "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}"
-"Geary (PPA) ${opts[53]}" "Uget ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz 5.0.0 ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
+"Geary (PPA) ${opts[53]}" "Uget ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz (Messaging App) ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
 "Spotify ${opts[59]}" "MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Timeshift (PPA) ${opts[62]}" "Peek (GIF Recorder) (PPA) ${opts[63]}" 
 "Stacer (System Optimizer) (PPA) ${opts[64]}" "Done ${opts[65]}")
     select opt in "${options[@]}"
@@ -109,7 +109,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 19
                 break
                 ;;
-            "Tor Browser 8.0.4 ${opts[20]}")
+            "Tor Browser ${opts[20]}")
                 choice 20
                 break
                 ;;
@@ -201,11 +201,11 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 42
                 break
                 ;;
-            "Krita ${opts[43]}")
+            "Krita (64 Bit Only) ${opts[43]}")
                 choice 43
                 break
                 ;;
-            "Kdenlive 18.12.1b ${opts[44]}")
+            "Kdenlive (64 Bit Only) ${opts[44]}")
                 choice 44
                 break
                 ;;
@@ -213,7 +213,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 45
                 break
                 ;;
-            "AptanaStudio3 ${opts[46]}")
+            "AptanaStudio3 (64 Bit Only) ${opts[46]}")
                 choice 46
                 break
                 ;;
@@ -253,7 +253,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 55
                 break
                 ;;
-           "Franz 5.0.0-beta-24 (Messaging App) ${opts[56]}")
+           "Franz (Messaging App) (64 Bit Only) ${opts[56]}")
                 choice 56
                 break
                 ;;
@@ -769,15 +769,19 @@ fi
 printf "\nBrave Web Browser installation Has Finished\n\n"
 ;;
 
-20) # Tor Browser 8.0.4
+20) # Tor Browser
+sudo apt install lynx -y
 if [ "$cpuarch" = "x86_64" ];then
-
-wget -O /home/$superuser/Downloads/TempDL/tor-browser-linux64-8.0.4_en-US.tar.xz https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz
-tar xvJf /home/$superuser/Downloads/TempDL/tor-browser-linux64-8.0.4_en-US.tar.xz
+torlocation64=`lynx -dump https://dist.torproject.org/torbrowser/ | awk '/http/{print $2}' | tail -n 4 | head -n 1`
+torlocation64=`lynx -dump $torlocation64 | awk '/http/{print $2}' | grep linux64 | grep en-US.tar.xz | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/tor-browser-linux64.tar.xz $torlocation64
+tar xvJf /home/$superuser/Downloads/TempDL/tor-browser-linux64.tar.xz
 
 elif [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i686" ];then
-wget -O /home/$superuser/Downloads/TempDL/tor-browser-linux32-8.0.4_en-US.tar.xz  https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux32-8.0.4_en-US.tar.xz
-tar xvJf /home/$superuser/Downloads/TempDL/tor-browser-linux32-8.0.4_en-US.tar.xz
+torlocation32=`lynx -dump https://dist.torproject.org/torbrowser/ | awk '/http/{print $2}' | tail -n 4 | head -n 1`
+torlocation32=`lynx -dump $torlocation32 | awk '/http/{print $2}' | grep linux32 | grep en-US.tar.xz | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/tor-browser-linux32.tar.xz $torlocation32
+tar xvJf /home/$superuser/Downloads/TempDL/tor-browser-linux32.tar.xz
 fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
@@ -794,7 +798,7 @@ sudo chmod +x /home/$superuser/Desktop/tor-browser.desktop
 else
 :
 fi
-printf "\nBrave Web Browser installation Has Finished\n\n"
+printf "\nTor Browser installation Has Finished\n\n"
 ;;
 
 21) #VMware Workstation 15 Pro
@@ -1358,12 +1362,12 @@ fi
 printf "\nUnreal Engine 4 installation Has Finished\n\n"
 ;;
 
-43) # Krita
+43) # Krita (64 Bit Only)
 if [ "$cpuarch" = "x86_64" ];then
 sudo apt install lynx -y
 kritalocation=`lynx -dump https://download.kde.org/stable/krita/ | grep /stable/krita/ | awk '/http/{print $2}' | head -n 4 | tail -n 1`
 kritalocation=`lynx -dump $kritalocation | grep x86_64.appimage | awk '/http/{print $2}' | head -n 5 | tail -n 1`
-wget -O /home/$superuser/Downloads/TempDL/krita-86x_64.appimage $kritalocation
+wget -O /home/$superuser/Downloads/TempDL/krita-x86_64.appimage $kritalocation
 sudo chmod +x /home/$superuser/Downloads/TempDL/krita-x86_64.appimage
 wget -O /home/$superuser/Downloads/TempDL/krita.png https://www.macupdate.com/images/icons256/57212.png
 fi
@@ -1374,7 +1378,7 @@ echo "#!/usr/bin/env xdg-open
 Version=1.0
 Type=Application
 Terminal=false
-Exec=/home/$superuser/Downloads/TempDL/Krita
+Exec=/home/$superuser/Downloads/TempDL/krita-x86_64.appimage
 Name=Krita
 Comment=Krita
 Icon=/home/$superuser/Downloads/TempDL/krita.png" >> /home/$superuser/Desktop/Krita.desktop
@@ -1385,11 +1389,14 @@ fi
 printf "\nKrita installation Has Finished\n\n"
 ;;
 
-44) # Kdenlive 18.12.1b
-
-wget -O /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage https://files.kde.org/kdenlive/release/kdenlive-18.12.1b-x86_64.appimage
-sudo chmod +x /home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
+44) # Kdenlive (64 Bit Only)
+if [ "$cpuarch" = "x86_64" ];then
+sudo apt install lynx -y
+kdenlivelocation=`lynx -dump https://files.kde.org/kdenlive/release/ | awk '/http/{print $2}' | grep x86_64.appimage | tail -n 2 | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/kdenlive-latest-x86-64.appimage $kdenlivelocation
+sudo chmod +x /home/$superuser/Downloads/TempDL/kdenlive-latest-x86-64.appimage
 wget -O /home/$superuser/Downloads/TempDL/kdenlive.png https://cdn.iconverticons.com/files/png/7f088b9c830c6591_256x256.png
+fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 echo "#!/usr/bin/env xdg-open
@@ -1397,7 +1404,7 @@ echo "#!/usr/bin/env xdg-open
 Version=1.0
 Type=Application
 Terminal=false
-Exec=/home/$superuser/Downloads/TempDL/kdenlive-18.12.1b-x86_64.appimage
+Exec=/home/$superuser/Downloads/TempDL/kdenlive-latest-x86-64.appimage
 Name=Kdenlive
 Comment=Kdenlive
 Icon=/home/$superuser/Downloads/TempDL/kdenlive.png" >> /home/$superuser/Desktop/kdenlive.desktop
@@ -1452,7 +1459,7 @@ fi
 printf "\nQt installation Has Finished\n\n"
 ;;
 
-46) # AptanaStudio3
+46) # AptanaStudio3 (64 Bit Only)
 sudo apt install default-jdk -y
 sudo apt install libjpeg62 libwebkitgtk-1.0-0 git-core -y
 wget -O /home/$superuser/Downloads/TempDL/aptana.studio-linux.gtk.x86_64.zip https://github.com/aptana/studio3/releases/download/3.7.2.201807301111/aptana.studio-linux.gtk.x86_64.zip
@@ -1742,7 +1749,7 @@ fi
 printf "\nSayonara Player installation Has Finished\n\n"
 ;;
 
-56) # Franz 5.0.0 (Messaging App)
+56) # Franz (Messaging App) (64 Bit Only)
 if [ "$cpuarch" = "x86_64" ];then
 franz64=`lynx -dump https://github.com/meetfranz/franz/releases/ | grep _amd64.deb* | awk '/http/{print $2}' | head -1`
 wget -O /home/$superuser/Downloads/TempDL/franz-amd64.deb $franz64
