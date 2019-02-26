@@ -18,18 +18,20 @@ PS3='Please enter your choice: '
 while :
 do
 clear
-options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opts[3]}" "VLC ${opts[4]}" "Visual Studio Code ${opts[5]}" "FFMPEG (PPA) ${opts[6]}" 
+options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opts[3]}" "VLC (Snap) ${opts[4]}" "Visual Studio Code ${opts[5]}" "FFMPEG (PPA) ${opts[6]}" 
 "Monitoring Tools ${opts[7]}" "WineHQ Staging ${opts[8]}" "Qbittorrent ${opts[9]}" "Netbeans 10 ${opts[10]}" "Gimp (Flatpak) ${opts[11]}" "Nmap ${opts[12]}" 
 "Skype ${opts[13]}" "Steam ${opts[14]}" "OBS-Studio (PPA) ${opts[15]}" "OpenShot ${opts[16]}" "Oracle VirtualBox 6 ${opts[17]}" "Sublime Text 3 ${opts[18]}" 
 "Brave (Web Browser) ${opts[19]}" "Tor Browser 8.0.4 ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" 
-"Vuze (Bittorrent Client) ${opts[23]}" "Utorrent ${opts[24]}" "Deluge (PPA) ${opts[25]}" "Transmission (PPA) ${opts[26]}" "MPV (PPA) ${opts[27]}" "SMPlayer (PPA) ${opts[28]}"
+"Vuze (Bittorrent Client) ${opts[23]}" "Utorrent (Snap) ${opts[24]}" "Deluge (PPA) ${opts[25]}" "Transmission (PPA) ${opts[26]}" "MPV (PPA) ${opts[27]}" "SMPlayer (PPA) ${opts[28]}"
 "Kazam (PPA) ${opts[29]}" "Audocity (PPA) ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
 "Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office ${opts[37]}" "OpenOffice ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
 "Unity 2018.3.0f2 ${opts[41]}" "Unreal Engine 4 ${opts[42]}" "Krita (64 Bit Only) ${opts[43]}" "Kdenlive (64 Bit Only) ${opts[44]}" "Qt ${opts[45]}" "AptanaStudio3 (64 Bit Only) ${opts[46]}"
 "Irssi (PPA) (IRC) ${opts[47]}" "Clementine (PPA) ${opts[48]}" "TeamViewer 14 ${opts[49]}" "TeamSpeak 3 ${opts[50]}" "Discord ${opts[51]}" "Android Studio ${opts[52]}"
 "Geary (PPA) ${opts[53]}" "Uget ${opts[54]}" "Sayonara (PPA) ${opts[55]}" "Franz (Messaging App) ${opts[56]}" "balenaEtcher ${opts[57]}" "Vivaldi ${opts[58]}"
 "Spotify ${opts[59]}" "MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Timeshift (PPA) ${opts[62]}" "Peek (GIF Recorder) (PPA) ${opts[63]}" 
-"Stacer (System Optimizer) (PPA) ${opts[64]}" "Jenkins ${opts[65]}" "Docker ${opts[66]}" "Python 2 & 3 (From Source) ${opts[67]}" "Done ${opts[68]}")
+"Stacer (System Optimizer) (PPA) ${opts[64]}" "Jenkins ${opts[65]}" "Docker ${opts[66]}" "Python 2 & 3 (From Source) ${opts[67]}" "Telegram (PPA) ${opts[68]}" 
+"Brackets (PPA) ${opts[69]}" "Shotcut (Snap) ${opts[70]}" "Okular (Document Viewer) (Snap) ${opts[71]}" "WeeChat (IRC) ${opts[72]}" 
+"Quassel (IRC) (PPA) ${opts[73]}" "Konversation (IRC) ${opts[74]}" "Done ${opts[75]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -301,10 +303,38 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 67
                 break
                 ;;
-            "Done ${opts[68]}")
+            "Telegram (PPA) ${opts[68]}")
+                choice 68
+                break
+                ;;
+            "Brackets (PPA) ${opts[69]}")
+                choice 69
+                break
+                ;;
+            "Shotcut (Snap) ${opts[70]}")
+                choice 70
+                break
+                ;;
+            "Okular (Document Viewer) (Snap) ${opts[71]}")
+                choice 71
+                break
+                ;;
+            "WeeChat (IRC) ${opts[72]}")
+                choice 72
+                break
+                ;;
+            "Quassel (IRC) (PPA) ${opts[73]}")
+                choice 73
+                break
+                ;;
+            "Konversation (IRC) ${opts[74]}")
+                choice 74
+                break
+                ;;
+            "Done ${opts[75]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-68';;
+            *) printf '%s\n' 'Please Choose Between 1-75';;
         esac
     done
 done
@@ -328,7 +358,8 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "31" ] || [ "$opt" = "33" ] || [ "$opt" = "34" ] || [ "$opt" = "35" ] || [ "$opt" = "36" ] || [ "$opt" = "37" ] || [ "$opt" = "38" ] || [ "$opt" = "39" ] || \
  [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] || \
  [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ] || \
- [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ] || [ "$opt" = "62" ] || [ "$opt" = "63" ] || [ "$opt" = "64" ]
+ [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ] || [ "$opt" = "62" ] || [ "$opt" = "63" ] || [ "$opt" = "64" ] || \
+ [ "$opt" = "68" ] || [ "$opt" = "69" ] || [ "$opt" = "70" ] || [ "$opt" = "71" ] || [ "$opt" = "73" ] || [ "$opt" = "74" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -2042,6 +2073,177 @@ sudo /home/$superuser/Downloads/TempDL/python3-latest/./configure
 sudo make -C /home/$superuser/Downloads/TempDL/python3-latest/
 sudo make install -C /home/$superuser/Downloads/TempDL/python3-latest/
 printf "\nPython 2 and 3 installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+68) # Telegram (PPA)
+sudo add-apt-repository ppa:atareao/telegram -y
+sudo apt update
+sudo apt install telegram -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+sudo wget -O /home/$superuser/Downloads/TempDL/telegram-logo.png http://www.stickpng.com/assets/images/5842a8fba6515b1e0ad75b03.png
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/telegram
+Name=Telegram
+Comment=Telegram
+Icon=/home/$superuser/Downloads/TempDL/telegram-logo.png" >> /home/$superuser/Desktop/telegram.desktop
+sudo chmod +x /home/$superuser/Desktop/telegram.desktop
+else
+:
+fi
+printf "\nTelegram installation Has Finished\n\n"
+;;
+
+69) # Brackets (PPA)
+sudo add-apt-repository ppa:webupd8team/brackets -y
+sudo apt update
+sudo apt install brackets -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+sudo wget -O /home/$superuser/Downloads/TempDL/telegram-logo.png http://www.stickpng.com/assets/images/5842a8fba6515b1e0ad75b03.png
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/telegram
+Name=Telegram
+Comment=Telegram
+Icon=/home/$superuser/Downloads/TempDL/telegram-logo.png" >> /home/$superuser/Desktop/telegram.desktop
+sudo chmod +x /home/$superuser/Desktop/telegram.desktop
+else
+:
+fi
+printf "\nTelegram installation Has Finished\n\n"
+;;
+
+70) # Shotcut (Snap)
+sudo apt install snapd -y
+sudo snap install shotcut --classic
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+shotcutlocation=`locate shotcut-logo-64.png | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/shotcut
+Name=Shotcut
+Comment=Shotcut
+Icon=$shotcutlocation" >> /home/$superuser/Desktop/shotcut.desktop
+sudo chmod +x /home/$superuser/Desktop/shotcut.desktop
+else
+:
+fi
+printf "\nShotcut installation Has Finished\n\n"
+;;
+
+71) # Okular (Document Viewer) (Snap)
+printf "\nPlease Choose Your Installation Method"
+printf "\n1-)Standart apt okular installation"
+printf "\n2-)Latest Version (Snap) installation"
+printf "\n ----- (Snap version needs to download and install some KDE packages.It'll take a more time to install.Are you Sure to proceed ? -----"
+read okularoption
+
+if [ "$okularoption" = "1" ];then
+sudo apt install okular -y
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/okular
+Name=Okular
+Comment=Okular
+Icon=/usr/share/icons/hicolor/64x64/apps/okular.png" >> /home/$superuser/Desktop/okular.desktop
+sudo chmod +x /home/$superuser/Desktop/okular.desktop
+else
+:
+fi
+printf "\nOkular installation Has Finished\n\n"
+
+if [ "$okularoption" = "2" ];then
+sudo apt install snapd -y
+sudo snap install okular
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+okularlocation=`locate apps/okular.png | tail -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/okular
+Name=Okular
+Comment=Okular
+Icon=$okularlocation" >> /home/$superuser/Desktop/okular.desktop
+sudo chmod +x /home/$superuser/Desktop/okular.desktop
+else
+:
+fi
+;;
+
+72) # WeeChat (IRC)
+sudo apt install apt-transport-https -y
+sudo apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 11E9DE8848F2B65222AA75B8D1820DB22A11534E
+sudo bash -c "echo 'deb https://weechat.org/ubuntu xenial main' >/etc/apt/sources.list.d/weechat.list"
+sudo bash -c "echo 'deb-src https://weechat.org/ubuntu xenial main' >>/etc/apt/sources.list.d/weechat.list"
+sudo apt update
+sudo apt install weechat -y
+printf "\nWeeChat (IRC) installation Has Finished\n\n"
+;;
+
+73) # Quassel (IRC) (PPA)
+sudo add-apt-repository ppa:mamarley/quassel -y
+sudo apt update
+sudo apt install quassel -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/quassel
+Name=Quassel
+Comment=Quassel
+Icon=/usr/share/icons/hicolor/64x64/apps/quassel.png" >> /home/$superuser/Desktop/quassel.desktop
+sudo chmod +x /home/$superuser/Desktop/quassel.desktop
+else
+:
+fi
+;;
+
+74) # Konversation (IRC)
+sudo apt install snapd -y
+sudo snap install konversation
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+konversationlogo=`locate hicolor/64x64/apps/konversation.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/konversation
+Name=Konversation
+Comment=Konversation
+Icon=$konversationlogo" >> /home/$superuser/Desktop/konversation.desktop
+sudo chmod +x /home/$superuser/Desktop/konversation.desktop
 else
 :
 fi
