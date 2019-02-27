@@ -21,7 +21,7 @@ clear
 options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opts[3]}" "VLC (Snap) ${opts[4]}" "Visual Studio Code ${opts[5]}" "FFMPEG (PPA) ${opts[6]}" 
 "Monitoring Tools ${opts[7]}" "WineHQ Staging ${opts[8]}" "Qbittorrent ${opts[9]}" "Netbeans 10 ${opts[10]}" "Gimp (Flatpak) ${opts[11]}" "Nmap ${opts[12]}" 
 "Skype ${opts[13]}" "Steam ${opts[14]}" "OBS-Studio (PPA) ${opts[15]}" "OpenShot ${opts[16]}" "Oracle VirtualBox 6 ${opts[17]}" "Sublime Text 3 ${opts[18]}" 
-"Brave (Web Browser) ${opts[19]}" "Tor Browser 8.0.4 ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" 
+"Brave (Web Browser) ${opts[19]}" "Tor Browser ${opts[20]}" "VMware Workstation 15 Pro ${opts[21]}" "Eclipse IDE ${opts[22]}" 
 "Vuze (Bittorrent Client) ${opts[23]}" "Utorrent (Snap) ${opts[24]}" "Deluge (PPA) ${opts[25]}" "Transmission (PPA) ${opts[26]}" "MPV (PPA) ${opts[27]}" "SMPlayer (PPA) ${opts[28]}"
 "Kazam (PPA) ${opts[29]}" "Audocity (PPA) ${opts[30]}" "PlayonLinux ${opts[31]}" "Conky (PPA) ${opts[32]}" "HandBrake (PPA) ${opts[33]}" "Inkscape (PPA) ${opts[34]}" 
 "Signal ${opts[35]}" "Dropbox ${opts[36]}" "WPS Office ${opts[37]}" "OpenOffice ${opts[38]}" "MonoDevelop ${opts[39]}" "Kodi (PPA) ${opts[40]}" 
@@ -31,7 +31,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Spotify ${opts[59]}" "MusicBrainz Picard (PPA) ${opts[60]}" "pCloud Drive ${opts[61]}" "Timeshift (PPA) ${opts[62]}" "Peek (GIF Recorder) (PPA) ${opts[63]}" 
 "Stacer (System Optimizer) (PPA) ${opts[64]}" "Jenkins ${opts[65]}" "Docker ${opts[66]}" "Python 2 & 3 (From Source) ${opts[67]}" "Telegram (PPA) ${opts[68]}" 
 "Brackets (PPA) ${opts[69]}" "Shotcut (Snap) ${opts[70]}" "Okular (Document Viewer) (Snap) ${opts[71]}" "WeeChat (IRC) ${opts[72]}" 
-"Quassel (IRC) (PPA) ${opts[73]}" "Konversation (IRC) ${opts[74]}" "Done ${opts[75]}")
+"Quassel (IRC) (PPA) ${opts[73]}" "Konversation (IRC) ${opts[74]}" "Ramme (Instagram Desktop App) ${opts[75]}" "Atom ${opts[76]}"
+"Google Play Music Desktop Player ${opts[77]}" "Ubuntu Cleaner (PPA) ${opts[78]}" "Pixbuf ${opts[79]}" "Done ${opts[80]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -331,10 +332,30 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 74
                 break
                 ;;
-            "Done ${opts[75]}")
+            "Ramme (Instagram Desktop App) ${opts[75]}")
+                choice 75
+                break
+                ;;
+            "Atom ${opts[76]}")
+                choice 76
+                break
+                ;;
+            "Google Play Music Desktop Player ${opts[77]}")
+                choice 77
+                break
+                ;;
+            "Ubuntu Cleaner (PPA) ${opts[78]}")
+                choice 78
+                break
+                ;;
+            "Pixbuf ${opts[79]}")
+                choice 79
+                break
+                ;;
+            "Done ${opts[80]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-75';;
+            *) printf '%s\n' 'Please Choose Between 1-80';;
         esac
     done
 done
@@ -359,7 +380,8 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "40" ] || [ "$opt" = "41" ] || [ "$opt" = "42" ] || [ "$opt" = "43" ] || [ "$opt" = "44" ] || [ "$opt" = "45" ] || [ "$opt" = "46" ] || [ "$opt" = "48" ] || \
  [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ] || \
  [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ] || [ "$opt" = "62" ] || [ "$opt" = "63" ] || [ "$opt" = "64" ] || \
- [ "$opt" = "68" ] || [ "$opt" = "69" ] || [ "$opt" = "70" ] || [ "$opt" = "71" ] || [ "$opt" = "73" ] || [ "$opt" = "74" ]
+ [ "$opt" = "68" ] || [ "$opt" = "69" ] || [ "$opt" = "70" ] || [ "$opt" = "71" ] || [ "$opt" = "73" ] || [ "$opt" = "74" ] || [ "$opt" = "75" ] || [ "$opt" = "76" ] || \
+ [ "$opt" = "77" ] || [ "$opt" = "78" ] 
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -1794,14 +1816,11 @@ printf "\nSayonara Player installation Has Finished\n\n"
 
 56) # Franz (Messaging App) (64 Bit Only)
 if [ "$cpuarch" = "x86_64" ];then
+sudo apt install lynx -y
 franz64=`lynx -dump https://github.com/meetfranz/franz/releases/ | grep _amd64.deb* | awk '/http/{print $2}' | head -1`
 wget -O /home/$superuser/Downloads/TempDL/franz-amd64.deb $franz64
 sudo dpkg -i /home/$superuser/Downloads/TempDL/franz-amd64.deb
 sudo apt install libgconf-2-4 -y
-elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
-printf "\nOnly 64 Bit Processors Supported"
-sleep 1
-fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 echo "#!/usr/bin/env xdg-open
@@ -1818,6 +1837,12 @@ else
 :
 fi
 printf "\nFranz installation Has Finished\n\n"
+fi
+if [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+printf "\nOnly 64 Bit Processors Supported"
+sleep 1
+fi
+
 ;;
 
 57) # balenaEtcher
@@ -2022,12 +2047,12 @@ printf "\nDocker installation Has Finished\n\n"
 ;;
 
 67) # Python 2 & 3 (From Source)
-sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget -y
 printf "\nPlease Choose your option"
 printf "\n1-)Install Python 2"
 printf "\n2-)Install Python 3"
 printf "\n3-)Install Python 2 and 3\nChoose:"
 read pythonoption
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget lynx -y
 if [ "$pythonoption" = "1" ];then
 printf "\n1-)Install Python 2 Selected"
 python2location=`lynx -dump https://www.python.org/downloads/ | awk '/http/{print $2}' | grep release/python-2 | head -n 1`
@@ -2223,6 +2248,7 @@ Name=Quassel
 Comment=Quassel
 Icon=/usr/share/icons/hicolor/64x64/apps/quassel.png" >> /home/$superuser/Desktop/quassel.desktop
 sudo chmod +x /home/$superuser/Desktop/quassel.desktop
+printf "\nQuassel (IRC) (PPA) installation Has Finished\n\n"
 else
 :
 fi
@@ -2244,6 +2270,146 @@ Name=Konversation
 Comment=Konversation
 Icon=$konversationlogo" >> /home/$superuser/Desktop/konversation.desktop
 sudo chmod +x /home/$superuser/Desktop/konversation.desktop
+printf "\nKonversation (IRC) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+75) # Ramme (Instagram Desktop App)
+sudo apt install snapd lynx -y
+if [ "$cpuarch" = "x86_64" ];then
+rammelocation64=`lynx -dump https://github.com/terkelg/ramme/releases | grep /releases/download/ | grep amd64.deb | awk '/http/{print $2}' | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/ramme-latest-amd64.deb $rammelocation64
+sudo dpkg -i /home/$superuser/Downloads/TempDL/ramme-latest-amd64.deb
+sudo apt -f install -y
+sudo apt install libasound2 -y
+rammelocation32=`lynx -dump https://github.com/terkelg/ramme/releases | grep /releases/download/ | grep i386.deb | awk '/http/{print $2}' | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/ramme-latest-i386.deb $rammelocation32
+sudo dpkg -i /home/$superuser/Downloads/TempDL/ramme-latest-i386.deb
+sudo apt -f install -y
+sudo apt install libasound2 -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/local/bin/ramme
+Name=Ramme
+Comment=Ramme
+Icon=/usr/share/icons/hicolor/64x64/apps/ramme.png" >> /home/$superuser/Desktop/ramme.desktop
+sudo chmod +x /home/$superuser/Desktop/ramme.desktop
+printf "\nRamme (Instagram Desktop App) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+76) # Atom
+
+if [ "$cpuarch" = "x86_64" ];then
+sudo wget -O /home/$superuser/Downloads/TempDL/atom-amd64.deb https://atom.io/download/deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/atom-amd64.deb
+sudo apt -f install -y
+fi
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/atom
+Name=Atom
+Comment=Atom
+Icon=/usr/share/pixmaps/atom.png" >> /home/$superuser/Desktop/atom.desktop
+sudo chmod +x /home/$superuser/Desktop/atom.desktop
+printf "\nAtom (Instagram Desktop App) installation Has Finished\n\n"
+else
+:
+fi
+if [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+printf "\nOnly 64 Bit Processors Supported"
+sleep 1
+fi
+;;
+
+77) # Google Play Music Desktop Player
+
+if [ "$cpuarch" = "x86_64" ];then
+googleplaymusic64=`lynx -dump https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases | awk '/http/{print $2}' | grep amd64.deb | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/google-play-music-amd64.deb $googleplaymusic64
+sudo dpkg -i /home/$superuser/Downloads/TempDL/google-play-music-amd64.deb
+sudo apt -f install -y
+
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+googleplaymusic32=`lynx -dump https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases | awk '/http/{print $2}' | grep i386.deb | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/google-play-music-i386.deb $googleplaymusic32
+sudo dpkg -i /home/$superuser/Downloads/TempDL/google-play-music-i386.deb
+sudo apt -f install -y
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/google-play-music-desktop-player
+Name=Atom
+Comment=Atom
+Icon=/usr/share/pixmaps/google-play-music-desktop-player.png" >> /home/$superuser/Desktop/google-play-music-desktop-player.desktop
+sudo chmod +x /home/$superuser/Desktop/google-play-music-desktop-player.desktop
+printf "\nGoogle Play Music Desktop Player installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+78) # Ubuntu Cleaner (PPA)
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:gerardpuig/ppa -y
+sudo apt update
+sudo apt install ubuntu-cleaner -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/ubuntu-cleaner
+Name=Ubuntu-Cleaner
+Comment=Ubuntu-Cleaner
+Icon=/usr/share/icons/hicolor/64x64/apps/ubuntu-cleaner.png" >> /home/$superuser/Desktop/ubuntu-cleaner.desktop
+sudo chmod +x /home/$superuser/Desktop/ubuntu-cleaner.desktop
+printf "\nUbuntu Cleaner (PPA) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+79) # Pixbuf
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:gerardpuig/ppa -y
+sudo apt update
+sudo apt install ubuntu-cleaner -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/ubuntu-cleaner
+Name=Ubuntu-Cleaner
+Comment=Ubuntu-Cleaner
+Icon=/usr/share/icons/hicolor/64x64/apps/ubuntu-cleaner.png" >> /home/$superuser/Desktop/ubuntu-cleaner.desktop
+sudo chmod +x /home/$superuser/Desktop/ubuntu-cleaner.desktop
+printf "\nUbuntu Cleaner (PPA) installation Has Finished\n\n"
 else
 :
 fi
