@@ -32,7 +32,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Stacer (System Optimizer) (PPA) ${opts[64]}" "Jenkins ${opts[65]}" "Docker ${opts[66]}" "Python 2 & 3 (From Source) ${opts[67]}" "Telegram (PPA) ${opts[68]}" 
 "Brackets (PPA) ${opts[69]}" "Shotcut (Snap) ${opts[70]}" "Okular (Document Viewer) (Snap) ${opts[71]}" "WeeChat (IRC) ${opts[72]}" 
 "Quassel (IRC) (PPA) ${opts[73]}" "Konversation (IRC) ${opts[74]}" "Ramme (Instagram Desktop App) ${opts[75]}" "Atom ${opts[76]}"
-"Google Play Music Desktop Player ${opts[77]}" "Ubuntu Cleaner (PPA) ${opts[78]}" "Pixbuf ${opts[79]}" "Done ${opts[80]}")
+"Google Play Music Desktop Player ${opts[77]}" "Ubuntu Cleaner (PPA) ${opts[78]}" "Pixbuf ${opts[79]}" "SimpleScreenRecorder (PPA) ${opts[80]}" "Neofetch (PPA) ${opts[81]}" 
+"Shutter (Screenshot Tool) (PPA) ${opts[82]}" "Bitwarden ${opts[83]}" "Plank (Dock) (PPA) ${opts[84]}" "Thonny (IDE) ${opts[85]}" "Done ${opts[86]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -352,10 +353,34 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 79
                 break
                 ;;
-            "Done ${opts[80]}")
+            "SimpleScreenRecorder (PPA) ${opts[80]}")
+                choice 80
+                break
+                ;;
+            "Neofetch (PPA) ${opts[81]}")
+                choice 81
+                break
+                ;;
+            "Shutter (Screenshot Tool) (PPA) ${opts[82]}")
+                choice 82
+                break
+                ;;
+            "Bitwarden ${opts[83]}")
+                choice 83
+                break
+                ;;
+            "Plank ${opts[84]}")
+                choice 84
+                break
+                ;;
+            "Thonny (IDE) ${opts[85]}")
+                choice 85
+                break
+                ;;
+            "Done ${opts[86]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-80';;
+            *) printf '%s\n' 'Please Choose Between 1-86';;
         esac
     done
 done
@@ -381,7 +406,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ] || \
  [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ] || [ "$opt" = "62" ] || [ "$opt" = "63" ] || [ "$opt" = "64" ] || \
  [ "$opt" = "68" ] || [ "$opt" = "69" ] || [ "$opt" = "70" ] || [ "$opt" = "71" ] || [ "$opt" = "73" ] || [ "$opt" = "74" ] || [ "$opt" = "75" ] || [ "$opt" = "76" ] || \
- [ "$opt" = "77" ] || [ "$opt" = "78" ] 
+ [ "$opt" = "77" ] || [ "$opt" = "78" ] || [ "$opt" = "79" ] || [ "$opt" = "80" ] || [ "$opt" = "82" ] || [ "$opt" = "83" ] || [ "$opt" = "85" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -2410,6 +2435,108 @@ Comment=Ubuntu-Cleaner
 Icon=/usr/share/icons/hicolor/64x64/apps/ubuntu-cleaner.png" >> /home/$superuser/Desktop/ubuntu-cleaner.desktop
 sudo chmod +x /home/$superuser/Desktop/ubuntu-cleaner.desktop
 printf "\nUbuntu Cleaner (PPA) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+80) # SimpleScreenRecorder (PPA)
+sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
+sudo apt update
+sudo apt install simplescreenrecorder simplescreenrecorder-lib:i386 -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/simplescreenrecorder
+Name=SimpleScreenRecorder
+Comment=SimpleScreenRecorder
+Icon=/usr/share/icons/hicolor/64x64/apps/simplescreenrecorder.png" >> /home/$superuser/Desktop/simplescreenrecorder.desktop
+sudo chmod +x /home/$superuser/Desktop/simplescreenrecorder.desktop
+printf "\nSimpleScreenRecorder (PPA) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+81) # Neofetch (PPA)
+sudo add-apt-repository ppa:dawidd0811/neofetch -y
+sudo apt update
+sudo apt update install neofetch -y
+printf "\nNeofetch (PPA) installation Has Finished\n\n"
+;;
+
+82) # Shutter (Screenshot Tool) (PPA)
+sudo add-apt-repository ppa:ubuntuhandbook1/shutter -y
+sudo apt update
+sudo apt install shutter -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/share/shutter
+Name=Shutter
+Comment=Shutter
+Icon=/usr/share/icons/hicolor/64x64/apps/shutter.png" >> /home/$superuser/Desktop/shutter.desktop
+sudo chmod +x /home/$superuser/Desktop/shutter.desktop
+printf "\nShutter (Screenshot Tool) (PPA) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+83) # Bitwarden
+sudo apt install snapd -y
+sudo apt update
+sudo snap install bitwarden
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/bitwarden
+Name=Bitwarden
+Comment=Bitwarden
+Icon=/snap/bitwarden/16/meta/gui/icon.png" >> /home/$superuser/Desktop/bitwarden.desktop
+sudo chmod +x /home/$superuser/Desktop/bitwarden.desktop
+printf "\nBitwarden installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+84) # Plank (Dock) (PPA)
+sudo add-apt-repository ppa:ricotz/docky -y
+sudo apt update
+sudo snap install plank -y
+printf "\nPlank (Dock) (PPA) installation Has Finished\n\n"
+;;
+
+85) # Thonny (IDE)
+sudo apt install python3-pip -y
+sudo pip3 install thonny
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+thonnylogo=`locate thonny | grep /thonny/res/thonny.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/local/bin/thonny
+Name=Thonny
+Comment=Thonny
+Icon=$thonnylogo" >> /home/$superuser/Desktop/thonny.desktop
+sudo chmod +x /home/$superuser/Desktop/thonny.desktop
+printf "\nThonny installation Has Finished\n\n"
 else
 :
 fi
