@@ -13,8 +13,8 @@ choice () {
         opts[choice]=+
     fi
 }
-
-PS3='Please enter your choice: '
+PS3='
+Please enter your choice(s): '
 while :
 do
 clear
@@ -33,7 +33,11 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Brackets (PPA) ${opts[69]}" "Shotcut (Snap) ${opts[70]}" "Okular (Document Viewer) (Snap) ${opts[71]}" "WeeChat (IRC) ${opts[72]}" 
 "Quassel (IRC) (PPA) ${opts[73]}" "Konversation (IRC) ${opts[74]}" "Ramme (Instagram Desktop App) ${opts[75]}" "Atom ${opts[76]}"
 "Google Play Music Desktop Player ${opts[77]}" "Ubuntu Cleaner (PPA) ${opts[78]}" "Pixbuf ${opts[79]}" "SimpleScreenRecorder (PPA) ${opts[80]}" "Neofetch (PPA) ${opts[81]}" 
-"Shutter (Screenshot Tool) (PPA) ${opts[82]}" "Bitwarden ${opts[83]}" "Plank (Dock) (PPA) ${opts[84]}" "Thonny (IDE) ${opts[85]}" "Done ${opts[86]}")
+"Shutter (Screenshot Tool) (PPA) ${opts[82]}" "Bitwarden (Snap) ${opts[83]}" "Plank (Dock) (PPA) ${opts[84]}" "Thonny (IDE) ${opts[85]}" "Bluefish (PPA) ${opts[86]}" 
+"Vim (PPA) ${opts[87]}" "Geany (IDE) (PPA) ${opts[88]}" "Gnu Emacs (PPA) ${opts[89]}" "GitKraken (Snap) ${opts[90]}" "Wire (Snap) ${opts[91]}" "Kubectl ${opts[92]}"
+"Zenkit (Snap) ${opts[93]}" "Wormhole (Snap) ${opts[94]}" "Hexchat (Snap) ${opts[95]}" "Wings 3D ${opts[96]}" "MakeHuman (PPA) ${opts[97]}" "Grub Customizer (PPA) ${opts[98]}"
+"4K Video Downloader (64 Bit) ${opts[99]}" "4K Youtube to MP3 (64 Bit) ${opts[100]}" "4K Stogram (64 Bit) ${opts[101]}" "4K Slideshow Maker (64 Bit) ${opts[102]}"
+"4K Video to MP3 (64 Bit) ${opts[103]}" "Done ${opts[104]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -365,7 +369,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 82
                 break
                 ;;
-            "Bitwarden ${opts[83]}")
+            "Bitwarden (Snap) ${opts[83]}")
                 choice 83
                 break
                 ;;
@@ -377,10 +381,82 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 85
                 break
                 ;;
-            "Done ${opts[86]}")
+            "Bluefish (PPA) ${opts[86]}")
+                choice 86
+                break
+                ;;
+            "Vim (PPA) ${opts[87]}")
+                choice 87
+                break
+                ;;
+            "Geany (IDE) (PPA) ${opts[88]}")
+                choice 88
+                break
+                ;;
+            "Gnu Emacs (PPA) ${opts[89]}")
+                choice 89
+                break
+                ;;
+            "GitKraken (Snap) ${opts[90]}")
+                choice 90
+                break
+                ;;
+            "Wire (Snap) ${opts[91]}")
+                choice 91
+                break
+                ;;
+            "Kubectl ${opts[92]}")
+                choice 92
+                break
+                ;;
+            "Zenkit (Snap) ${opts[93]}")
+                choice 93
+                break
+                ;;
+            "Wormhole (Snap) ${opts[94]}")
+                choice 94
+                break
+                ;;
+            "Hexchat (Snap) ${opts[95]}")
+                choice 95
+                break
+                ;;
+            "Wings 3D ${opts[96]}")
+                choice 96
+                break
+                ;;
+            "MakeHuman (PPA) ${opts[97]}")
+                choice 97
+                break
+                ;;
+            "Grub Customizer (PPA) ${opts[98]}")
+                choice 98
+                break
+                ;;
+            "4K Video Downloader (64 Bit) ${opts[99]}")
+                choice 99
+                break
+                ;;
+            "4K Youtube to MP3 (64 Bit) ${opts[100]}")
+                choice 100
+                break
+                ;;
+            "4K Stogram (64 Bit) ${opts[101]}")
+                choice 101
+                break
+                ;;
+            "4K Slideshow Maker (64 Bit) ${opts[102]}")
+                choice 102
+                break
+                ;;
+            "4K Video to MP3 (64 Bit) ${opts[103]}")
+                choice 103
+                break
+                ;;
+            "Done ${opts[104]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-86';;
+            *) printf '%s\n' 'Please Choose Between 1-104';;
         esac
     done
 done
@@ -406,7 +482,9 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "49" ] || [ "$opt" = "50" ] || [ "$opt" = "51" ] || [ "$opt" = "52" ] || [ "$opt" = "53" ] || [ "$opt" = "54" ] || [ "$opt" = "55" ] || [ "$opt" = "56" ] || \
  [ "$opt" = "57" ] || [ "$opt" = "58" ] || [ "$opt" = "59" ] || [ "$opt" = "60" ] || [ "$opt" = "61" ] || [ "$opt" = "62" ] || [ "$opt" = "63" ] || [ "$opt" = "64" ] || \
  [ "$opt" = "68" ] || [ "$opt" = "69" ] || [ "$opt" = "70" ] || [ "$opt" = "71" ] || [ "$opt" = "73" ] || [ "$opt" = "74" ] || [ "$opt" = "75" ] || [ "$opt" = "76" ] || \
- [ "$opt" = "77" ] || [ "$opt" = "78" ] || [ "$opt" = "79" ] || [ "$opt" = "80" ] || [ "$opt" = "82" ] || [ "$opt" = "83" ] || [ "$opt" = "85" ]
+ [ "$opt" = "77" ] || [ "$opt" = "78" ] || [ "$opt" = "79" ] || [ "$opt" = "80" ] || [ "$opt" = "82" ] || [ "$opt" = "83" ] || [ "$opt" = "85" ] || [ "$opt" = "86" ] || \
+ [ "$opt" = "88" ] || [ "$opt" = "89" ] || [ "$opt" = "90" ] || [ "$opt" = "91" ] || [ "$opt" = "93" ] || [ "$opt" = "95" ] || [ "$opt" = "96" ] || [ "$opt" = "97" ] || \
+ [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -2491,7 +2569,7 @@ else
 fi
 ;;
 
-83) # Bitwarden
+83) # Bitwarden (Snap)
 sudo apt install snapd -y
 sudo apt update
 sudo snap install bitwarden
@@ -2516,7 +2594,7 @@ fi
 84) # Plank (Dock) (PPA)
 sudo add-apt-repository ppa:ricotz/docky -y
 sudo apt update
-sudo snap install plank -y
+sudo apt install plank -y
 printf "\nPlank (Dock) (PPA) installation Has Finished\n\n"
 ;;
 
@@ -2537,6 +2615,367 @@ Comment=Thonny
 Icon=$thonnylogo" >> /home/$superuser/Desktop/thonny.desktop
 sudo chmod +x /home/$superuser/Desktop/thonny.desktop
 printf "\nThonny installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+86) # Bluefish (PPA)
+sudo add-apt-repository ppa:klaus-vormweg/bluefish -y
+sudo apt update
+sudo apt install bluefish -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/bluefish
+Name=Bluefish
+Comment=Bluefish
+Icon=/usr/share/icons/hicolor/64x64/apps/bluefish.png" >> /home/$superuser/Desktop/bluefish.desktop
+sudo chmod +x /home/$superuser/Desktop/bluefish.desktop
+printf "\nBluefish (PPA) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+87) # Vim (PPA)
+sudo add-apt-repository ppa:jonathonf/vim -y
+sudo apt update
+sudo apt install vim -y
+;;
+
+88) # Geany (IDE) (PPA)
+sudo add-apt-repository ppa:geany-dev/ppa -y
+sudo apt update
+sudo apt install geany -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/geany
+Name=Geany
+Comment=Geany
+Icon=/usr/share/icons/hicolor/48x48/apps/geany.png" >> /home/$superuser/Desktop/geany.desktop
+sudo chmod +x /home/$superuser/Desktop/geany.desktop
+printf "\nGeany (IDE) (PPA) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+89) # Gnu Emacs (PPA)
+sudo add-apt-repository ppa:kelleyk/emacs -y
+sudo apt update
+sudo apt install emacs26 -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/emacs
+Name=Gnu Emacs
+Comment=Gnu Emacs
+Icon=/usr/share/icons/hicolor/48x48/apps/emacs26.png" >> /home/$superuser/Desktop/gnu-emacs.desktop
+sudo chmod +x /home/$superuser/Desktop/gnu-emacs.desktop
+printf "\nGnu Emacs (PPA) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+90) # GitKraken (Snap)
+sudo apt install snapd -y
+sudo snap install gitkraken
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+gitkrakenlogo=`locate gitkraken | grep app.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/gitkraken
+Name=Gitkraken
+Comment=Gitkraken
+Icon=$gitkrakenlogo" >> /home/$superuser/Desktop/gitkraken.desktop
+sudo chmod +x /home/$superuser/Desktop/gitkraken.desktop
+printf "\nGitKraken (Snap) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+91) # Wire (Snap)
+sudo apt install snapd -y
+sudo snap install wire
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+wirelogo=`locate wire | grep wire-desktop.png | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/wire
+Name=Wire
+Comment=Wire
+Icon=$wirelogo" >> /home/$superuser/Desktop/wire.desktop
+sudo chmod +x /home/$superuser/Desktop/wire.desktop
+printf "\nWire (Snap) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+92) # Kubectl
+sudo apt install apt-transport-https -y
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt update
+sudo apt install kubectl -y
+;;
+
+93) # Zenkit (Snap)
+sudo apt install snapd -y
+sudo snap install zenkit
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/zenkit
+Name=Zenkit
+Comment=Zenkit
+Icon=/snap/zenkit/2/meta/gui/icon.png" >> /home/$superuser/Desktop/zenkit.desktop
+sudo chmod +x /home/$superuser/Desktop/zenkit.desktop
+printf "\nZenkit (Snap) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+94) # Wormhole (Snap)
+sudo apt install python-pip build-essential python-dev libffi-dev libssl-dev -y
+pip install magic-wormhole
+;;
+
+95) # Hexchat (Snap)
+sudo apt install snapd -y
+sudo snap install hexchat
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+hexchatlogo=`locate hexchat | grep hexchat.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/hexchat
+Name=Hexchat
+Comment=Hexchat
+Icon=$hexchatlogo" >> /home/$superuser/Desktop/hexchat.desktop
+sudo chmod +x /home/$superuser/Desktop/hexchat.desktop
+printf "\nHexchat (Snap) installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+96) # Wings 3D
+sudo wget -O /home/$superuser/Downloads/TempDL/wings3d-stable http://www.wings3d.com/redirect_download.php?title=stable_linux
+sudo chmod +x /home/$superuser/Downloads/TempDL/wings3d-stable
+sudo bash /home/$superuser/Downloads/TempDL/wings3d-stable
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+wings3d=`locate wings | head -n 4 | tail -n 1`
+wings3dlogo=`locate wings | grep wings_icon_379x379.png`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=$wings3d
+Name=Wings 3D
+Comment=Wings 3D
+Icon=$wings3dlogo" >> /home/$superuser/Desktop/wings3d.desktop
+sudo chmod +x /home/$superuser/Desktop/wings3d.desktop
+printf "\nWings 3D installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+97) # MakeHuman (PPA)
+sudo add-apt-repository ppa:makehuman-official/makehuman-11x -y
+sudo apt update
+sudo apt install makehuman -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/makehuman
+Name=MakeHuman
+Comment=MakeHuman
+Icon=/usr/share/makehuman/icons/makehuman.png" >> /home/$superuser/Desktop/makehuman.desktop
+sudo chmod +x /home/$superuser/Desktop/makehuman.desktop
+printf "\nMakeHuman installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+98) # Grub Customizer (PPA)
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
+sudo apt update
+sudo apt install grub-customizer -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/grub-customizer
+Name=Grub Customizer
+Comment=Grub Customizer
+Icon=/usr/share/icons/hicolor/64x64/apps/grub-customizer.svg" >> /home/$superuser/Desktop/grub-customizer.desktop
+sudo chmod +x /home/$superuser/Desktop/grub-customizer.desktop
+printf "\nGrub Customizer installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+99) # 4K Video Downloader (64 Bit Only)
+if [ "$cpuarch" = "x86_64" ];then
+sudo apt install lynx -y
+videodownloader=`lynx -dump https://www.4kdownload.com/download | grep amd64.deb | awk '/http/{print $2}' | grep 4kvideodownloader | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/4kvideodownload-latest-amd64.deb $videodownloader
+sudo dpkg -i /home/$superuser/Downloads/TempDL/4kvideodownload-latest-amd64.deb
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+printf "\nOnly 64 Bit Processors Supported"
+sleep 1
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/4kvideodownloader
+Name=4k Video Downloader
+Comment=4k Video Downloader
+Icon=/usr/share/icons/4kvideodownloader.png" >> /home/$superuser/Desktop/4kvideodownloader.desktop
+sudo chmod +x /home/$superuser/Desktop/4kvideodownloader.desktop
+printf "\n4k Video Downloader installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+100) # 4K Youtube to MP3
+sudo apt install lynx -y
+youtubetomp3=`lynx -dump https://www.4kdownload.com/download | grep amd64.deb | awk '/http/{print $2}' | grep 4kyoutubetomp3 | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/4kyoutubetomp3-latest-amd64.deb $youtubetomp3
+sudo dpkg -i /home/$superuser/Downloads/TempDL/4kyoutubetomp3-latest-amd64.deb
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/4kyoutubetomp3
+Name=4k Youtube to MP3
+Comment=4k Youtube to MP3
+Icon=/usr/share/icons/4kyoutubetomp3.png" >> /home/$superuser/Desktop/4kyoutubetomp3.desktop
+sudo chmod +x /home/$superuser/Desktop/4kyoutubetomp3.desktop
+printf "\n4k Youtube to MP3 installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+101) # 4K Stogram
+sudo apt install lynx -y
+stogram4k=`lynx -dump https://www.4kdownload.com/download | grep amd64.deb | awk '/http/{print $2}' | grep 4kstogram | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/4kstogram-latest-amd64.deb $stogram4k
+sudo dpkg -i /home/$superuser/Downloads/TempDL/4kstogram-latest-amd64.deb
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/4kstogram
+Name=4k Stogram
+Comment=4k Stogram
+Icon=/usr/share/icons/4kstogram.png" >> /home/$superuser/Desktop/4kstogram.desktop
+sudo chmod +x /home/$superuser/Desktop/4kstogram.desktop
+printf "\n4k Stogram installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+102) # 4K Slideshow Maker
+sudo apt install lynx -y
+slideshowmaker4k=`lynx -dump https://www.4kdownload.com/download | grep amd64.deb | awk '/http/{print $2}' | grep 4kslideshowmaker | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/4kslideshowmaker-latest-amd64.deb $slideshowmaker4k
+sudo dpkg -i /home/$superuser/Downloads/TempDL/4kslideshowmaker-latest-amd64.deb
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/4kslideshowmaker
+Name=4k Slideshow Maker
+Comment=4k Slideshow Maker
+Icon=/usr/share/icons/4kslideshowmaker.png" >> /home/$superuser/Desktop/4kslideshowmaker.desktop
+sudo chmod +x /home/$superuser/Desktop/4kslideshowmaker.desktop
+printf "\n4k Slideshow Maker installation Has Finished\n\n"
+else
+:
+fi
+;;
+
+103) # 4K Video to MP3
+sudo apt install lynx -y
+videotomp3=`lynx -dump https://www.4kdownload.com/download | grep amd64.deb | awk '/http/{print $2}' | grep 4kvideotomp3 | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/4kvideotomp3-latest-amd64.deb $videotomp3
+sudo dpkg -i /home/$superuser/Downloads/TempDL/4kvideotomp3-latest-amd64.deb
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/4kvideotomp3
+Name=4k Video to MP3
+Comment=4k Video to MP3
+Icon=/usr/share/icons/4kvideotomp3.png" >> /home/$superuser/Desktop/4kvideotomp3.desktop
+sudo chmod +x /home/$superuser/Desktop/4kvideotomp3.desktop
+printf "\n4k Video to MP3 installation Has Finished\n\n"
 else
 :
 fi
