@@ -32,7 +32,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Stacer (System Optimizer) (PPA) ${opts[64]}" "Jenkins ${opts[65]}" "Docker ${opts[66]}" "Python 2 & 3 (From Source) ${opts[67]}" "Telegram (PPA) ${opts[68]}" 
 "Brackets (PPA) ${opts[69]}" "Shotcut (Snap) ${opts[70]}" "Okular (Document Viewer) (Snap) ${opts[71]}" "WeeChat (IRC) ${opts[72]}" 
 "Quassel (IRC) (PPA) ${opts[73]}" "Konversation (IRC) ${opts[74]}" "Ramme (Instagram Desktop App) ${opts[75]}" "Atom ${opts[76]}"
-"Google Play Music Desktop Player ${opts[77]}" "Ubuntu Cleaner (PPA) ${opts[78]}" "Pixbuf ${opts[79]}" "SimpleScreenRecorder (PPA) ${opts[80]}" "Neofetch (PPA) ${opts[81]}" 
+"Google Play Music Player ${opts[77]}" "Ubuntu Cleaner (PPA) ${opts[78]}" "Pixbuf ${opts[79]}" "SimpleScreenRecorder (PPA) ${opts[80]}" "Neofetch (PPA) ${opts[81]}" 
 "Shutter (Screenshot Tool) (PPA) ${opts[82]}" "Bitwarden (Snap) ${opts[83]}" "Plank (Dock) (PPA) ${opts[84]}" "Thonny (IDE) ${opts[85]}" "Bluefish (PPA) ${opts[86]}" 
 "Vim (PPA) ${opts[87]}" "Geany (IDE) (PPA) ${opts[88]}" "Gnu Emacs (PPA) ${opts[89]}" "GitKraken (Snap) ${opts[90]}" "Wire (Snap) ${opts[91]}" "Kubectl ${opts[92]}"
 "Zenkit (Snap) ${opts[93]}" "Wormhole (Snap) ${opts[94]}" "Hexchat (Snap) ${opts[95]}" "Wings 3D ${opts[96]}" "MakeHuman (PPA) ${opts[97]}" "Grub Customizer (PPA) ${opts[98]}"
@@ -53,7 +53,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 3
                 break
                 ;;
-            "VLC ${opts[4]}")
+            "VLC (Snap) ${opts[4]}")
                 choice 4
                 break
                 ;;
@@ -133,31 +133,31 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 23
                 break
                 ;;
-            "Utorrent ${opts[24]}")
+            "Utorrent (Snap) ${opts[24]}")
                 choice 24
                 break
                 ;;
-            "Deluge ${opts[25]}")
+            "Deluge (PPA) ${opts[25]}")
                 choice 25
                 break
                 ;;
-            "Transmission ${opts[26]}")
+            "Transmission (PPA) ${opts[26]}")
                 choice 26
                 break
                 ;;
-            "MPV ${opts[27]}")
+            "MPV (PPA) ${opts[27]}")
                 choice 27
                 break
                 ;;
-            "SMPlayer ${opts[28]}")
+            "SMPlayer (PPA) ${opts[28]}")
                 choice 28
                 break
                 ;;
-            "Kazam ${opts[29]}")
+            "Kazam (PPA) ${opts[29]}")
                 choice 29
                 break
                 ;;
-            "Audocity ${opts[30]}")
+            "Audocity (PPA) ${opts[30]}")
                 choice 30
                 break
                 ;;
@@ -225,7 +225,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 46
                 break
                 ;;
-            "Irssi (PPA) ${opts[47]}")
+            "Irssi (PPA) (IRC) ${opts[47]}")
                 choice 47
                 break
                 ;;
@@ -261,7 +261,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 55
                 break
                 ;;
-           "Franz (Messaging App) (64 Bit Only) ${opts[56]}")
+           "Franz (Messaging App) ${opts[56]}")
                 choice 56
                 break
                 ;;
@@ -345,7 +345,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 76
                 break
                 ;;
-            "Google Play Music Desktop Player ${opts[77]}")
+            "Google Play Music Player ${opts[77]}")
                 choice 77
                 break
                 ;;
@@ -373,7 +373,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 83
                 break
                 ;;
-            "Plank ${opts[84]}")
+            "Plank (Dock) (PPA) ${opts[84]}")
                 choice 84
                 break
                 ;;
@@ -2351,10 +2351,10 @@ Name=Quassel
 Comment=Quassel
 Icon=/usr/share/icons/hicolor/64x64/apps/quassel.png" >> /home/$superuser/Desktop/quassel.desktop
 sudo chmod +x /home/$superuser/Desktop/quassel.desktop
-printf "\nQuassel (IRC) (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nQuassel (IRC) (PPA) installation Has Finished\n\n"
 ;;
 
 74) # Konversation (IRC)
@@ -2373,10 +2373,10 @@ Name=Konversation
 Comment=Konversation
 Icon=$konversationlogo" >> /home/$superuser/Desktop/konversation.desktop
 sudo chmod +x /home/$superuser/Desktop/konversation.desktop
-printf "\nKonversation (IRC) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nKonversation (IRC) installation Has Finished\n\n"
 ;;
 
 75) # Ramme (Instagram Desktop App)
@@ -2387,11 +2387,13 @@ sudo wget -O /home/$superuser/Downloads/TempDL/ramme-latest-amd64.deb $rammeloca
 sudo dpkg -i /home/$superuser/Downloads/TempDL/ramme-latest-amd64.deb
 sudo apt -f install -y
 sudo apt install libasound2 -y
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
 rammelocation32=`lynx -dump https://github.com/terkelg/ramme/releases | grep /releases/download/ | grep i386.deb | awk '/http/{print $2}' | head -n 1`
 sudo wget -O /home/$superuser/Downloads/TempDL/ramme-latest-i386.deb $rammelocation32
 sudo dpkg -i /home/$superuser/Downloads/TempDL/ramme-latest-i386.deb
 sudo apt -f install -y
 sudo apt install libasound2 -y
+fi
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
 echo "#!/usr/bin/env xdg-open
@@ -2404,10 +2406,10 @@ Name=Ramme
 Comment=Ramme
 Icon=/usr/share/icons/hicolor/64x64/apps/ramme.png" >> /home/$superuser/Desktop/ramme.desktop
 sudo chmod +x /home/$superuser/Desktop/ramme.desktop
-printf "\nRamme (Instagram Desktop App) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nRamme (Instagram Desktop App) installation Has Finished\n\n"
 ;;
 
 76) # Atom
@@ -2466,10 +2468,10 @@ Name=Atom
 Comment=Atom
 Icon=/usr/share/pixmaps/google-play-music-desktop-player.png" >> /home/$superuser/Desktop/google-play-music-desktop-player.desktop
 sudo chmod +x /home/$superuser/Desktop/google-play-music-desktop-player.desktop
-printf "\nGoogle Play Music Desktop Player installation Has Finished\n\n"
 else
 :
 fi
+printf "\nGoogle Play Music Desktop Player installation Has Finished\n\n"
 ;;
 
 78) # Ubuntu Cleaner (PPA)
@@ -2489,10 +2491,10 @@ Name=Ubuntu-Cleaner
 Comment=Ubuntu-Cleaner
 Icon=/usr/share/icons/hicolor/64x64/apps/ubuntu-cleaner.png" >> /home/$superuser/Desktop/ubuntu-cleaner.desktop
 sudo chmod +x /home/$superuser/Desktop/ubuntu-cleaner.desktop
-printf "\nUbuntu Cleaner (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nUbuntu Cleaner (PPA) installation Has Finished\n\n"
 ;;
 
 79) # Pixbuf
@@ -2512,10 +2514,10 @@ Name=Ubuntu-Cleaner
 Comment=Ubuntu-Cleaner
 Icon=/usr/share/icons/hicolor/64x64/apps/ubuntu-cleaner.png" >> /home/$superuser/Desktop/ubuntu-cleaner.desktop
 sudo chmod +x /home/$superuser/Desktop/ubuntu-cleaner.desktop
-printf "\nUbuntu Cleaner (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nPixbuf (PPA) installation Has Finished\n\n"
 ;;
 
 80) # SimpleScreenRecorder (PPA)
@@ -2534,10 +2536,10 @@ Name=SimpleScreenRecorder
 Comment=SimpleScreenRecorder
 Icon=/usr/share/icons/hicolor/64x64/apps/simplescreenrecorder.png" >> /home/$superuser/Desktop/simplescreenrecorder.desktop
 sudo chmod +x /home/$superuser/Desktop/simplescreenrecorder.desktop
-printf "\nSimpleScreenRecorder (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nSimpleScreenRecorder (PPA) installation Has Finished\n\n"
 ;;
 
 81) # Neofetch (PPA)
@@ -2563,10 +2565,10 @@ Name=Shutter
 Comment=Shutter
 Icon=/usr/share/icons/hicolor/64x64/apps/shutter.png" >> /home/$superuser/Desktop/shutter.desktop
 sudo chmod +x /home/$superuser/Desktop/shutter.desktop
-printf "\nShutter (Screenshot Tool) (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nShutter (Screenshot Tool) (PPA) installation Has Finished\n\n"
 ;;
 
 83) # Bitwarden (Snap)
@@ -2585,10 +2587,10 @@ Name=Bitwarden
 Comment=Bitwarden
 Icon=/snap/bitwarden/16/meta/gui/icon.png" >> /home/$superuser/Desktop/bitwarden.desktop
 sudo chmod +x /home/$superuser/Desktop/bitwarden.desktop
-printf "\nBitwarden installation Has Finished\n\n"
 else
 :
 fi
+printf "\nBitwarden installation Has Finished\n\n"
 ;;
 
 84) # Plank (Dock) (PPA)
@@ -2614,10 +2616,10 @@ Name=Thonny
 Comment=Thonny
 Icon=$thonnylogo" >> /home/$superuser/Desktop/thonny.desktop
 sudo chmod +x /home/$superuser/Desktop/thonny.desktop
-printf "\nThonny installation Has Finished\n\n"
 else
 :
 fi
+printf "\nThonny installation Has Finished\n\n"
 ;;
 
 86) # Bluefish (PPA)
@@ -2636,16 +2638,17 @@ Name=Bluefish
 Comment=Bluefish
 Icon=/usr/share/icons/hicolor/64x64/apps/bluefish.png" >> /home/$superuser/Desktop/bluefish.desktop
 sudo chmod +x /home/$superuser/Desktop/bluefish.desktop
-printf "\nBluefish (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nBluefish (PPA) installation Has Finished\n\n"
 ;;
 
 87) # Vim (PPA)
 sudo add-apt-repository ppa:jonathonf/vim -y
 sudo apt update
 sudo apt install vim -y
+printf "\nVim (PPA) installation Has Finished\n\n"
 ;;
 
 88) # Geany (IDE) (PPA)
@@ -2664,10 +2667,10 @@ Name=Geany
 Comment=Geany
 Icon=/usr/share/icons/hicolor/48x48/apps/geany.png" >> /home/$superuser/Desktop/geany.desktop
 sudo chmod +x /home/$superuser/Desktop/geany.desktop
-printf "\nGeany (IDE) (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nGeany (IDE) (PPA) installation Has Finished\n\n"
 ;;
 
 89) # Gnu Emacs (PPA)
@@ -2686,10 +2689,10 @@ Name=Gnu Emacs
 Comment=Gnu Emacs
 Icon=/usr/share/icons/hicolor/48x48/apps/emacs26.png" >> /home/$superuser/Desktop/gnu-emacs.desktop
 sudo chmod +x /home/$superuser/Desktop/gnu-emacs.desktop
-printf "\nGnu Emacs (PPA) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nGnu Emacs (PPA) installation Has Finished\n\n"
 ;;
 
 90) # GitKraken (Snap)
@@ -2708,10 +2711,10 @@ Name=Gitkraken
 Comment=Gitkraken
 Icon=$gitkrakenlogo" >> /home/$superuser/Desktop/gitkraken.desktop
 sudo chmod +x /home/$superuser/Desktop/gitkraken.desktop
-printf "\nGitKraken (Snap) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nGitKraken (Snap) installation Has Finished\n\n"
 ;;
 
 91) # Wire (Snap)
@@ -2730,10 +2733,10 @@ Name=Wire
 Comment=Wire
 Icon=$wirelogo" >> /home/$superuser/Desktop/wire.desktop
 sudo chmod +x /home/$superuser/Desktop/wire.desktop
-printf "\nWire (Snap) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nWire (Snap) installation Has Finished\n\n"
 ;;
 
 92) # Kubectl
@@ -2742,6 +2745,7 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt update
 sudo apt install kubectl -y
+printf "\nKubectl installation Has Finished\n\n"
 ;;
 
 93) # Zenkit (Snap)
@@ -2759,15 +2763,16 @@ Name=Zenkit
 Comment=Zenkit
 Icon=/snap/zenkit/2/meta/gui/icon.png" >> /home/$superuser/Desktop/zenkit.desktop
 sudo chmod +x /home/$superuser/Desktop/zenkit.desktop
-printf "\nZenkit (Snap) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nZenkit (Snap) installation Has Finished\n\n"
 ;;
 
 94) # Wormhole (Snap)
 sudo apt install python-pip build-essential python-dev libffi-dev libssl-dev -y
 pip install magic-wormhole
+printf "\nWormhole (Snap) installation Has Finished\n\n"
 ;;
 
 95) # Hexchat (Snap)
@@ -2786,10 +2791,10 @@ Name=Hexchat
 Comment=Hexchat
 Icon=$hexchatlogo" >> /home/$superuser/Desktop/hexchat.desktop
 sudo chmod +x /home/$superuser/Desktop/hexchat.desktop
-printf "\nHexchat (Snap) installation Has Finished\n\n"
 else
 :
 fi
+printf "\nHexchat (Snap) installation Has Finished\n\n"
 ;;
 
 96) # Wings 3D
@@ -2810,10 +2815,10 @@ Name=Wings 3D
 Comment=Wings 3D
 Icon=$wings3dlogo" >> /home/$superuser/Desktop/wings3d.desktop
 sudo chmod +x /home/$superuser/Desktop/wings3d.desktop
-printf "\nWings 3D installation Has Finished\n\n"
 else
 :
 fi
+printf "\nWings 3D installation Has Finished\n\n"
 ;;
 
 97) # MakeHuman (PPA)
@@ -2832,10 +2837,10 @@ Name=MakeHuman
 Comment=MakeHuman
 Icon=/usr/share/makehuman/icons/makehuman.png" >> /home/$superuser/Desktop/makehuman.desktop
 sudo chmod +x /home/$superuser/Desktop/makehuman.desktop
-printf "\nMakeHuman installation Has Finished\n\n"
 else
 :
 fi
+printf "\nMakeHuman installation Has Finished\n\n"
 ;;
 
 98) # Grub Customizer (PPA)
@@ -2854,10 +2859,10 @@ Name=Grub Customizer
 Comment=Grub Customizer
 Icon=/usr/share/icons/hicolor/64x64/apps/grub-customizer.svg" >> /home/$superuser/Desktop/grub-customizer.desktop
 sudo chmod +x /home/$superuser/Desktop/grub-customizer.desktop
-printf "\nGrub Customizer installation Has Finished\n\n"
 else
 :
 fi
+printf "\nGrub Customizer installation Has Finished\n\n"
 ;;
 
 99) # 4K Video Downloader (64 Bit Only)
@@ -2883,10 +2888,10 @@ Name=4k Video Downloader
 Comment=4k Video Downloader
 Icon=/usr/share/icons/4kvideodownloader.png" >> /home/$superuser/Desktop/4kvideodownloader.desktop
 sudo chmod +x /home/$superuser/Desktop/4kvideodownloader.desktop
-printf "\n4k Video Downloader installation Has Finished\n\n"
 else
 :
 fi
+printf "\n4k Video Downloader installation Has Finished\n\n"
 ;;
 
 100) # 4K Youtube to MP3
@@ -2906,10 +2911,10 @@ Name=4k Youtube to MP3
 Comment=4k Youtube to MP3
 Icon=/usr/share/icons/4kyoutubetomp3.png" >> /home/$superuser/Desktop/4kyoutubetomp3.desktop
 sudo chmod +x /home/$superuser/Desktop/4kyoutubetomp3.desktop
-printf "\n4k Youtube to MP3 installation Has Finished\n\n"
 else
 :
 fi
+printf "\n4k Youtube to MP3 installation Has Finished\n\n"
 ;;
 
 101) # 4K Stogram
@@ -2929,10 +2934,10 @@ Name=4k Stogram
 Comment=4k Stogram
 Icon=/usr/share/icons/4kstogram.png" >> /home/$superuser/Desktop/4kstogram.desktop
 sudo chmod +x /home/$superuser/Desktop/4kstogram.desktop
-printf "\n4k Stogram installation Has Finished\n\n"
 else
 :
 fi
+printf "\n4k Stogram installation Has Finished\n\n"
 ;;
 
 102) # 4K Slideshow Maker
@@ -2952,10 +2957,10 @@ Name=4k Slideshow Maker
 Comment=4k Slideshow Maker
 Icon=/usr/share/icons/4kslideshowmaker.png" >> /home/$superuser/Desktop/4kslideshowmaker.desktop
 sudo chmod +x /home/$superuser/Desktop/4kslideshowmaker.desktop
-printf "\n4k Slideshow Maker installation Has Finished\n\n"
 else
 :
 fi
+printf "\n4k Slideshow Maker installation Has Finished\n\n"
 ;;
 
 103) # 4K Video to MP3
@@ -2975,9 +2980,9 @@ Name=4k Video to MP3
 Comment=4k Video to MP3
 Icon=/usr/share/icons/4kvideotomp3.png" >> /home/$superuser/Desktop/4kvideotomp3.desktop
 sudo chmod +x /home/$superuser/Desktop/4kvideotomp3.desktop
-printf "\n4k Video to MP3 installation Has Finished\n\n"
 else
 :
 fi
+printf "\n4k Video to MP3 installation Has Finished\n\n"
 ;;
 esac
