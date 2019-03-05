@@ -539,7 +539,11 @@ vboxversion=$(wget -qO - https://download.virtualbox.org/virtualbox/LATEST.TXT)
 
 # INSTALLATION BY SELECTION
 # 1) PHP 7.3 (PPA)
-case $opt in
+for opt in "${!opts[@]}"
+do
+    if [[ ${opts[opt]} ]]
+    then
+        case $opt in 
 1)
 sudo apt install -y python-software-properties
 sudo add-apt-repository ppa:ondrej/php -y
@@ -2985,4 +2989,6 @@ else
 fi
 printf "\n4k Video to MP3 installation Has Finished\n\n"
 ;;
-esac
+        esac
+    fi
+done
