@@ -37,7 +37,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Vim (PPA) ${opts[87]}" "Geany (IDE) (PPA) ${opts[88]}" "Gnu Emacs (PPA) ${opts[89]}" "GitKraken (Snap) ${opts[90]}" "Wire (Snap) ${opts[91]}" "Kubectl ${opts[92]}"
 "Zenkit (Snap) ${opts[93]}" "Wormhole (Snap) ${opts[94]}" "Hexchat (Snap) ${opts[95]}" "Wings 3D ${opts[96]}" "MakeHuman (PPA) ${opts[97]}" "Grub Customizer (PPA) ${opts[98]}"
 "4K Video Downloader (64 Bit) ${opts[99]}" "4K Youtube to MP3 (64 Bit) ${opts[100]}" "4K Stogram (64 Bit) ${opts[101]}" "4K Slideshow Maker (64 Bit) ${opts[102]}"
-"4K Video to MP3 (64 Bit) ${opts[103]}" "Done ${opts[104]}")
+"4K Video to MP3 (64 Bit) ${opts[103]}" "Neovim (PPA) ${opts[104]}" "Light Table (PPA) ${opts[105]}" "GCC 8 & G++ 8 (PPA) ${opts[106]}" "Cmake (Python pip) ${opts[107]}" 
+"Textadept (Editor) ${opts[108]}" "Tixati (P2P Torrent) ${opts[109]}" "Done ${opts[110]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -453,10 +454,34 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 103
                 break
                 ;;
-            "Done ${opts[104]}")
+            "Neovim ${opts[104]}")
+                choice 104
+                break
+                ;;
+            "Light Table (PPA) ${opts[105]}")
+                choice 105
+                break
+                ;;
+            "GCC 8 & G++ 8 (PPA) ${opts[106]}")
+                choice 106
+                break
+                ;;
+            "Cmake (Python pip) ${opts[107]}")
+                choice 107
+                break
+                ;;
+            "Textadept (Editor) ${opts[108]}")
+                choice 108
+                break
+                ;;
+            "Tixati (P2P Torrent) ${opts[109]}")
+                choice 109
+                break
+                ;;
+            "Done ${opts[110]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-104';;
+            *) printf '%s\n' 'Please Choose Between 1-110';;
         esac
     done
 done
@@ -484,7 +509,8 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "68" ] || [ "$opt" = "69" ] || [ "$opt" = "70" ] || [ "$opt" = "71" ] || [ "$opt" = "73" ] || [ "$opt" = "74" ] || [ "$opt" = "75" ] || [ "$opt" = "76" ] || \
  [ "$opt" = "77" ] || [ "$opt" = "78" ] || [ "$opt" = "79" ] || [ "$opt" = "80" ] || [ "$opt" = "82" ] || [ "$opt" = "83" ] || [ "$opt" = "85" ] || [ "$opt" = "86" ] || \
  [ "$opt" = "88" ] || [ "$opt" = "89" ] || [ "$opt" = "90" ] || [ "$opt" = "91" ] || [ "$opt" = "93" ] || [ "$opt" = "95" ] || [ "$opt" = "96" ] || [ "$opt" = "97" ] || \
- [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ]
+ [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ] || [ "$opt" = "105" ] || [ "$opt" = "108" ] || \
+ [ "$opt" = "109" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -2988,6 +3014,113 @@ else
 :
 fi
 printf "\n4k Video to MP3 installation Has Finished\n\n"
+;;
+
+104) # Neovim (PPA)
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:neovim-ppa/stable -y
+sudo apt update
+sudo apt install neovim -y
+printf "\nNeovim (PPA) installation Has Finished\n\n"
+;;
+
+105) # Light Table (PPA)
+sudo add-apt-repository ppa:dr-akulavich/lighttable -y
+sudo apt update
+sudo apt install lighttable-installer -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/LightTable
+Name=Light Table
+Comment=Light Table
+Icon=/opt/LightTable/resources/app/core/img/lticon.png" >> /home/$superuser/Desktop/light-table.desktop
+sudo chmod +x /home/$superuser/Desktop/light-table.desktop
+else
+:
+fi
+printf "\nLight Table (PPA) installation Has Finished\n\n"
+;;
+
+106) # GCC 8 & G++ 8 (PPA)
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+sudo apt update
+sudo apt install gcc-8 g++-8 -y
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 60 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+sudo update-alternatives --config gcc
+printf "\nGCC 8 & G++ 8 (PPA) installation Has Finished\n\n"
+;;
+
+107) # Cmake (Python pip)
+sudo apt install python-pip -y
+sudo python -m pip install --upgrade pip
+sudo pip install cmake
+printf "\nCmake (Python pip) installation Has Finished\n\n"
+;;
+
+108) # Textadept (Editor)
+if [ "$cpuarch" = "x86_64" ];then
+sudo wget -O /home/$superuser/Downloads/TempDL/textadept-LATEST-x86_64.tgz https://foicica.com/textadept/download/textadept_LATEST.x86_64.tgz
+sudo mkdir -p /home/$superuser/Downloads/TempDL/textadept-LATEST
+sudo tar xzvf /home/$superuser/Downloads/TempDL/textadept-LATEST-x86_64.tgz -C /home/$superuser/Downloads/TempDL/textadept-LATEST --strip-components 1
+
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+sudo wget -O /home/$superuser/Downloads/TempDL/textadept-LATEST-i386.tgz https://foicica.com/textadept/download/textadept_LATEST.i386.tgz
+sudo mkdir -p /home/$superuser/Downloads/TempDL/textadept-LATEST
+sudo tar xzvf /home/$superuser/Downloads/TempDL/textadept-LATEST-i386.tgz -C /home/$superuser/Downloads/TempDL/textadept-LATEST --strip-components 1
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+textadeptbin=`locate textadept | grep -w "textadept-latest/textadept" | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/textadept-LATEST/textadept
+Name=Textadept
+Comment=Textadept
+Icon=/home/$superuser/textadept-latest/core/images/textadept.png" >> /home/$superuser/Desktop/text-adept.desktop
+sudo chmod +x /home/$superuser/Desktop/text-adept.desktop
+else
+:
+fi
+printf "\nText Adept installation Has Finished\n\n"
+;;
+
+109) # Tixati (P2P Torrent)
+sudo apt install lynx -y
+sudo apt install gdebi -y
+if [ "$cpuarch" = "x86_64" ];then
+tixati64=`lynx -dump https://www.tixati.com/download/linux.html | awk '/http/{print $2}' | grep amd64.deb | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/tixati-latest-amd64.deb $tixati64
+sudo dpkg -i /home/$superuser/Downloads/TempDL/tixati-latest-amd64.deb
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+tixati32=`lynx -dump https://www.tixati.com/download/linux.html | awk '/http/{print $2}' | grep i686.deb | head -n 1`
+sudo wget -O /home/$superuser/Downloads/TempDL/tixati-latest-i686.deb $tixati32
+sudo dpkg -i /home/$superuser/Downloads/TempDL/tixati-latest-i686.deb
+fi
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/tixati
+Name=Tixati
+Comment=Tixati
+Icon=/usr/share/icons/hicolor/48x48/apps/tixati.png" >> /home/$superuser/Desktop/tixati.desktop
+sudo chmod +x /home/$superuser/Desktop/tixati.desktop
+else
+:
+fi
+printf "\nTixati (P2P Torrent) installation Has Finished\n\n"
 ;;
         esac
     fi
