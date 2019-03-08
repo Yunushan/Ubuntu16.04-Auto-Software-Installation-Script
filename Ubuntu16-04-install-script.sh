@@ -38,7 +38,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Zenkit (Snap) ${opts[93]}" "Wormhole (Snap) ${opts[94]}" "Hexchat (Snap) ${opts[95]}" "Wings 3D ${opts[96]}" "MakeHuman (PPA) ${opts[97]}" "Grub Customizer (PPA) ${opts[98]}"
 "4K Video Downloader (64 Bit) ${opts[99]}" "4K Youtube to MP3 (64 Bit) ${opts[100]}" "4K Stogram (64 Bit) ${opts[101]}" "4K Slideshow Maker (64 Bit) ${opts[102]}"
 "4K Video to MP3 (64 Bit) ${opts[103]}" "Neovim (PPA) ${opts[104]}" "Light Table (PPA) ${opts[105]}" "GCC 8 & G++ 8 (PPA) ${opts[106]}" "Cmake (Python pip) ${opts[107]}" 
-"Textadept (Editor) ${opts[108]}" "Tixati (P2P Torrent) ${opts[109]}" "Done ${opts[110]}")
+"Textadept (Editor) ${opts[108]}" "Tixati (P2P Torrent) ${opts[109]}" "Darktable (PPA) ${opts[110]}" "Liferea (PPA) ${opts[111]}" "Typecatcher (PPA) ${opts[112]}" 
+"Done ${opts[113]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -478,10 +479,22 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 109
                 break
                 ;;
-            "Done ${opts[110]}")
+            "Darktable (PPA) ${opts[110]}")
+                choice 110
+                break
+                ;;
+            "Liferea (PPA) ${opts[111]}")
+                choice 111
+                break
+                ;;
+            "Typecatcher (PPA) ${opts[112]}")
+                choice 112
+                break
+                ;;
+            "Done ${opts[113]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-110';;
+            *) printf '%s\n' 'Please Choose Between 1-113';;
         esac
     done
 done
@@ -510,7 +523,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "77" ] || [ "$opt" = "78" ] || [ "$opt" = "79" ] || [ "$opt" = "80" ] || [ "$opt" = "82" ] || [ "$opt" = "83" ] || [ "$opt" = "85" ] || [ "$opt" = "86" ] || \
  [ "$opt" = "88" ] || [ "$opt" = "89" ] || [ "$opt" = "90" ] || [ "$opt" = "91" ] || [ "$opt" = "93" ] || [ "$opt" = "95" ] || [ "$opt" = "96" ] || [ "$opt" = "97" ] || \
  [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ] || [ "$opt" = "105" ] || [ "$opt" = "108" ] || \
- [ "$opt" = "109" ]
+ [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -3121,6 +3134,74 @@ else
 :
 fi
 printf "\nTixati (P2P Torrent) installation Has Finished\n\n"
+;;
+
+110) # Darktable (PPA)
+wget -nv https://download.opensuse.org/repositories/graphics:darktable/xUbuntu_16.04/Release.key -O /home/$superuser/Downloads/TempDL/signing-keys/Release.key
+sudo apt-key add - < /home/$superuser/Downloads/TempDL/signing-keys/Release.key
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/graphics:/darktable/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/graphics:darktable.list"
+sudo apt update
+sudo apt install darktable -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/darktable
+Name=Darktable
+Comment=Darktable
+Icon=/usr/share/icons/hicolor/64x64/apps/darktable.png" >> /home/$superuser/Desktop/darktable.desktop
+sudo chmod +x /home/$superuser/Desktop/darktable.desktop
+else
+:
+fi
+printf "\nDarktable (PPA) installation Has Finished\n\n"
+;;
+
+111) # Liferea (PPA)
+sudo add-apt-repository ppa:ubuntuhandbook1/apps -y
+sudo apt update
+sudo apt install liferea -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/liferea
+Name=Liferea
+Comment=Liferea
+Icon=/usr/share/icons/hicolor/48x48/apps/liferea.png" >> /home/$superuser/Desktop/liferea.desktop
+sudo chmod +x /home/$superuser/Desktop/liferea.desktop
+else
+:
+fi
+printf "\nLiferea (PPA) installation Has Finished\n\n"
+;;
+
+112) # Typecatcher (PPA)
+sudo add-apt-repository ppa:andrewsomething/typecatcher -y
+sudo apt update
+sudo apt install typecatcher -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/typecatcher
+Name=Typecatcher
+Comment=Typecatcher
+Icon=/usr/share/help/C/typecatcher/figures/home.png" >> /home/$superuser/Desktop/typecatcher.desktop
+sudo chmod +x /home/$superuser/Desktop/typecatcher.desktop
+else
+:
+fi
+printf "\nTypecatcher (PPA) installation Has Finished\n\n"
 ;;
         esac
     fi
