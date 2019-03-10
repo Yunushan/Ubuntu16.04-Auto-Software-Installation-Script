@@ -39,7 +39,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "4K Video Downloader (64 Bit) ${opts[99]}" "4K Youtube to MP3 (64 Bit) ${opts[100]}" "4K Stogram (64 Bit) ${opts[101]}" "4K Slideshow Maker (64 Bit) ${opts[102]}"
 "4K Video to MP3 (64 Bit) ${opts[103]}" "Neovim (PPA) ${opts[104]}" "Light Table (PPA) ${opts[105]}" "GCC 8 & G++ 8 (PPA) ${opts[106]}" "Cmake (Python pip) ${opts[107]}" 
 "Textadept (Editor) ${opts[108]}" "Tixati (P2P Torrent) ${opts[109]}" "Darktable (PPA) ${opts[110]}" "Liferea (PPA) ${opts[111]}" "Typecatcher (PPA) ${opts[112]}" 
-"Done ${opts[113]}")
+"Caffeine (PPA) ${opts[113]}" "XnConvert ${opts[114]}" "Done ${opts[115]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -491,10 +491,18 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 112
                 break
                 ;;
-            "Done ${opts[113]}")
+            "Caffeine (PPA) ${opts[113]}")
+                choice 113
+                break
+                ;;
+            "XnConvert ${opts[114]}")
+                choice 114
+                break
+                ;;
+            "Done ${opts[115]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-113';;
+            *) printf '%s\n' 'Please Choose Between 1-115';;
         esac
     done
 done
@@ -523,7 +531,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "77" ] || [ "$opt" = "78" ] || [ "$opt" = "79" ] || [ "$opt" = "80" ] || [ "$opt" = "82" ] || [ "$opt" = "83" ] || [ "$opt" = "85" ] || [ "$opt" = "86" ] || \
  [ "$opt" = "88" ] || [ "$opt" = "89" ] || [ "$opt" = "90" ] || [ "$opt" = "91" ] || [ "$opt" = "93" ] || [ "$opt" = "95" ] || [ "$opt" = "96" ] || [ "$opt" = "97" ] || \
  [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ] || [ "$opt" = "105" ] || [ "$opt" = "108" ] || \
- [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ]
+ [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ] || [ "$opt" = "113" ] || [ "$opt" = "114" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -3202,6 +3210,54 @@ else
 :
 fi
 printf "\nTypecatcher (PPA) installation Has Finished\n\n"
+;;
+
+113) # Caffeine (PPA)
+sudo add-apt-repository ppa:caffeine-developers/ppa -y
+sudo apt update
+sudo apt install caffeine -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/caffeine-indicator
+Name=Caffeine
+Comment=Caffeine
+Icon=/usr/share/icons/hicolor/48x48/apps/caffeine.png" >> /home/$superuser/Desktop/caffeine.desktop
+sudo chmod +x /home/$superuser/Desktop/caffeine.desktop
+else
+:
+fi
+printf "\nCaffeine (PPA) installation Has Finished\n\n"
+;;
+
+114) # XnConvert
+if [ "$cpuarch" = "x86_64" ];then
+sudo wget -O /home/$superuser/Downloads/TempDL/xnconvert-x64.deb https://download.xnview.com/XnConvert-linux-x64.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/xnconvert-x64.deb
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+sudo wget -O /home/$superuser/Downloads/TempDL/xnconvert-x86.deb https://download.xnview.com/XnConvert-linux.deb
+sudo dpkg -i /home/$superuser/Downloads/TempDL/xnconvert-x86.deb
+fi
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/xnconvert
+Name=XnConvert
+Comment=XnConvert
+Icon=/opt/XnConvert/xnconvert.png" >> /home/$superuser/Desktop/xnconvert.desktop
+sudo chmod +x /home/$superuser/Desktop/xnconvert.desktop
+else
+:
+fi
+printf "\nXnConvert installation Has Finished\n\n"
 ;;
         esac
     fi
