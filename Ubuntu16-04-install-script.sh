@@ -39,7 +39,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "4K Video Downloader (64 Bit) ${opts[99]}" "4K Youtube to MP3 (64 Bit) ${opts[100]}" "4K Stogram (64 Bit) ${opts[101]}" "4K Slideshow Maker (64 Bit) ${opts[102]}"
 "4K Video to MP3 (64 Bit) ${opts[103]}" "Neovim (PPA) ${opts[104]}" "Light Table (PPA) ${opts[105]}" "GCC 8 & G++ 8 (PPA) ${opts[106]}" "Cmake (Python pip) ${opts[107]}" 
 "Textadept (Editor) ${opts[108]}" "Tixati (P2P Torrent) ${opts[109]}" "Darktable (PPA) ${opts[110]}" "Liferea (PPA) ${opts[111]}" "Typecatcher (PPA) ${opts[112]}" 
-"Caffeine (PPA) ${opts[113]}" "XnConvert ${opts[114]}" "Done ${opts[115]}")
+"Caffeine (PPA) ${opts[113]}" "XnConvert ${opts[114]}" "Riot (PPA) ${opts[115]}" "Jitsi Meet (PPA) ${opts[116]}" "Feedreader (PPA) ${opts[117]}" 
+"Go For It (PPA) ${opts[118]}" "Calibre ${opts[119]}" "Rambox Community Edition (Snap) ${opts[120]}" "Java 8 JDK (PPA) ${opts[121]}" "Java 11 JDK (PPA) ${opts[122]}" "Done ${opts[123]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -499,10 +500,42 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 114
                 break
                 ;;
-            "Done ${opts[115]}")
+            "Riot (PPA) ${opts[115]}")
+                choice 115
+                break
+                ;;
+            "Jitsi Meet (PPA) ${opts[116]}")
+                choice 116
+                break
+                ;;
+            "Feedreader (PPA) ${opts[117]}")
+                choice 117
+                break
+                ;;
+            "Go For It (PPA) ${opts[118]}")
+                choice 118
+                break
+                ;;
+            "Calibre ${opts[119]}")
+                choice 119
+                break
+                ;;
+            "Rambox Community Edition (Snap) ${opts[120]}")
+                choice 120
+                break
+                ;;
+            "Java 8 JDK (PPA) ${opts[121]}")
+                choice 121
+                break
+                ;;
+            "Java 11 JDK (PPA) ${opts[122]}")
+                choice 122
+                break
+                ;;
+            "Done ${opts[123]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-115';;
+            *) printf '%s\n' 'Please Choose Between 1-123';;
         esac
     done
 done
@@ -531,7 +564,8 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "77" ] || [ "$opt" = "78" ] || [ "$opt" = "79" ] || [ "$opt" = "80" ] || [ "$opt" = "82" ] || [ "$opt" = "83" ] || [ "$opt" = "85" ] || [ "$opt" = "86" ] || \
  [ "$opt" = "88" ] || [ "$opt" = "89" ] || [ "$opt" = "90" ] || [ "$opt" = "91" ] || [ "$opt" = "93" ] || [ "$opt" = "95" ] || [ "$opt" = "96" ] || [ "$opt" = "97" ] || \
  [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ] || [ "$opt" = "105" ] || [ "$opt" = "108" ] || \
- [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ] || [ "$opt" = "113" ] || [ "$opt" = "114" ]
+ [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ] || [ "$opt" = "113" ] || [ "$opt" = "114" ] || [ "$opt" = "115" ] || [ "$opt" = "116" ] || \
+ [ "$opt" = "117" ] || [ "$opt" = "118" ] || [ "$opt" = "119" ] || [ "$opt" = "120" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -3258,6 +3292,151 @@ else
 :
 fi
 printf "\nXnConvert installation Has Finished\n\n"
+;;
+
+115) # Riot (PPA)
+sudo sh -c "echo 'deb https://riot.im/packages/debian/ xenial main' > /etc/apt/sources.list.d/matrix-riot-im.list"
+curl -L https://riot.im/packages/debian/repo-key.asc | sudo apt-key add -
+sudo apt update
+sudo apt install riot-web -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/Riot/riot-web
+Name=Riot
+Comment=Riot
+Icon=/usr/share/icons/hicolor/64x64/apps/riot-web.png" >> /home/$superuser/Desktop/riot.desktop
+sudo chmod +x /home/$superuser/Desktop/riot.desktop
+else
+:
+fi
+printf "\nRiot (PPA) installation Has Finished\n\n"
+;;
+
+116) # Jitsi Meet (PPA)
+wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | sudo apt-key add -
+sudo sh -c "echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list"
+sudo apt update
+sudo apt install jitsi-meet -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/Riot/riot-web
+Name=Riot
+Comment=Riot
+Icon=/usr/share/icons/hicolor/64x64/apps/riot-web.png" >> /home/$superuser/Desktop/riot.desktop
+sudo chmod +x /home/$superuser/Desktop/riot.desktop
+else
+:
+fi
+printf "\nRiot (PPA) installation Has Finished\n\n"
+;;
+
+117) # Feedreader (PPA)
+sudo add-apt-repository ppa:eviltwin1/feedreader-stable -y
+sudo apt update
+sudo apt install feedreader -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/feedreader
+Name=Feedreader
+Comment=Feedreader
+Icon=/usr/share/icons/hicolor/64x64/apps/feedreader.svg" >> /home/$superuser/Desktop/feedreader.desktop
+sudo chmod +x /home/$superuser/Desktop/feedreader.desktop
+else
+:
+fi
+printf "\nFeedreader (PPA) installation Has Finished\n\n"
+;;
+
+118) # Go For It (PPA)
+sudo add-apt-repository ppa:mank319/go-for-it -y
+sudo apt update
+sudo apt install go-for-it -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/feedreader
+Name=Feedreader
+Comment=Feedreader
+Icon=/usr/share/icons/hicolor/64x64/apps/feedreader.svg" >> /home/$superuser/Desktop/feedreader.desktop
+sudo chmod +x /home/$superuser/Desktop/feedreader.desktop
+else
+:
+fi
+printf "\nFeedreader (PPA) installation Has Finished\n\n"
+;;
+
+119) # Calibre
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/calibre
+Name=Calibre
+Comment=Calibre
+Icon=/usr/share/icons/hicolor/64x64/apps/calibre-gui.png" >> /home/$superuser/Desktop/calibre.desktop
+sudo chmod +x /home/$superuser/Desktop/calibre.desktop
+else
+:
+fi
+printf "\nCalibre installation Has Finished\n\n"
+;;
+
+120) # Rambox Community Edition (Snap)
+sudo apt install snapd -y
+sudo snap install rambox
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/rambox
+Name=Rambox
+Comment=Rambox
+Icon=/snap/rambox/1/meta/gui/icon.png" >> /home/$superuser/Desktop/rambox.desktop
+sudo chmod +x /home/$superuser/Desktop/rambox.desktop
+else
+:
+fi
+printf "\nRambox installation Has Finished\n\n"
+;;
+
+121) # Java 8 JDK (PPA)
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt update
+sudo apt install oracle-java8-installer -y
+printf "\nJava 8 JDK (PPA) installation Has Finished\n\n"
+;;
+
+122) # Java 11 JDK (PPA)
+sudo add-apt-repository ppa:linuxuprising/java -y
+sudo apt update
+sudo apt install oracle-java11-installer -y
+printf "\nJava 8 JDK (PPA) installation Has Finished\n\n"
 ;;
         esac
     fi
