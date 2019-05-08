@@ -40,7 +40,10 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "4K Video to MP3 (64 Bit) ${opts[103]}" "Neovim (PPA) ${opts[104]}" "Light Table (PPA) ${opts[105]}" "GCC 8 & G++ 8 (PPA) ${opts[106]}" "Cmake (Python pip) ${opts[107]}" 
 "Textadept (Editor) ${opts[108]}" "Tixati (P2P Torrent) ${opts[109]}" "Darktable (PPA) ${opts[110]}" "Liferea (PPA) ${opts[111]}" "Typecatcher (PPA) ${opts[112]}" 
 "Caffeine (PPA) ${opts[113]}" "XnConvert ${opts[114]}" "Riot (PPA) ${opts[115]}" "Jitsi Meet (PPA) ${opts[116]}" "Feedreader (PPA) ${opts[117]}" 
-"Go For It (PPA) ${opts[118]}" "Calibre ${opts[119]}" "Rambox Community Edition (Snap) ${opts[120]}" "Java 8 JDK (PPA) ${opts[121]}" "Java 11 JDK (PPA) ${opts[122]}" "Done ${opts[123]}")
+"Go For It (PPA) ${opts[118]}" "Calibre ${opts[119]}" "Rambox Community Edition (Snap) ${opts[120]}" "Java 8 JDK (PPA) ${opts[121]}" "Java 11 JDK (PPA) ${opts[122]}"
+"Nuvola Music Player (PPA) ${opts[123]}" "Variety (PPA) ${opts[124]}" "Flash Player (Pepper Flash) ${opts[125]}" "Electron Player (Snap) ${opts[126]}" 
+"Plex Media Server (Snap) ${opts[127]}" "E-tools (Snap) ${opts[128]}" "Blender (Snap) ${opts[129]}" "IrfanView (Snap) ${opts[130]}" "Altus ${opts[131]}" 
+"Mumble (PPA) ${opts[132]}" "Pale Moon ${opts[133]}" "Midori ${opts[134]}" "Done ${opts[135]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -532,10 +535,58 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 122
                 break
                 ;;
-            "Done ${opts[123]}")
+            "Nuvola Music Player (PPA) ${opts[123]}")
+                choice 123
+                break
+                ;;
+            "Variety (PPA) ${opts[124]}")
+                choice 124
+                break
+                ;;
+            "Flash Player (Pepper Flash) ${opts[125]}")
+                choice 125
+                break
+                ;;
+            "Electron Player (Snap) ${opts[126]}")
+                choice 126
+                break
+                ;;
+            "Plex Media Server (Snap) ${opts[127]}")
+                choice 127
+                break
+                ;;
+            "E-tools (Snap) ${opts[128]}")
+                choice 128
+                break
+                ;;
+            "Blender (Snap) ${opts[129]}")
+                choice 129
+                break
+                ;;
+            "IrfanView (Snap) ${opts[130]}")
+                choice 130
+                break
+                ;;
+            "Altus ${opts[131]}")
+                choice 131
+                break
+                ;;
+            "Mumble ${opts[132]}")
+                choice 132
+                break
+                ;;
+            "Pale Moon ${opts[133]}")
+                choice 133
+                break
+                ;;
+            "Midori ${opts[134]}")
+                choice 134
+                break
+                ;;
+            "Done ${opts[135]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-123';;
+            *) printf '%s\n' 'Please Choose Between 1-135';;
         esac
     done
 done
@@ -565,7 +616,8 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "88" ] || [ "$opt" = "89" ] || [ "$opt" = "90" ] || [ "$opt" = "91" ] || [ "$opt" = "93" ] || [ "$opt" = "95" ] || [ "$opt" = "96" ] || [ "$opt" = "97" ] || \
  [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ] || [ "$opt" = "105" ] || [ "$opt" = "108" ] || \
  [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ] || [ "$opt" = "113" ] || [ "$opt" = "114" ] || [ "$opt" = "115" ] || [ "$opt" = "116" ] || \
- [ "$opt" = "117" ] || [ "$opt" = "118" ] || [ "$opt" = "119" ] || [ "$opt" = "120" ]
+ [ "$opt" = "117" ] || [ "$opt" = "118" ] || [ "$opt" = "119" ] || [ "$opt" = "120" ] || [ "$opt" = "123" ] || [ "$opt" = "126" ] || [ "$opt" = "127" ] || \ 
+ [ "$opt" = "128" ] || [ "$opt" = "129" ] || [ "$opt" = "130" ] || [ "$opt" = "131" ] || [ "$opt" = "132" ] || [ "$opt" = "133" ] || [ "$opt" = "134" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -3436,7 +3488,245 @@ printf "\nJava 8 JDK (PPA) installation Has Finished\n\n"
 sudo add-apt-repository ppa:linuxuprising/java -y
 sudo apt update
 sudo apt install oracle-java11-installer -y
-printf "\nJava 8 JDK (PPA) installation Has Finished\n\n"
+printf "\nJava 11 JDK (PPA) installation Has Finished\n\n"
+;;
+
+123) # Nuvola Music Player (PPA)
+sudo add-apt-repository ppa:alexlarsson/flatpak -y
+sudo apt update
+sudo apt install flatpak xdg-desktop-portal-gtk -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/rambox
+Name=Rambox
+Comment=Rambox
+Icon=/snap/rambox/1/meta/gui/icon.png" >> /home/$superuser/Desktop/rambox.desktop
+sudo chmod +x /home/$superuser/Desktop/rambox.desktop
+else
+:
+fi
+printf "\nNuvola Music Player installation Has Finished\n\n"
+;;
+
+124) # Variety (PPA)
+sudo add-apt-repository ppa:peterlevi/ppa -y
+sudo apt update
+sudo apt install variety variety-slideshow -y
+printf "\nVariety installation Has Finished\n\n"
+;;
+
+125) # Flash Player (Pepper Flash)
+sudo apt install pepperflashplugin-nonfree -y
+sudo update-pepperflashplugin-nonfree --install
+printf "\nFlash Player (Pepper Flash) installation Has Finished\n\n"
+;;
+
+126) # Electron Player (Snap)
+sudo apt install snapd -y
+sudo snap install electronplayer
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/electronplayer
+Name=Electron Player
+Comment=Electron Player
+Icon=/snap/electronplayer/6/meta/gui/icon.png" >> /home/$superuser/Desktop/Electron-Player.desktop
+sudo chmod +x /home/$superuser/Desktop/Electron-Player.desktop
+else
+:
+fi
+printf "\nElectron Player installation Has Finished\n\n"
+;;
+
+127) # Plex Media Server (Snap)
+sudo apt install snapd -y
+sudo snap install plexmediaserver
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/plexmediaserver
+Name=Plex Media Server
+Comment=Plex Media Server
+Icon=/snap/plexmediaserver/13/snap/gui/pms-web.png" >> /home/$superuser/Desktop/plex-media-server.desktop
+sudo chmod +x /home/$superuser/Desktop/plex-media-server.desktop
+else
+:
+fi
+printf "\nPlex Media Server installation Has Finished\n\n"
+;;
+
+128) # E-tools (Snap)
+sudo apt install snapd -y
+sudo snap install e-tools
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/e-tools
+Name=E-tools
+Comment=E-tools
+Icon=/snap/e-tools/3/meta/gui/icon.png" >> /home/$superuser/Desktop/e-tools.desktop
+sudo chmod +x /home/$superuser/Desktop/e-tools.desktop
+else
+:
+fi
+printf "\nE-tools installation Has Finished\n\n"
+;;
+
+129) # Blender (Snap)
+sudo apt install snapd -y
+sudo snap install blender --classic
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/blender
+Name=Blender
+Comment=Blender
+Icon=/snap/blender/20/snap/gui/icon.png" >> /home/$superuser/Desktop/blender.desktop
+sudo chmod +x /home/$superuser/Desktop/blender.desktop
+else
+:
+fi
+printf "\nBlender installation Has Finished\n\n"
+;;
+
+130) # IrfanView (Snap)
+sudo apt install snapd -y
+sudo snap install irfanview
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/irfanview
+Name=IrfanView
+Comment=IrfanView
+Icon=/snap/irfanview/10/usr/share/pixmaps/irfanview64.png" >> /home/$superuser/Desktop/irfanview.desktop
+sudo chmod +x /home/$superuser/Desktop/irfanview.desktop
+else
+:
+fi
+printf "\nIrfanView installation Has Finished\n\n"
+;;
+
+131) # Altus
+sudo apt install lynx -y
+altusappimage=`lynx -dump https://github.com/ShadyThGod/altus/releases | awk '/http/{print $2}' | grep .AppImage | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/altus-latest-release.AppImage $altusappimage
+sudo chmod +x /home/$superuser/Downloads/TempDL/altus-latest-release.AppImage
+wget -O /home/$superuser/Downloads/TempDL/altus-logo.png https://cn.opendesktop.org/cache/400x400/img/6/1/5/f/7b47bdb468bef3a766fd21a86d6e1829534a.png
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/altus-latest-release.AppImage
+Name=Altus
+Comment=Altus
+Icon=/home/$superuser/Downloads/TempDL/altus-logo.png" >> /home/$superuser/Desktop/altus.desktop
+sudo chmod +x /home/$superuser/Desktop/altus.desktop
+else
+:
+fi
+printf "\nAltus installation Has Finished\n\n"
+;;
+
+132) # Mumble
+sudo add-apt-repository ppa:mumble/release -y
+sudo apt update
+sudo apt install mumble -y
+
+#To install and configure
+#sudo apt install mumble-server -y
+#sudo dpkg-reconfigure mumble-server
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/home/$superuser/Downloads/TempDL/altus-latest-release.AppImage
+Name=Altus
+Comment=Altus
+Icon=/home/$superuser/Downloads/TempDL/altus-logo.png" >> /home/$superuser/Desktop/altus.desktop
+sudo chmod +x /home/$superuser/Desktop/altus.desktop
+else
+:
+fi
+printf "\nAltus installation Has Finished\n\n"
+;;
+
+133) # Pale Moon
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/home:stevenpusser.list"
+wget -nv https://download.opensuse.org/repositories/home:stevenpusser/xUbuntu_16.04/Release.key -O Release.key
+sudo apt-key add - < Release.key
+sudo apt update
+sudo apt install palemoon -y
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/palemoon
+Name=Pale Moon
+Comment=Pale Moon
+Icon=/usr/share/pixmaps/palemoon.png" >> /home/$superuser/Desktop/palemoon.desktop
+sudo chmod +x /home/$superuser/Desktop/palemoon.desktop
+else
+:
+fi
+printf "\nPale Moon installation Has Finished\n\n"
+;;
+
+134) # Midori
+sudo apt install snapd -y
+snap install midori
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/midori
+Name=Midori
+Comment=Midori
+Icon=/snap/midori/451/usr/share/icons/hicolor/22x22/apps/midori.png" >> /home/$superuser/Desktop/midori.desktop
+sudo chmod +x /home/$superuser/Desktop/midori.desktop
+else
+:
+fi
+printf "\nMidori installation Has Finished\n\n"
 ;;
         esac
     fi
