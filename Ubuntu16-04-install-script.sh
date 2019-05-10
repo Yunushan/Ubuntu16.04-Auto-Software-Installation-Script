@@ -43,7 +43,10 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Go For It (PPA) ${opts[118]}" "Calibre ${opts[119]}" "Rambox Community Edition (Snap) ${opts[120]}" "Java 8 JDK (PPA) ${opts[121]}" "Java 11 JDK (PPA) ${opts[122]}"
 "Nuvola Music Player (PPA) ${opts[123]}" "Variety (PPA) ${opts[124]}" "Flash Player (Pepper Flash) ${opts[125]}" "Electron Player (Snap) ${opts[126]}" 
 "Plex Media Server (Snap) ${opts[127]}" "E-tools (Snap) ${opts[128]}" "Blender (Snap) ${opts[129]}" "IrfanView (Snap) ${opts[130]}" "Altus ${opts[131]}" 
-"Mumble (PPA) ${opts[132]}" "Pale Moon ${opts[133]}" "Midori ${opts[134]}" "Done ${opts[135]}")
+"Mumble (PPA) ${opts[132]}" "Pale Moon ${opts[133]}" "Midori ${opts[134]}" "Simplenote (Snap) ${opts[135]}" "Midnight Commander ${opts[136]}" 
+"Pycharm Community Edition ${opts[137]}" "Postman (PPA) ${opts[138]}" "Notepad-Plus-Plus (Snap) ${opts[139]}" "PhpStorm (Snap) ${opts[140]}" 
+"Powershell (Snap) ${opts[141]}" "Cacher (Snap) ${opts[142]}" "WebStorm (Snap) ${opts[143]}" "Insomnia (Snap) ${opts[144]}" "Opera (Snap) ${opts[145]}" 
+"Google Chrome (PPA) ${opts[146]}" "Chromium (Snap) ${opts[147]}" "Done ${opts[150]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -571,7 +574,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 131
                 break
                 ;;
-            "Mumble ${opts[132]}")
+            "Mumble (PPA) ${opts[132]}")
                 choice 132
                 break
                 ;;
@@ -583,10 +586,62 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 134
                 break
                 ;;
-            "Done ${opts[135]}")
+            "Simplenote (Snap) ${opts[135]}")
+                choice 135
+                break
+                ;;
+            "Midnight Commander ${opts[136]}")
+                choice 136
+                break
+                ;;
+            "Pycharm Community Edition ${opts[137]}")
+                choice 137
+                break
+                ;;
+            "Postman (PPA) ${opts[138]}")
+                choice 138
+                break
+                ;;
+            "Notepad-Plus-Plus (Snap) ${opts[139]}")
+                choice 139
+                break
+                ;;
+            "PhpStorm (Snap) ${opts[140]}")
+                choice 140
+                break
+                ;;
+            "Powershell (Snap) ${opts[141]}")
+                choice 141
+                break
+                ;;
+            "Cacher (Snap) ${opts[142]}")
+                choice 142
+                break
+                ;;
+            "WebStorm (Snap) ${opts[143]}")
+                choice 143
+                break
+                ;;
+            "Insomnia (Snap) ${opts[144]}")
+                choice 144
+                break
+                ;;
+            "Opera (Snap) ${opts[145]}")
+                choice 145
+                break
+                ;;
+            "Google Chrome (PPA) ${opts[146]}")
+                choice 146
+                break
+                ;;
+            "Chromium (Snap) ${opts[147]}")
+                choice 147
+                break
+                ;;
+            "Done ${opts[150]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-135';;
+            *) printf '%s\n' 'Please Choose Between 1-150';;
         esac
     done
 done
@@ -617,7 +672,9 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ] || [ "$opt" = "105" ] || [ "$opt" = "108" ] || \
  [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ] || [ "$opt" = "113" ] || [ "$opt" = "114" ] || [ "$opt" = "115" ] || [ "$opt" = "116" ] || \
  [ "$opt" = "117" ] || [ "$opt" = "118" ] || [ "$opt" = "119" ] || [ "$opt" = "120" ] || [ "$opt" = "123" ] || [ "$opt" = "126" ] || [ "$opt" = "127" ] || \ 
- [ "$opt" = "128" ] || [ "$opt" = "129" ] || [ "$opt" = "130" ] || [ "$opt" = "131" ] || [ "$opt" = "132" ] || [ "$opt" = "133" ] || [ "$opt" = "134" ]
+ [ "$opt" = "128" ] || [ "$opt" = "129" ] || [ "$opt" = "130" ] || [ "$opt" = "131" ] || [ "$opt" = "132" ] || [ "$opt" = "133" ] || [ "$opt" = "134" ] || \
+ [ "$opt" = "135" ] || [ "$opt" = "137" ] || [ "$opt" = "138" ] || [ "$opt" = "139" ] || [ "$opt" = "140" ] || [ "$opt" = "141" ] || [ "$opt" = "142" ] || \
+ [ "$opt" = "143" ] || [ "$opt" = "144" ] || [ "$opt" = "145" ] || [ "$opt" = "146" ] || [ "$opt" = "147" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -3727,6 +3784,280 @@ else
 :
 fi
 printf "\nMidori installation Has Finished\n\n"
+;;
+
+135) # Simplenote (Snap)
+sudo apt install snapd -y
+sudo snap install simplenote
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/simplenote
+Name=Simplenote
+Comment=Simplenote
+Icon=/snap/simplenote/94/usr/share/icons/hicolor/128x128/apps/simplenote.png" >> /home/$superuser/Desktop/simplenote.desktop
+sudo chmod +x /home/$superuser/Desktop/simplenote.desktop
+else
+:
+fi
+printf "\nSimplenote installation Has Finished\n\n"
+;;
+
+136) # Midnight Commander
+sudo apt install mc -y
+
+printf "\nMidnight Commander installation Has Finished\n\n"
+;;
+
+137) # Pycharm Community Edition (Snap)
+sudo apt install snapd -y
+sudo snap install pycharm-community --classic
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/pycharm-community
+Name=Pycharm Community
+Comment=Pycharm Community
+Icon=/snap/pycharm-community/128/meta/gui/icon.png" >> /home/$superuser/Desktop/pycharm-community.desktop
+sudo chmod +x /home/$superuser/Desktop/pycharm-community.desktop
+else
+:
+fi
+printf "\nPycharm Community Edition installation Has Finished\n\n"
+;;
+
+138) # Postman (PPA)
+sudo add-apt-repository ppa:tiagohillebrandt/postman -y
+sudo apt update
+sudo apt install postman -y 
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/postman
+Name=Postman
+Comment=Postman
+Icon=/usr/share/postman/app/resources/app/assets/icon.png" >> /home/$superuser/Desktop/postman.desktop
+sudo chmod +x /home/$superuser/Desktop/postman.desktop
+else
+:
+fi
+printf "\nPostman installation Has Finished\n\n"
+;;
+
+139) # Notepad-Plus-Plus (Snap)
+sudo apt install snapd -y
+sudo snap install notepad-plus-plus
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/notepad-plus-plus
+Name=Notepad-Plus-Plus
+Comment=Notepad-Plus-Plus
+Icon=/snap/notepad-plus-plus/202/usr/share/pixmaps/notepad-plus-plus.png" >> /home/$superuser/Desktop/notepad-plus-plus.desktop
+sudo chmod +x /home/$superuser/Desktop/notepad-plus-plus.desktop
+else
+:
+fi
+printf "\nNotepad-Plus-Plus installation Has Finished\n\n"
+;;
+
+140) # PhpStorm (Snap)
+sudo apt install snapd -y
+sudo snap install phpstorm --classic
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/phpstorm
+Name=PhpStorm
+Comment=PhpStorm
+Icon=/snap/phpstorm/98/meta/gui/icon.png" >> /home/$superuser/Desktop/phpstorm.desktop
+sudo chmod +x /home/$superuser/Desktop/phpstorm.desktop
+else
+:
+fi
+printf "\nPhpStorm installation Has Finished\n\n"
+;;
+
+141) # Powershell (Snap)
+sudo apt install snapd -y
+sudo snap install powershell --classic
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/powershell
+Name=Powershell
+Comment=Powershell
+Icon=/snap/powershell/21/meta/gui/icon.png" >> /home/$superuser/Desktop/powershell.desktop
+sudo chmod +x /home/$superuser/Desktop/powershell.desktop
+else
+:
+fi
+printf "\nPowershell installation Has Finished\n\n"
+;;
+
+142) # Cacher (Snap)
+sudo apt install snapd -y
+sudo snap install cacher
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/cacher
+Name=Cacher
+Comment=Cacher
+Icon=/snap/cacher/65/meta/gui/icon.png" >> /home/$superuser/Desktop/cacher.desktop
+sudo chmod +x /home/$superuser/Desktop/cacher.desktop
+else
+:
+fi
+printf "\nCacher installation Has Finished\n\n"
+;;
+
+143) # WebStorm (Snap)
+sudo apt install snapd -y
+sudo snap install webstorm --classic
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/webstorm
+Name=Webstorm
+Comment=Webstorm
+Icon=/snap/webstorm/92/meta/gui/icon.png" >> /home/$superuser/Desktop/webstorm.desktop
+sudo chmod +x /home/$superuser/Desktop/webstorm.desktop
+else
+:
+fi
+printf "\nWebstorm installation Has Finished\n\n"
+;;
+
+144) # Insomnia (Snap)
+sudo apt install snapd -y
+sudo snap install insomnia
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/insomnia
+Name=Insomnia
+Comment=Insomnia
+Icon=/snap/insomnia/28/meta/gui/icon.png" >> /home/$superuser/Desktop/insomnia.desktop
+sudo chmod +x /home/$superuser/Desktop/insomnia.desktop
+else
+:
+fi
+printf "\nInsomnia installation Has Finished\n\n"
+;;
+
+145) # Opera (Snap)
+sudo apt install snapd -y
+sudo snap install opera
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+operalogolocation=`locate opera | grep opera.png | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/opera
+Name=Opera
+Comment=Opera
+Icon=$operalogolocation" >> /home/$superuser/Desktop/opera.desktop
+sudo chmod +x /home/$superuser/Desktop/opera.desktop
+else
+:
+fi
+printf "\nOpera installation Has Finished\n\n"
+;;
+
+146) # Google Chorome (PPA)
+sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt update
+sudo apt install google-chrome-stable -y
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/google-chrome-stable
+Name=Google Chrome
+Comment=Google Chrome
+Icon=/usr/share/icons/hicolor/128x128/apps/google-chrome.png" >> /home/$superuser/Desktop/google-chrome.desktop
+sudo chmod +x /home/$superuser/Desktop/google-chrome.desktop
+else
+:
+fi
+printf "\nGoogle Chrome installation Has Finished\n\n"
+;;
+
+147) # Chromium (Snap)
+sudo apt install snapd -y
+sudo snap install chromium
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/google-chrome-stable
+Name=Google Chrome
+Comment=Google Chrome
+Icon=/usr/share/icons/hicolor/128x128/apps/google-chrome.png" >> /home/$superuser/Desktop/google-chrome.desktop
+sudo chmod +x /home/$superuser/Desktop/google-chrome.desktop
+else
+:
+fi
+printf "\nGoogle Chrome installation Has Finished\n\n"
 ;;
         esac
     fi
