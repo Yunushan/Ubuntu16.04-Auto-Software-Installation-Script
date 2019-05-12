@@ -2,6 +2,7 @@
 # Variables
 cpuarch=`uname -m`
 superuser=`getent group sudo | cut -d: -f4`
+codename=`lsb_release -cs`
 # Select Which Softwares to be Installed
 
 choice () {
@@ -41,12 +42,13 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Textadept (Editor) ${opts[108]}" "Tixati (P2P Torrent) ${opts[109]}" "Darktable (PPA) ${opts[110]}" "Liferea (PPA) ${opts[111]}" "Typecatcher (PPA) ${opts[112]}" 
 "Caffeine (PPA) ${opts[113]}" "XnConvert ${opts[114]}" "Riot (PPA) ${opts[115]}" "Jitsi Meet (PPA) ${opts[116]}" "Feedreader (PPA) ${opts[117]}" 
 "Go For It (PPA) ${opts[118]}" "Calibre ${opts[119]}" "Rambox Community Edition (Snap) ${opts[120]}" "Java 8 JDK (PPA) ${opts[121]}" "Java 11 JDK (PPA) ${opts[122]}"
-"Nuvola Music Player (PPA) ${opts[123]}" "Variety (PPA) ${opts[124]}" "Flash Player (Pepper Flash) ${opts[125]}" "Electron Player (Snap) ${opts[126]}" 
+"Hiri (Snap) ${opts[123]}" "Variety (PPA) ${opts[124]}" "Flash Player (Pepper Flash) ${opts[125]}" "Electron Player (Snap) ${opts[126]}" 
 "Plex Media Server (Snap) ${opts[127]}" "E-tools (Snap) ${opts[128]}" "Blender (Snap) ${opts[129]}" "IrfanView (Snap) ${opts[130]}" "Altus ${opts[131]}" 
 "Mumble (PPA) ${opts[132]}" "Pale Moon ${opts[133]}" "Midori ${opts[134]}" "Simplenote (Snap) ${opts[135]}" "Midnight Commander ${opts[136]}" 
 "Pycharm Community Edition ${opts[137]}" "Postman (PPA) ${opts[138]}" "Notepad-Plus-Plus (Snap) ${opts[139]}" "PhpStorm (Snap) ${opts[140]}" 
 "Powershell (Snap) ${opts[141]}" "Cacher (Snap) ${opts[142]}" "WebStorm (Snap) ${opts[143]}" "Insomnia (Snap) ${opts[144]}" "Opera (Snap) ${opts[145]}" 
-"Google Chrome (PPA) ${opts[146]}" "Chromium (Snap) ${opts[147]}" "Done ${opts[150]}")
+"Google Chrome (PPA) ${opts[146]}" "Chromium (Snap) ${opts[147]}" "DBeaver Community Edition (PPA) ${opts[148]}" "Valentina Studio ${opts[149]}" "SQuirreL SQL (Snap) ${opts[150]}" 
+"DbVisualizer ${opts[151]}" "DataGrip (Snap) ${opts[152]}" "PgAdmin ${opts[153]}" "Remmina (PPA) ${opts[154]}" "Anydesk ${opts[155]}" "Done ${opts[156]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -538,7 +540,7 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 122
                 break
                 ;;
-            "Nuvola Music Player (PPA) ${opts[123]}")
+            "Hiri (Snap) ${opts[123]}")
                 choice 123
                 break
                 ;;
@@ -638,10 +640,42 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 147
                 break
                 ;;
-            "Done ${opts[150]}")
+            "DBeaver Community Edition (PPA) ${opts[148]}")
+                choice 148
+                break
+                ;;
+            "Valentina Studio ${opts[149]}")
+                choice 149
+                break
+                ;;
+            "SQuirreL SQL (Snap) ${opts[150]}")
+                choice 150
+                break
+                ;;
+            "DbVisualizer ${opts[151]}")
+                choice 151
+                break
+                ;;
+            "DataGrip ${opts[152]}")
+                choice 152
+                break
+                ;;
+            "PgAdmin ${opts[153]}")
+                choice 153
+                break
+                ;;
+            "Remmina (PPA) ${opts[154]}")
+                choice 154
+                break
+                ;;
+            "Anydesk ${opts[155]}")
+                choice 155
+                break
+                ;;
+            "Done ${opts[156]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-150';;
+            *) printf '%s\n' 'Please Choose Between 1-156';;
         esac
     done
 done
@@ -671,10 +705,11 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "88" ] || [ "$opt" = "89" ] || [ "$opt" = "90" ] || [ "$opt" = "91" ] || [ "$opt" = "93" ] || [ "$opt" = "95" ] || [ "$opt" = "96" ] || [ "$opt" = "97" ] || \
  [ "$opt" = "98" ] || [ "$opt" = "99" ] || [ "$opt" = "100" ] || [ "$opt" = "101" ] || [ "$opt" = "102" ] || [ "$opt" = "103" ] || [ "$opt" = "105" ] || [ "$opt" = "108" ] || \
  [ "$opt" = "109" ] || [ "$opt" = "110" ] || [ "$opt" = "111" ] || [ "$opt" = "112" ] || [ "$opt" = "113" ] || [ "$opt" = "114" ] || [ "$opt" = "115" ] || [ "$opt" = "116" ] || \
- [ "$opt" = "117" ] || [ "$opt" = "118" ] || [ "$opt" = "119" ] || [ "$opt" = "120" ] || [ "$opt" = "123" ] || [ "$opt" = "126" ] || [ "$opt" = "127" ] || \ 
+ [ "$opt" = "117" ] || [ "$opt" = "118" ] || [ "$opt" = "119" ] || [ "$opt" = "120" ] || [ "$opt" = "123" ] || [ "$opt" = "126" ] || [ "$opt" = "127" ] || \
  [ "$opt" = "128" ] || [ "$opt" = "129" ] || [ "$opt" = "130" ] || [ "$opt" = "131" ] || [ "$opt" = "132" ] || [ "$opt" = "133" ] || [ "$opt" = "134" ] || \
  [ "$opt" = "135" ] || [ "$opt" = "137" ] || [ "$opt" = "138" ] || [ "$opt" = "139" ] || [ "$opt" = "140" ] || [ "$opt" = "141" ] || [ "$opt" = "142" ] || \
- [ "$opt" = "143" ] || [ "$opt" = "144" ] || [ "$opt" = "145" ] || [ "$opt" = "146" ] || [ "$opt" = "147" ]
+ [ "$opt" = "143" ] || [ "$opt" = "144" ] || [ "$opt" = "145" ] || [ "$opt" = "146" ] || [ "$opt" = "147" ] || [ "$opt" = "148" ] || [ "$opt" = "149" ] || [ "$opt" = "150" ] || \
+ [ "$opt" = "151" ] || [ "$opt" = "152" ] || [ "$opt" = "153" ] || [ "$opt" = "154" ] || [ "$opt" = "155" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -770,9 +805,10 @@ printf "\nApache2 installation Has Finished\n\n"
 
 4) # VLC
 
-snap install vlc
+sudo snap install vlc
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+vlclogolocation=`locate vlc.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -781,7 +817,7 @@ Terminal=false
 Exec=/snap/bin/vlc
 Name=VLC
 Comment=VLC
-Icon=/snap/vlc/770/usr/share/icon/hicolor/256x256/apps/vlc.png" >> /home/$superuser/Desktop/vlc.desktop
+Icon=$vlclogolocation" >> /home/$superuser/Desktop/vlc.desktop
 sudo chmod +x /home/$superuser/vlc.desktop
 else
 :
@@ -2771,6 +2807,7 @@ sudo apt update
 sudo snap install bitwarden
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+bitwardenlogolocation=`locate /snap/bitwarden/ | grep /icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -2779,7 +2816,7 @@ Terminal=false
 Exec=/snap/bin/bitwarden
 Name=Bitwarden
 Comment=Bitwarden
-Icon=/snap/bitwarden/16/meta/gui/icon.png" >> /home/$superuser/Desktop/bitwarden.desktop
+Icon=$bitwardenlogolocation" >> /home/$superuser/Desktop/bitwarden.desktop
 sudo chmod +x /home/$superuser/Desktop/bitwarden.desktop
 else
 :
@@ -2947,6 +2984,7 @@ sudo apt install snapd -y
 sudo snap install zenkit
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+zenkitlogolocation=`locate /snap/zenkit/ | grep /meta/gui/icon.png`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -2955,7 +2993,7 @@ Terminal=false
 Exec=/snap/bin/zenkit
 Name=Zenkit
 Comment=Zenkit
-Icon=/snap/zenkit/2/meta/gui/icon.png" >> /home/$superuser/Desktop/zenkit.desktop
+Icon=$zenkitlogolocation" >> /home/$superuser/Desktop/zenkit.desktop
 sudo chmod +x /home/$superuser/Desktop/zenkit.desktop
 else
 :
@@ -3518,6 +3556,7 @@ sudo apt install snapd -y
 sudo snap install rambox
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+ramboxlogolocation=`locate /snap/rambox/ | grep /gui/icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3526,7 +3565,7 @@ Terminal=false
 Exec=/snap/bin/rambox
 Name=Rambox
 Comment=Rambox
-Icon=/snap/rambox/1/meta/gui/icon.png" >> /home/$superuser/Desktop/rambox.desktop
+Icon=$ramboxlogolocation" >> /home/$superuser/Desktop/rambox.desktop
 sudo chmod +x /home/$superuser/Desktop/rambox.desktop
 else
 :
@@ -3548,26 +3587,26 @@ sudo apt install oracle-java11-installer -y
 printf "\nJava 11 JDK (PPA) installation Has Finished\n\n"
 ;;
 
-123) # Nuvola Music Player (PPA)
-sudo add-apt-repository ppa:alexlarsson/flatpak -y
-sudo apt update
-sudo apt install flatpak xdg-desktop-portal-gtk -y
+123) # Hiri (Snap)
+sudo apt install snapd -y
+sudo snap install hiri
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+hirilogolocation=`locate /snap/hiri/ | grep /gui/icon.png`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
 Type=Application
 Terminal=false
-Exec=/snap/bin/rambox
-Name=Rambox
-Comment=Rambox
-Icon=/snap/rambox/1/meta/gui/icon.png" >> /home/$superuser/Desktop/rambox.desktop
-sudo chmod +x /home/$superuser/Desktop/rambox.desktop
+Exec=/snap/bin/hiri
+Name=Hiri
+Comment=Hiri
+Icon=$hirilogolocation" >> /home/$superuser/Desktop/hiri.desktop
+sudo chmod +x /home/$superuser/Desktop/hiri.desktop
 else
 :
 fi
-printf "\nNuvola Music Player installation Has Finished\n\n"
+printf "\nHiri installation Has Finished\n\n"
 ;;
 
 124) # Variety (PPA)
@@ -3588,6 +3627,7 @@ sudo apt install snapd -y
 sudo snap install electronplayer
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+electronplayerlogolocation=`locate /snap/electronplayer/ | grep /gui/icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3596,7 +3636,7 @@ Terminal=false
 Exec=/snap/bin/electronplayer
 Name=Electron Player
 Comment=Electron Player
-Icon=/snap/electronplayer/6/meta/gui/icon.png" >> /home/$superuser/Desktop/Electron-Player.desktop
+Icon=$electronplayerlogolocation" >> /home/$superuser/Desktop/Electron-Player.desktop
 sudo chmod +x /home/$superuser/Desktop/Electron-Player.desktop
 else
 :
@@ -3609,6 +3649,7 @@ sudo apt install snapd -y
 sudo snap install plexmediaserver
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+plexmedialogolocation=`locate /snap/plexmediaserver/ | grep pms-web.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3617,7 +3658,7 @@ Terminal=false
 Exec=/snap/plexmediaserver
 Name=Plex Media Server
 Comment=Plex Media Server
-Icon=/snap/plexmediaserver/13/snap/gui/pms-web.png" >> /home/$superuser/Desktop/plex-media-server.desktop
+Icon=$plexmedialogolocation" >> /home/$superuser/Desktop/plex-media-server.desktop
 sudo chmod +x /home/$superuser/Desktop/plex-media-server.desktop
 else
 :
@@ -3630,6 +3671,7 @@ sudo apt install snapd -y
 sudo snap install e-tools
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+etoolslogolocation=`locate /snap/e-tools/ | grep /gui/icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3638,7 +3680,7 @@ Terminal=false
 Exec=/snap/bin/e-tools
 Name=E-tools
 Comment=E-tools
-Icon=/snap/e-tools/3/meta/gui/icon.png" >> /home/$superuser/Desktop/e-tools.desktop
+Icon=$etoolslogolocation" >> /home/$superuser/Desktop/e-tools.desktop
 sudo chmod +x /home/$superuser/Desktop/e-tools.desktop
 else
 :
@@ -3651,6 +3693,7 @@ sudo apt install snapd -y
 sudo snap install blender --classic
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+blenderlogolocation=`locate /snap/blender/ | grep icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3659,7 +3702,7 @@ Terminal=false
 Exec=/snap/bin/blender
 Name=Blender
 Comment=Blender
-Icon=/snap/blender/20/snap/gui/icon.png" >> /home/$superuser/Desktop/blender.desktop
+Icon=$blenderlogolocation" >> /home/$superuser/Desktop/blender.desktop
 sudo chmod +x /home/$superuser/Desktop/blender.desktop
 else
 :
@@ -3672,6 +3715,7 @@ sudo apt install snapd -y
 sudo snap install irfanview
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+irfanviewlogolocation=`locate /snap/irfanview/ | grep irfanview64.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3680,7 +3724,7 @@ Terminal=false
 Exec=/snap/bin/irfanview
 Name=IrfanView
 Comment=IrfanView
-Icon=/snap/irfanview/10/usr/share/pixmaps/irfanview64.png" >> /home/$superuser/Desktop/irfanview.desktop
+Icon=$irfanviewlogolocation" >> /home/$superuser/Desktop/irfanview.desktop
 sudo chmod +x /home/$superuser/Desktop/irfanview.desktop
 else
 :
@@ -3766,10 +3810,11 @@ printf "\nPale Moon installation Has Finished\n\n"
 
 134) # Midori
 sudo apt install snapd -y
-snap install midori
+sudo snap install midori
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+midorilogolocation=`locate /64x64/midori_midori.png`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3778,7 +3823,7 @@ Terminal=false
 Exec=/snap/bin/midori
 Name=Midori
 Comment=Midori
-Icon=/snap/midori/451/usr/share/icons/hicolor/22x22/apps/midori.png" >> /home/$superuser/Desktop/midori.desktop
+Icon=$midorilogolocation" >> /home/$superuser/Desktop/midori.desktop
 sudo chmod +x /home/$superuser/Desktop/midori.desktop
 else
 :
@@ -3792,6 +3837,7 @@ sudo snap install simplenote
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+simplenotelogolocation=`locate /snap/simplenote/ | grep simplenote.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3800,7 +3846,7 @@ Terminal=false
 Exec=/snap/bin/simplenote
 Name=Simplenote
 Comment=Simplenote
-Icon=/snap/simplenote/94/usr/share/icons/hicolor/128x128/apps/simplenote.png" >> /home/$superuser/Desktop/simplenote.desktop
+Icon=$simplenotelogolocation" >> /home/$superuser/Desktop/simplenote.desktop
 sudo chmod +x /home/$superuser/Desktop/simplenote.desktop
 else
 :
@@ -3820,6 +3866,7 @@ sudo snap install pycharm-community --classic
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+pycharmlogolocation=`locate /snap/pycharm-community/ | grep icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3828,7 +3875,7 @@ Terminal=false
 Exec=/snap/bin/pycharm-community
 Name=Pycharm Community
 Comment=Pycharm Community
-Icon=/snap/pycharm-community/128/meta/gui/icon.png" >> /home/$superuser/Desktop/pycharm-community.desktop
+Icon=$pycharmlogolocation" >> /home/$superuser/Desktop/pycharm-community.desktop
 sudo chmod +x /home/$superuser/Desktop/pycharm-community.desktop
 else
 :
@@ -3865,6 +3912,7 @@ sudo snap install notepad-plus-plus
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+notepadpluspluslogolocation=`locate /snap/notepad-plus-plus/ | grep notepad-plus-plus.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3873,7 +3921,7 @@ Terminal=false
 Exec=/snap/bin/notepad-plus-plus
 Name=Notepad-Plus-Plus
 Comment=Notepad-Plus-Plus
-Icon=/snap/notepad-plus-plus/202/usr/share/pixmaps/notepad-plus-plus.png" >> /home/$superuser/Desktop/notepad-plus-plus.desktop
+Icon=$notepadpluspluslogolocation" >> /home/$superuser/Desktop/notepad-plus-plus.desktop
 sudo chmod +x /home/$superuser/Desktop/notepad-plus-plus.desktop
 else
 :
@@ -3887,6 +3935,7 @@ sudo snap install phpstorm --classic
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+phpstormlogolocation=`locate /snap/phpstorm/ | grep icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3895,7 +3944,7 @@ Terminal=false
 Exec=/snap/bin/phpstorm
 Name=PhpStorm
 Comment=PhpStorm
-Icon=/snap/phpstorm/98/meta/gui/icon.png" >> /home/$superuser/Desktop/phpstorm.desktop
+Icon=$phpstormlogolocation" >> /home/$superuser/Desktop/phpstorm.desktop
 sudo chmod +x /home/$superuser/Desktop/phpstorm.desktop
 else
 :
@@ -3909,6 +3958,7 @@ sudo snap install powershell --classic
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+powershelllogolocation=`locate /snap/powershell/ | grep icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3917,7 +3967,7 @@ Terminal=false
 Exec=/snap/bin/powershell
 Name=Powershell
 Comment=Powershell
-Icon=/snap/powershell/21/meta/gui/icon.png" >> /home/$superuser/Desktop/powershell.desktop
+Icon=$powershelllogolocation" >> /home/$superuser/Desktop/powershell.desktop
 sudo chmod +x /home/$superuser/Desktop/powershell.desktop
 else
 :
@@ -3931,6 +3981,7 @@ sudo snap install cacher
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+cacherlogolocation=`locate /snap/cacher/ | grep icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3939,7 +3990,7 @@ Terminal=false
 Exec=/snap/bin/cacher
 Name=Cacher
 Comment=Cacher
-Icon=/snap/cacher/65/meta/gui/icon.png" >> /home/$superuser/Desktop/cacher.desktop
+Icon=$cacherlogolocation" >> /home/$superuser/Desktop/cacher.desktop
 sudo chmod +x /home/$superuser/Desktop/cacher.desktop
 else
 :
@@ -3953,6 +4004,7 @@ sudo snap install webstorm --classic
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+webstormlogolocation=`locate /snap/webstorm | grep icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3961,7 +4013,7 @@ Terminal=false
 Exec=/snap/bin/webstorm
 Name=Webstorm
 Comment=Webstorm
-Icon=/snap/webstorm/92/meta/gui/icon.png" >> /home/$superuser/Desktop/webstorm.desktop
+Icon=$webstormlogolocation" >> /home/$superuser/Desktop/webstorm.desktop
 sudo chmod +x /home/$superuser/Desktop/webstorm.desktop
 else
 :
@@ -3975,6 +4027,7 @@ sudo snap install insomnia
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+insomnialogolocation=`locate /snap/insomnia/ | grep icon.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -3983,7 +4036,7 @@ Terminal=false
 Exec=/snap/bin/insomnia
 Name=Insomnia
 Comment=Insomnia
-Icon=/snap/insomnia/28/meta/gui/icon.png" >> /home/$superuser/Desktop/insomnia.desktop
+Icon=$insomnialogolocation" >> /home/$superuser/Desktop/insomnia.desktop
 sudo chmod +x /home/$superuser/Desktop/insomnia.desktop
 else
 :
@@ -4044,20 +4097,230 @@ sudo snap install chromium
 
 if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
 sudo updatedb
+chromiumlogolocation=`locate /snap/chromium/ | grep chromium.png | head -n 1`
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
 Type=Application
 Terminal=false
-Exec=/usr/bin/google-chrome-stable
-Name=Google Chrome
-Comment=Google Chrome
-Icon=/usr/share/icons/hicolor/128x128/apps/google-chrome.png" >> /home/$superuser/Desktop/google-chrome.desktop
-sudo chmod +x /home/$superuser/Desktop/google-chrome.desktop
+Exec=/snap/bin/chromium
+Name=Chromium
+Comment=Chromium
+Icon=$chromiumlogolocation" >> /home/$superuser/Desktop/chromium.desktop
+sudo chmod +x /home/$superuser/Desktop/chromium.desktop
 else
 :
 fi
-printf "\nGoogle Chrome installation Has Finished\n\n"
+printf "\nChromium installation Has Finished\n\n"
+;;
+
+148) # DBeaver Community Edition (PPA)
+sudo add-apt-repository ppa:serge-rider/dbeaver-ce -y
+sudo apt update
+sudo apt install dbeaver-ce -y
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/dbeaver
+Name=DBeaver Community Edition
+Comment=DBeaver Community Edition
+Icon=/usr/share/dbeaver/dbeaver.png" >> /home/$superuser/Desktop/dbeaver.desktop
+sudo chmod +x /home/$superuser/Desktop/dbeaver.desktop
+else
+:
+fi
+printf "\nDBeaver Community Edition installation Has Finished\n\n"
+;;
+
+149) # Valentina Studio
+
+if [ "$cpuarch" = "x86_64" ];then
+wget -O /home/$superuser/Downloads/TempDL/Valentina-Studio-x64.deb https://www.valentina-db.com/en/all-downloads/vstudio/current/vstudio_x64_lin-deb?format=raw
+sudo dpkg -i /home/$superuser/Downloads/TempDL/Valentina-Studio-x64.deb
+
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+wget -O /home/$superuser/Downloads/TempDL/Valentina-Studio-x86.deb https://www.valentina-db.com/en/all-downloads/vstudio/current/vstudio_lin_32_debian?format=raw
+sudo dpkg -i /home/$superuser/Downloads/TempDL/Valentina-Studio-x86.deb
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/VStudio/vstudio
+Name=Valentina Studio
+Comment=Valentina Studio
+Icon=/opt/VStudio/Resources/vstudio.png" >> /home/$superuser/Desktop/valentina-studio.desktop
+sudo chmod +x /home/$superuser/Desktop/valentina-studio.desktop
+else
+:
+fi
+printf "\nValentina Studio installation Has Finished\n\n"
+;;
+
+150) # SQuirreL SQL
+sudo apt install snapd -y
+sudo snap install squirrelsql
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+squirrelsqllogolocation=`locate squirrel | grep /gui/icon.png | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/squirrelsql
+Name=SQuirreL SQL
+Comment=SQuirreL SQL
+Icon=$squirrelsqllogolocation" >> /home/$superuser/Desktop/squirrelsql.desktop
+sudo chmod +x /home/$superuser/Desktop/squirrelsql.desktop
+else
+:
+fi
+printf "\nSquirrel SQL installation Has Finished\n\n"
+;;
+
+151) # DbVisualizer
+sudo apt install lynx -y
+sudo add-apt-repository ppa:linuxuprising/java -y
+sudo apt update
+sudo apt install oracle-java11-installer -y
+dbvisualizer=`lynx -dump https://www.dbvis.com/download/ | awk '/http/{print $2}' | grep linux | grep .deb | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/dbvisualizer-latest.deb $dbvisualizer
+sudo dpkg -i /home/$superuser/Downloads/TempDL/dbvisualizer-latest.deb
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+dbvisualizerlocation=`locate /bin/dbvis | head -n 1`
+dbvisualizerlogolocation=`locate dbvis | grep dbvis.png | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/local/bin/dbvis
+Name=DbVisualizer
+Comment=DbVisualizer
+Icon=$dbvisualizerlogolocation" >> /home/$superuser/Desktop/DbVisualizer.desktop
+sudo chmod +x /home/$superuser/Desktop/DbVisualizer.desktop
+else
+:
+fi
+printf "\nDbVisualizer installation Has Finished\n\n"
+;;
+
+152) # DataGrip (Snap)
+sudo apt install snapd -y
+sudo snap install datagrip --classic
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+datagriplogolocation=`locate datagrip | grep icon.png | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/datagrip
+Name=DataGrip
+Comment=DataGrip
+Icon=$datagriplogolocation" >> /home/$superuser/Desktop/datagrip.desktop
+sudo chmod +x /home/$superuser/Desktop/datagrip.desktop
+else
+:
+fi
+printf "\nDataGrip installation Has Finished\n\n"
+;;
+
+153) # PgAdmin
+sudo apt install curl ca-certificates -y
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+cat > /etc/apt/sources.list.d/pgdg.list <<EOF
+deb http://apt.postgresql.org/pub/repos/apt/ $codename-pgdg main
+#deb-src http://apt.postgresql.org/pub/repos/apt/ $codename-pgdg main
+EOF
+sudo apt update
+sudo apt install postgresql-11 pgadmin4 -y
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/pgadmin4
+Name=PgAdmin
+Comment=PgAdmin
+Icon=/usr/share/icons/hicolor/256x256/apps/pgadmin4.png" >> /home/$superuser/Desktop/pgadmin.desktop
+sudo chmod +x /home/$superuser/Desktop/pgadmin.desktop
+else
+:
+fi
+printf "\nPgAdmin installation Has Finished\n\n"
+;;
+
+154) # Remmina (PPA)
+sudo apt-add-repository ppa:remmina-ppa-team/remmina-next -y
+sudo apt update
+sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice -y
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/remmina
+Name=Remmina
+Comment=Remmina
+Icon=/usr/share/icons/hicolor/128x128/apps/org.remmina.Remmina.png" >> /home/$superuser/Desktop/remmina.desktop
+sudo chmod +x /home/$superuser/Desktop/remmina.desktop
+else
+:
+fi
+printf "\nRemmina installation Has Finished\n\n"
+;;
+
+155) # Anydesk
+sudo apt install lynx -y
+
+if [ "$cpuarch" = "x86_64" ];then
+anydesk64=`lynx -dump https://anydesk.com/en/downloads/linux | awk '/http/{print $2}' | grep amd64.deb | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/anydesk-latest-x64.deb $anydesk64
+sudo dpkg -i /home/$superuser/Downloads/TempDL/anydesk-latest-x64.deb
+sudo apt -f install -y
+elif [ "$cpuarch" = "x86" ] || [ "$cpuarch" = "i386" ] || [ "$cpuarch" = "i486" ] || [ "$cpuarch" = "i586" ] || [ "$cpuarch" = "i686" ];then
+anydesk32=`lynx -dump https://anydesk.com/en/downloads/linux | awk '/http/{print $2}' | grep i386.deb | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/anydesk-latest-x86.deb $anydesk32
+sudo dpkg -i /home/$superuser/Downloads/TempDL/anydesk-latest-x86.deb
+sudo apt -f install -y
+fi
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/usr/bin/anydesk
+Name=Anydesk
+Comment=Anydesk
+Icon=/usr/share/pixmaps/anydesk.png" >> /home/$superuser/Desktop/anydesk.desktop
+sudo chmod +x /home/$superuser/Desktop/anydesk.desktop
+else
+:
+fi
+printf "\nAnydesk installation Has Finished\n\n"
 ;;
         esac
     fi
