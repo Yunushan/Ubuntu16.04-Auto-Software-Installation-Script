@@ -48,7 +48,8 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
 "Pycharm Community Edition ${opts[137]}" "Postman (PPA) ${opts[138]}" "Notepad-Plus-Plus (Snap) ${opts[139]}" "PhpStorm (Snap) ${opts[140]}" 
 "Powershell (Snap) ${opts[141]}" "Cacher (Snap) ${opts[142]}" "WebStorm (Snap) ${opts[143]}" "Insomnia (Snap) ${opts[144]}" "Opera (Snap) ${opts[145]}" 
 "Google Chrome (PPA) ${opts[146]}" "Chromium (Snap) ${opts[147]}" "DBeaver Community Edition (PPA) ${opts[148]}" "Valentina Studio ${opts[149]}" "SQuirreL SQL (Snap) ${opts[150]}" 
-"DbVisualizer ${opts[151]}" "DataGrip (Snap) ${opts[152]}" "PgAdmin ${opts[153]}" "Remmina (PPA) ${opts[154]}" "Anydesk ${opts[155]}" "Done ${opts[156]}")
+"DbVisualizer ${opts[151]}" "DataGrip (Snap) ${opts[152]}" "PgAdmin ${opts[153]}" "Remmina (PPA) ${opts[154]}" "Anydesk ${opts[155]}" "Vnc4server ${opts[156]}" 
+"DVBlast ${opts[157]}" "ElectronMail (Snap) ${opts[158]}" "LXD (Snap) ${opts[159]}" "Done ${opts[160]}")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -672,10 +673,26 @@ options=("PHP7.3 (PPA) ${opts[1]}" "Nginx (PPA) ${opts[2]}" "Apache2 (PPA) ${opt
                 choice 155
                 break
                 ;;
-            "Done ${opts[156]}")
+            "Vnc4server ${opts[156]}")
+                choice 156
+                break
+                ;;
+            "DVBlast ${opts[157]}")
+                choice 157
+                break
+                ;;
+            "ElectronMail (Snap) ${opts[158]}")
+                choice 158
+                break
+                ;;
+            "LXD (Snap) ${opts[159]}")
+                choice 159
+                break
+                ;;
+            "Done ${opts[160]}")
                 break 2
                 ;;
-            *) printf '%s\n' 'Please Choose Between 1-156';;
+            *) printf '%s\n' 'Please Choose Between 1-160';;
         esac
     done
 done
@@ -709,7 +726,7 @@ if [ "$opt" = "4" ] || [ "$opt" = "5" ] || [ "$opt" = "9" ] || [ "$opt" = "10" ]
  [ "$opt" = "128" ] || [ "$opt" = "129" ] || [ "$opt" = "130" ] || [ "$opt" = "131" ] || [ "$opt" = "132" ] || [ "$opt" = "133" ] || [ "$opt" = "134" ] || \
  [ "$opt" = "135" ] || [ "$opt" = "137" ] || [ "$opt" = "138" ] || [ "$opt" = "139" ] || [ "$opt" = "140" ] || [ "$opt" = "141" ] || [ "$opt" = "142" ] || \
  [ "$opt" = "143" ] || [ "$opt" = "144" ] || [ "$opt" = "145" ] || [ "$opt" = "146" ] || [ "$opt" = "147" ] || [ "$opt" = "148" ] || [ "$opt" = "149" ] || [ "$opt" = "150" ] || \
- [ "$opt" = "151" ] || [ "$opt" = "152" ] || [ "$opt" = "153" ] || [ "$opt" = "154" ] || [ "$opt" = "155" ]
+ [ "$opt" = "151" ] || [ "$opt" = "152" ] || [ "$opt" = "153" ] || [ "$opt" = "154" ] || [ "$opt" = "155" ] || [ "$opt" = "158" ]
 then
 
 printf "\nDo You Want to Enable Create Shortcut ? (Y/N):"
@@ -4321,6 +4338,64 @@ else
 :
 fi
 printf "\nAnydesk installation Has Finished\n\n"
+;;
+
+156) # Vnc4server
+
+sudo apt install vnc4server xfce4 xfce4-goodies -y
+sudo vncpasswd
+sudo mkdir -v ~/.vnc
+sudo echo "#!/bin/bash
+startxfce4 &" >> ~/.vnc/xstartup
+sudo chmod -v +x ~/.vnc/xstartup
+sudo vnc4server
+sudo ufw allow from any to any port 5901 proto tcp
+sudo ss -ltn
+cat <(crontab -l) <(echo "@reboot vnc4server") | crontab -
+
+printf "\nVnc4server installation Has Finished\n\n"
+;;
+
+157) # DVBlast
+sudo apt install lynx gcc libev-dev -y
+dvblastlink=`lynx -dump https://www.videolan.org/projects/dvblast.html | awk '/http/{print $2}' | grep .tar.bz2 | head -n 1`
+wget -O /home/$superuser/Downloads/TempDL/dvblast-latest.tar.bz2 $dvblastlink
+sudo tar xvf /home/$superuser/Downloads/TempDL/dvblast-latest.tar.bz2 -C /home/$superuser/Downloads/TempDL/dvblast-latest --strip-components 1
+cd /home/$superuser/Downloads/TempDL/dvblast-latest
+make
+make install
+dvblast --version
+
+printf "\nDVBlast installation Has Finished\n\n"
+;;
+
+158) # ElectronMail (Snap)
+sudo apt install snapd lynx -y
+sudo snap install electron-mail
+
+if [ "$shortcut" = "Y" ] || [ "$shortcut" = "y" ];then
+sudo updatedb
+electronmaillogo=`locate meta/gui/icon.png | head -n 1`
+echo "#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/electron-mail
+Name=ElectronMail
+Comment=ElectronMail
+Icon=$electronmaillogo" >> /home/$superuser/Desktop/electronmail.desktop
+sudo chmod +x /home/$superuser/Desktop/electronmail.desktop
+else
+:
+fi
+printf "\nElectronMail installation Has Finished\n\n"
+;;
+
+159) # LXD (Snap)
+sudo apt install snapd lynx -y
+sudo snap install lxd
+printf "\nLXD installation Has Finished\n\n"
 ;;
         esac
     fi
